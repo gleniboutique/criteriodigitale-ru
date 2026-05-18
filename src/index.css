@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,46 +6,28 @@
 
 @layer base {
   :root {
-    /* Golden warm palette — canonical from criteriodigitale.it */
-    --background: 40 40% 95%;
-    --foreground: 30 20% 18%;
+    /* Editorial umbrella brand — `--tm-*` from tokens.css */
+    --paper:      45 28% 95%;        /* warm off-white background */
+    --paper-2:    45 22% 90%;        /* card / pull-quote surface */
+    --paper-3:    45 18% 86%;        /* divider, hover */
+    --bone:       45 35% 98%;        /* lightest surface */
+    --ink:        30 30% 14%;        /* primary text */
+    --ink-soft:   30 22% 26%;        /* secondary text */
+    --mute:       40 14% 45%;        /* meta, captions */
+    --mute-2:     40 10% 60%;        /* subtle */
+    --gold:       42 60% 45%;        /* primary accent — editorial gold */
+    --gold-deep:  38 65% 35%;        /* hover, emphasis */
+    --gold-soft:  45 50% 60%;        /* gradient end */
+    --rust:       18 55% 45%;        /* rare warm accent */
+    --olive:      82 18% 38%;        /* secondary accent — diagrams */
+    --line:       30 25% 14%;        /* used at alpha for borders */
+    --line-alpha: 0.14;
 
-    --card: 40 35% 93%;
-    --card-foreground: 30 20% 18%;
-
-    --primary: 36 55% 38%;
-    --primary-foreground: 45 50% 96%;
-
-    --accent: 30 50% 52%;
-    --accent-foreground: 45 50% 96%;
-
-    --muted: 38 25% 88%;
-    --muted-foreground: 30 15% 38%;
-
-    --border: 38 30% 84%;
-    --ring: 36 55% 38%;
-
-    --radius: 0.75rem;
-
-    /* Golden tokens */
-    --golden-glow: 40 60% 92%;
-    --golden-deep: 36 45% 30%;
-    --golden-light: 42 50% 96%;
-    --amber-warm: 30 45% 88%;
-
-    /* Navy tokens */
-    --navy: 220 50% 10%;
-    --navy-light: 220 40% 16%;
-    --navy-muted: 220 30% 22%;
-
-    /* Burgundy accent */
-    --burgundy: 18 55% 28%;
-    --burgundy-light: 18 50% 35%;
-    --burgundy-glow: 18 55% 40%;
+    --radius: 4px;
   }
 
   * {
-    @apply border-border;
+    border-color: hsl(var(--line) / var(--line-alpha));
   }
 
   html {
@@ -53,115 +35,176 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
-    font-family: 'DM Sans', system-ui, sans-serif;
-    font-feature-settings: "ss01", "ss02";
+    background: hsl(var(--paper));
+    color: hsl(var(--ink));
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'DM Serif Display', serif;
-    @apply text-foreground;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
     letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin: 0;
+    color: hsl(var(--ink));
+  }
+
+  em, .italic {
+    font-style: italic;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  a {
+    color: hsl(var(--gold-deep));
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  a:hover {
+    color: hsl(var(--gold));
   }
 
   ::selection {
-    background: hsl(var(--accent) / 0.25);
+    background: hsl(var(--gold) / 0.25);
   }
 }
 
 @layer utilities {
-  .section-padding {
-    @apply py-20 md:py-28 px-6 md:px-12 lg:px-20;
+  /* ── Layout ───────────────────────────────────────────────── */
+
+  .page {
+    max-width: 920px;
+    margin: 0 auto;
+    padding-left: clamp(24px, 6vw, 56px);
+    padding-right: clamp(24px, 6vw, 56px);
   }
 
-  .container-narrow {
-    @apply max-w-3xl mx-auto;
+  .page-wide {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-left: clamp(24px, 6vw, 56px);
+    padding-right: clamp(24px, 6vw, 56px);
   }
 
-  .container-wide {
-    @apply max-w-6xl mx-auto;
+  .section-spacing {
+    padding-top: clamp(72px, 9vw, 120px);
+    padding-bottom: clamp(72px, 9vw, 120px);
   }
 
-  /* ── Surfaces ─────────────────────────────────────────────── */
-
-  .golden-gradient {
-    background: linear-gradient(
-      135deg,
-      hsl(var(--golden-light)) 0%,
-      hsl(var(--golden-glow)) 40%,
-      hsl(var(--amber-warm)) 100%
-    );
-  }
-
-  .navy-section {
-    background: linear-gradient(
-      135deg,
-      hsl(var(--navy)) 0%,
-      hsl(var(--navy-light)) 100%
-    );
-    color: hsl(var(--golden-light));
-  }
-
-  /* ── Glass cards (the signature) ──────────────────────────── */
-
-  .glass-card {
-    background: hsl(var(--golden-light) / 0.7);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid hsl(var(--border) / 0.5);
-    border-radius: var(--radius);
-    box-shadow: 0 8px 32px -8px hsl(var(--foreground) / 0.08);
-  }
-
-  .glass-card-strong {
-    background: hsl(var(--golden-light) / 0.92);
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
-    border: 1px solid hsl(var(--border) / 0.6);
-    border-radius: var(--radius);
-    box-shadow: 0 12px 40px -12px hsl(var(--foreground) / 0.1);
-  }
-
-  .glass-card-dark {
-    background: hsl(var(--navy) / 0.65);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid hsl(var(--primary) / 0.15);
-    border-radius: var(--radius);
-    box-shadow: 0 12px 40px -12px hsl(var(--navy) / 0.4);
-  }
-
-  /* ── Brand motifs ─────────────────────────────────────────── */
-
-  .text-gradient-gold {
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .divider-gold {
-    width: 60px;
-    height: 2px;
-    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)));
-  }
+  /* ── Editorial primitives ─────────────────────────────────── */
 
   .eyebrow {
     font-family: 'DM Sans', sans-serif;
     font-size: 11px;
     font-weight: 600;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: hsl(var(--muted-foreground));
+    color: hsl(var(--gold));
   }
 
-  .eyebrow-light {
+  .eyebrow-mute {
     font-family: 'DM Sans', sans-serif;
     font-size: 11px;
     font-weight: 600;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: hsl(var(--primary));
+    color: hsl(var(--mute));
+  }
+
+  .rule-gold {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, hsl(var(--gold)), hsl(var(--gold-soft)));
+    border: 0;
+  }
+
+  .rule-hair {
+    width: 100%;
+    height: 1px;
+    background: hsl(var(--line) / var(--line-alpha));
+    border: 0;
+  }
+
+  .lead {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 2.2vw, 26px);
+    font-style: italic;
+    color: hsl(var(--ink-soft));
+    line-height: 1.45;
+  }
+
+  .display-1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(44px, 7vw, 72px);
+    line-height: 1.02;
+    letter-spacing: -1.4px;
+    color: hsl(var(--ink));
+  }
+
+  .display-2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(32px, 4.5vw, 48px);
+    line-height: 1.06;
+    letter-spacing: -0.8px;
+    color: hsl(var(--ink));
+  }
+
+  .display-3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.15;
+    letter-spacing: -0.4px;
+    color: hsl(var(--ink));
+  }
+
+  .num-display {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(64px, 10vw, 120px);
+    line-height: 0.85;
+    letter-spacing: -3px;
+    color: hsl(var(--gold));
+  }
+
+  .accent {
+    color: hsl(var(--gold-deep));
+  }
+
+  .accent-italic {
+    color: hsl(var(--gold-deep));
+    font-style: italic;
+  }
+
+  /* Section header pattern: eyebrow → border-top H2 (magazine style) */
+  .section-head {
+    border-bottom: 1px solid hsl(var(--line) / var(--line-alpha));
+    padding-bottom: 22px;
+    margin-bottom: 40px;
+  }
+
+  /* ── Surfaces ─────────────────────────────────────────────── */
+
+  .surface-card {
+    background: hsl(var(--paper-2));
+    border-radius: 8px;
+    padding: clamp(24px, 3vw, 36px);
+  }
+
+  .surface-bone {
+    background: hsl(var(--bone));
+    border: 1px solid hsl(var(--line) / var(--line-alpha));
+    border-radius: 8px;
   }
 
   /* ── Animations ───────────────────────────────────────────── */
@@ -180,7 +223,7 @@
   }
 
   @keyframes fade-in-up {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(16px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 }

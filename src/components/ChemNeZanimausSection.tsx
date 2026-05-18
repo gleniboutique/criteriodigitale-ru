@@ -9,39 +9,38 @@ const notDoing = [
 
 export default function ChemNeZanimausSection() {
   return (
-    <section className="section-padding navy-section relative overflow-hidden">
-      <div className="container-wide relative">
-        <div className="text-center mb-14">
-          <p className="eyebrow-light mb-4">04 · Границы</p>
-          <h2 className="font-serif text-3xl md:text-5xl mb-4 text-golden-light leading-tight">
-            Чем <span className="text-gradient-gold italic">не</span> занимаюсь
-          </h2>
-          <div className="divider-gold mx-auto" />
-        </div>
+    <section className="section-spacing bg-paper-2">
+      <div className="page">
+        <header className="section-head flex items-baseline justify-between">
+          <p className="eyebrow-mute">05 · Границы</p>
+          <p className="eyebrow-mute">{notDoing.length} пунктов</p>
+        </header>
 
-        <div className="grid md:grid-cols-2 gap-4 max-w-5xl mx-auto mb-12">
+        <h2 className="display-2 mb-3">
+          Чем <em className="accent-italic">не</em> занимаюсь
+        </h2>
+        <hr className="rule-gold mb-14" />
+
+        <ul className="space-y-0 mb-14">
           {notDoing.map((line, i) => (
-            <div
+            <li
               key={i}
-              className="glass-card-dark p-5 md:p-6 flex gap-4 items-start"
+              className="grid grid-cols-[40px_1fr] gap-5 md:gap-8 items-baseline py-6 md:py-7 border-t border-ink/10 first:border-t-0"
             >
-              <span
-                className="font-serif italic text-3xl text-gradient-gold leading-none pt-1"
-                style={{ minWidth: "1.5ch" }}
-              >
+              <span className="font-serif italic text-3xl md:text-4xl text-gold leading-none">
                 ×
               </span>
-              <p className="text-base md:text-lg leading-snug text-golden-light/90">
+              <p className="font-serif text-lg md:text-xl leading-[1.4] text-ink">
                 {line}
               </p>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
 
-        <div className="max-w-3xl mx-auto text-center pt-6 border-t border-golden-light/15">
-          <p className="font-serif italic text-lg md:text-2xl text-golden-light/80 pt-8">
+        <div className="border-l-2 border-gold pl-5 md:pl-6 max-w-2xl">
+          <p className="font-serif italic text-xl md:text-2xl text-ink-soft leading-snug">
             Чем я не занимаюсь — иногда{" "}
-            <span className="text-gradient-gold">важнее</span> того, чем занимаюсь.
+            <em className="accent">важнее</em> того, чем занимаюсь.
           </p>
         </div>
       </div>
