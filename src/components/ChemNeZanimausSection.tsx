@@ -1,3 +1,5 @@
+import MonoTelemetry from "./ornaments/MonoTelemetry";
+
 const notDoing = [
   "Не оказываю юридических консультаций.",
   "Не внедряю «под ключ» чужой софт.",
@@ -9,11 +11,11 @@ const notDoing = [
 
 export default function ChemNeZanimausSection() {
   return (
-    <section className="section-spacing bg-paper-2">
-      <div className="page">
+    <section className="section-spacing bg-paper-2 relative overflow-hidden">
+      <div className="page-wide relative">
         <header className="section-head flex items-baseline justify-between">
-          <p className="eyebrow-mute">05 · Границы</p>
-          <p className="eyebrow-mute">{notDoing.length} пунктов</p>
+          <p className="eyebrow-mute">№ 05 · Границы</p>
+          <p className="eyebrow-mute">6 пунктов · открыто</p>
         </header>
 
         <h2 className="display-2 mb-3">
@@ -21,24 +23,35 @@ export default function ChemNeZanimausSection() {
         </h2>
         <hr className="rule-gold mb-14" />
 
-        <ul className="space-y-0 mb-14">
-          {notDoing.map((line, i) => (
-            <li
-              key={i}
-              className="grid grid-cols-[40px_1fr] gap-5 md:gap-8 items-baseline py-6 md:py-7 border-t border-ink/10 first:border-t-0"
-            >
-              <span className="font-serif italic text-3xl md:text-4xl text-gold leading-none">
-                ×
-              </span>
-              <p className="font-serif text-lg md:text-xl leading-[1.4] text-ink">
-                {line}
-              </p>
-            </li>
-          ))}
-        </ul>
+        <div className="grid md:grid-cols-[1fr_220px] gap-10 md:gap-14 mb-14 items-start">
+          <ul className="grid sm:grid-cols-2 gap-4 md:gap-5">
+            {notDoing.map((line, i) => (
+              <li
+                key={i}
+                className="copy-block grid grid-cols-[28px_1fr] gap-4 items-baseline"
+              >
+                <span className="font-serif italic text-3xl text-gold leading-none">
+                  ×
+                </span>
+                <p className="font-serif text-base md:text-lg leading-[1.35] text-ink">
+                  {line}
+                </p>
+              </li>
+            ))}
+          </ul>
 
-        <div className="border-l-2 border-gold pl-5 md:pl-6 max-w-2xl">
-          <p className="font-serif italic text-xl md:text-2xl text-ink-soft leading-snug">
+          <aside className="hidden md:block sticky top-8">
+            <p className="eyebrow-mute mb-4">журнал</p>
+            <MonoTelemetry />
+            <p className="font-serif italic text-sm text-mute mt-4 pt-3 border-t border-ink/10">
+              сверено · обновлено сегодня
+            </p>
+          </aside>
+        </div>
+
+        <div className="copy-block max-w-3xl">
+          <p className="eyebrow mb-3">подпись</p>
+          <p className="font-serif italic text-xl md:text-3xl text-ink leading-snug">
             Чем я не занимаюсь — иногда{" "}
             <em className="accent">важнее</em> того, чем занимаюсь.
           </p>
