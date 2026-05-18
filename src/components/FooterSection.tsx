@@ -69,9 +69,7 @@ export default function FooterSection() {
 
         <div className="flex flex-col sm:flex-row items-baseline justify-between gap-2 pt-6 text-xs text-mute">
           <p>© {year} · criteriodigitale.ru</p>
-          <p className="font-serif italic">
-            Studio · {year} · Milano
-          </p>
+          <p className="font-serif italic">Italia · {year}</p>
         </div>
       </div>
     </footer>

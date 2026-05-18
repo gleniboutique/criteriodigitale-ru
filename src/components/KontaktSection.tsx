@@ -2,7 +2,7 @@ import GoldenSwirls from "./ornaments/GoldenSwirls";
 
 export default function KontaktSection() {
   return (
-    <section className="section-spacing bg-paper relative overflow-hidden">
+    <section className="section-spacing bg-paper-2 relative overflow-hidden border-t border-ink/8">
       <div className="ornament">
         <GoldenSwirls opacity={0.35} />
       </div>

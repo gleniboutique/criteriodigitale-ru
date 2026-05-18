@@ -9,7 +9,7 @@ const observations = [
 
 export default function ChtoZametilaSection() {
   return (
-    <section className="section-spacing bg-paper relative overflow-hidden">
+    <section className="section-spacing bg-paper-2 relative overflow-hidden border-t border-ink/8">
       <div className="page-wide relative">
         <div className="mb-3 opacity-60">
           <RulerGrid />

@@ -60,7 +60,7 @@ const cases: Case[] = [
 
 export default function SluchaiSection() {
   return (
-    <section className="section-spacing bg-paper-2 relative overflow-hidden">
+    <section className="section-spacing bg-paper relative overflow-hidden border-t border-ink/8">
       <div className="page-wide relative">
         <div className="mb-3 opacity-50">
           <RulerGrid />

@@ -11,7 +11,7 @@ const notDoing = [
 
 export default function ChemNeZanimausSection() {
   return (
-    <section className="section-spacing bg-paper-2 relative overflow-hidden">
+    <section className="section-spacing bg-paper relative overflow-hidden border-t border-ink/8">
       <div className="page-wide relative">
         <header className="section-head flex items-baseline justify-between">
           <p className="eyebrow-mute">№ 05 · Границы</p>
