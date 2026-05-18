@@ -1,28 +1,41 @@
+import goldenBg from "@/assets/golden-waves-bg.jpg";
+
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center section-padding surface-warm overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none opacity-40">
-        <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full blur-3xl"
-             style={{ background: "radial-gradient(circle, hsl(30 50% 75% / 0.5) 0%, transparent 70%)" }} />
-        <div className="absolute bottom-[-15%] left-[-10%] w-[50%] h-[50%] rounded-full blur-3xl"
-             style={{ background: "radial-gradient(circle, hsl(36 55% 65% / 0.35) 0%, transparent 70%)" }} />
-      </div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <img
+        src={goldenBg}
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover"
+        aria-hidden="true"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-navy/30 via-navy/10 to-navy/60" />
 
-      <div className="container-wide relative z-10">
-        <div className="max-w-3xl">
-          <div className="divider-gold mb-10" />
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.15] mb-8 animate-fade-in-up">
-            Вы знаете, что что-то не так.
+      <div className="relative z-10 w-full max-w-3xl mx-auto px-6 py-32">
+        <div className="glass-card-dark rounded-2xl p-10 md:p-14 space-y-7 text-center animate-fade-in-up">
+          <p className="eyebrow-light">
+            Татьяна Мирошина · criteriodigitale.ru
+          </p>
+
+          <h1 className="font-serif text-3xl md:text-5xl lg:text-[3rem] leading-[1.1] text-golden-light tracking-tight">
+            Вы знаете, что что-то{" "}
+            <span className="text-gradient-gold italic">не так</span>.
             <br />
             Но не знаете, что именно.
             <br />
-            <span className="text-gradient-gold">И боитесь начать с не того конца.</span>
+            И боитесь начать{" "}
+            <span className="text-gradient-gold italic">с не того конца</span>.
           </h1>
 
-          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl animate-fade-in-up"
-             style={{ animationDelay: "120ms", animationFillMode: "both" }}>
+          <div className="divider-gold mx-auto" />
+
+          <p className="font-serif italic text-base md:text-lg text-golden-light/85 leading-relaxed max-w-xl mx-auto">
             Я помогаю разобраться — до того, как вы потратите
             деньги, время и команду на не ту задачу.
+          </p>
+
+          <p className="text-xs text-golden-light/55 tracking-[0.18em] uppercase pt-2">
+            Один человек, не агентство
           </p>
         </div>
       </div>

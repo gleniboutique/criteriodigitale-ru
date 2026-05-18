@@ -9,30 +9,41 @@ const notDoing = [
 
 export default function ChemNeZanimausSection() {
   return (
-    <section className="section-padding surface-navy">
-      <div className="container-wide">
-        <div className="mb-16">
-          <p className="text-sm uppercase tracking-[0.18em] opacity-60 mb-4">
-            04 — границы
-          </p>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl mb-4 text-background">
-            Чем не занимаюсь
+    <section className="section-padding navy-section relative overflow-hidden">
+      <div className="container-wide relative">
+        <div className="text-center mb-14">
+          <p className="eyebrow-light mb-4">04 · Границы</p>
+          <h2 className="font-serif text-3xl md:text-5xl mb-4 text-golden-light leading-tight">
+            Чем <span className="text-gradient-gold italic">не</span> занимаюсь
           </h2>
-          <div className="divider-gold" />
+          <div className="divider-gold mx-auto" />
         </div>
 
-        <ul className="space-y-5 mb-12 max-w-3xl">
+        <div className="grid md:grid-cols-2 gap-4 max-w-5xl mx-auto mb-12">
           {notDoing.map((line, i) => (
-            <li key={i} className="flex gap-4 text-lg md:text-xl leading-snug">
-              <span className="text-accent font-serif pt-1 min-w-[1.5ch]">×</span>
-              <span>{line}</span>
-            </li>
+            <div
+              key={i}
+              className="glass-card-dark p-5 md:p-6 flex gap-4 items-start"
+            >
+              <span
+                className="font-serif italic text-3xl text-gradient-gold leading-none pt-1"
+                style={{ minWidth: "1.5ch" }}
+              >
+                ×
+              </span>
+              <p className="text-base md:text-lg leading-snug text-golden-light/90">
+                {line}
+              </p>
+            </div>
           ))}
-        </ul>
+        </div>
 
-        <p className="font-serif italic text-lg md:text-xl opacity-75 max-w-2xl border-t border-white/15 pt-8">
-          Чем я не занимаюсь — иногда важнее того, чем занимаюсь.
-        </p>
+        <div className="max-w-3xl mx-auto text-center pt-6 border-t border-golden-light/15">
+          <p className="font-serif italic text-lg md:text-2xl text-golden-light/80 pt-8">
+            Чем я не занимаюсь — иногда{" "}
+            <span className="text-gradient-gold">важнее</span> того, чем занимаюсь.
+          </p>
+        </div>
       </div>
     </section>
   );

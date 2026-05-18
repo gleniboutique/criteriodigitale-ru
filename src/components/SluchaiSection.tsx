@@ -84,66 +84,63 @@ export default function SluchaiSection() {
     emblaApi.on("reInit", onSelect);
   }, [emblaApi, onSelect]);
 
-  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
-  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
-
   return (
-    <section className="section-padding surface-warm">
-      <div className="container-wide">
-        <div className="mb-16">
-          <p className="text-sm uppercase tracking-[0.18em] text-muted-foreground mb-4">
-            02 — случаи
-          </p>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl mb-4">
-            С чем приходят — и что оказывается на самом деле
+    <section className="section-padding golden-gradient relative overflow-hidden">
+      <div className="container-wide relative">
+        <div className="text-center mb-16">
+          <p className="eyebrow mb-4">02 · Случаи</p>
+          <h2 className="font-serif text-3xl md:text-5xl mb-4 leading-tight">
+            С чем приходят — и что{" "}
+            <span className="text-gradient-gold italic">оказывается на самом деле</span>
           </h2>
-          <div className="divider-gold" />
+          <div className="divider-gold mx-auto" />
         </div>
 
         <div className="relative">
-          <div className="overflow-hidden -mx-2" ref={emblaRef}>
+          <div className="overflow-hidden -mx-3" ref={emblaRef}>
             <div className="flex">
               {cases.map((c, i) => (
                 <article
                   key={i}
-                  className="flex-[0_0_100%] md:flex-[0_0_85%] lg:flex-[0_0_70%] min-w-0 px-2"
+                  className="flex-[0_0_100%] md:flex-[0_0_85%] lg:flex-[0_0_70%] min-w-0 px-3"
                 >
-                  <div className="bg-card rounded-2xl p-8 md:p-12 h-full border border-border/50 shadow-sm">
-                    <p className="text-sm uppercase tracking-[0.15em] text-primary/80 mb-2">
-                      Случай {i + 1}
-                    </p>
-                    <h3 className="font-serif text-2xl md:text-3xl mb-8">
-                      {c.title}
-                    </h3>
+                  <div className="glass-card-strong p-8 md:p-12 h-full grid md:grid-cols-[110px_1fr] gap-6 md:gap-10">
+                    <div className="flex md:block items-baseline gap-4 md:gap-0">
+                      <div
+                        className="font-serif italic text-6xl md:text-[5.5rem] text-gradient-gold leading-none"
+                        style={{ letterSpacing: "-0.03em" }}
+                      >
+                        {String(i + 1).padStart(2, "0")}
+                      </div>
+                      <p className="eyebrow mt-0 md:mt-3">Случай</p>
+                    </div>
 
-                    <dl className="space-y-6 mb-8">
-                      <div>
-                        <dt className="text-xs uppercase tracking-[0.15em] text-muted-foreground mb-2">
-                          С чем пришли
-                        </dt>
-                        <dd className="text-base md:text-lg leading-relaxed">{c.came}</dd>
-                      </div>
-                      <div>
-                        <dt className="text-xs uppercase tracking-[0.15em] text-muted-foreground mb-2">
-                          Что оказалось на самом деле
-                        </dt>
-                        <dd className="text-base md:text-lg leading-relaxed">{c.actually}</dd>
-                      </div>
-                      <div>
-                        <dt className="text-xs uppercase tracking-[0.15em] text-muted-foreground mb-2">
-                          Что в работе
-                        </dt>
-                        <dd className="text-base md:text-lg leading-relaxed">{c.inWork}</dd>
-                      </div>
-                    </dl>
+                    <div>
+                      <h3 className="font-serif text-2xl md:text-3xl mb-8 leading-tight">
+                        {c.title}
+                      </h3>
 
-                    <div className="border-t border-border/60 pt-5">
-                      <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground mb-2">
-                        Что это подтвердило
-                      </p>
-                      <p className="font-serif italic text-base md:text-lg text-foreground/80">
-                        {c.confirms}
-                      </p>
+                      <dl className="space-y-6 mb-8">
+                        <div className="grid md:grid-cols-[160px_1fr] gap-2 md:gap-6">
+                          <dt className="eyebrow">С чем пришли</dt>
+                          <dd className="text-base md:text-lg leading-relaxed">{c.came}</dd>
+                        </div>
+                        <div className="grid md:grid-cols-[160px_1fr] gap-2 md:gap-6">
+                          <dt className="eyebrow">Что оказалось</dt>
+                          <dd className="text-base md:text-lg leading-relaxed">{c.actually}</dd>
+                        </div>
+                        <div className="grid md:grid-cols-[160px_1fr] gap-2 md:gap-6">
+                          <dt className="eyebrow">Что в работе</dt>
+                          <dd className="text-base md:text-lg leading-relaxed">{c.inWork}</dd>
+                        </div>
+                      </dl>
+
+                      <div className="border-t border-foreground/15 pt-5">
+                        <p className="eyebrow mb-2">Что это подтвердило</p>
+                        <p className="font-serif italic text-base md:text-lg text-foreground/85">
+                          {c.confirms}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </article>
@@ -151,7 +148,7 @@ export default function SluchaiSection() {
             </div>
           </div>
 
-          <div className="flex items-center justify-between mt-8">
+          <div className="flex items-center justify-between mt-10">
             <div className="flex gap-2">
               {cases.map((_, i) => (
                 <button
@@ -160,8 +157,8 @@ export default function SluchaiSection() {
                   aria-label={`Случай ${i + 1}`}
                   className={`h-1.5 rounded-full transition-all ${
                     i === selectedIndex
-                      ? "w-8 bg-primary"
-                      : "w-1.5 bg-border hover:bg-muted-foreground/50"
+                      ? "w-10 bg-primary"
+                      : "w-1.5 bg-foreground/20 hover:bg-foreground/40"
                   }`}
                 />
               ))}
@@ -169,18 +166,18 @@ export default function SluchaiSection() {
 
             <div className="flex gap-2">
               <button
-                onClick={scrollPrev}
+                onClick={() => emblaApi?.scrollPrev()}
                 disabled={!canPrev}
                 aria-label="Назад"
-                className="w-10 h-10 rounded-full border border-border flex items-center justify-center disabled:opacity-30 transition hover:bg-card"
+                className="w-11 h-11 rounded-full border border-foreground/20 flex items-center justify-center disabled:opacity-30 transition hover:bg-golden-light hover:border-primary"
               >
                 <ArrowLeft className="w-4 h-4" />
               </button>
               <button
-                onClick={scrollNext}
+                onClick={() => emblaApi?.scrollNext()}
                 disabled={!canNext}
                 aria-label="Вперёд"
-                className="w-10 h-10 rounded-full border border-border flex items-center justify-center disabled:opacity-30 transition hover:bg-card"
+                className="w-11 h-11 rounded-full border border-foreground/20 flex items-center justify-center disabled:opacity-30 transition hover:bg-golden-light hover:border-primary"
               >
                 <ArrowRight className="w-4 h-4" />
               </button>

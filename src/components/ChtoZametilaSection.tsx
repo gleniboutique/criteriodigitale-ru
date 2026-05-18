@@ -7,41 +7,45 @@ const observations = [
 
 export default function ChtoZametilaSection() {
   return (
-    <section className="section-padding bg-background">
-      <div className="container-wide">
-        <div className="mb-16">
-          <p className="text-sm uppercase tracking-[0.18em] text-muted-foreground mb-4">
-            01 — позиция
-          </p>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl mb-4">
-            Что я заметила
+    <section className="section-padding golden-gradient relative overflow-hidden">
+      <div className="container-wide relative">
+        <div className="text-center mb-16 md:mb-20">
+          <p className="eyebrow mb-4">01 · Позиция</p>
+          <h2 className="font-serif text-3xl md:text-5xl mb-4 leading-tight">
+            Что я <span className="text-gradient-gold italic">заметила</span>
           </h2>
-          <div className="divider-gold" />
+          <div className="divider-gold mx-auto" />
         </div>
 
-        <ol className="space-y-10 md:space-y-12 mb-20">
+        <div className="space-y-6 md:space-y-8 mb-20">
           {observations.map((text, i) => (
-            <li key={i} className="flex gap-6 md:gap-8">
-              <span className="font-serif text-2xl md:text-3xl text-primary/60 leading-none pt-1 min-w-[2ch]">
+            <div
+              key={i}
+              className="glass-card-strong p-7 md:p-10 grid md:grid-cols-[120px_1fr] gap-6 md:gap-10 items-center"
+            >
+              <div
+                className="font-serif italic text-7xl md:text-8xl text-gradient-gold leading-none text-center md:text-left"
+                style={{ letterSpacing: "-0.03em" }}
+              >
                 {String(i + 1).padStart(2, "0")}
-              </span>
-              <p className="font-serif text-xl md:text-2xl lg:text-3xl leading-snug max-w-3xl">
+              </div>
+              <p className="font-serif text-xl md:text-2xl lg:text-[1.7rem] leading-snug">
                 {text}
               </p>
-            </li>
+            </div>
           ))}
-        </ol>
+        </div>
 
-        <div className="border-t border-border pt-12 max-w-3xl">
-          <p className="text-sm uppercase tracking-[0.18em] text-muted-foreground mb-5">
-            Как устроен первый разговор
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="eyebrow mb-6">Как устроен первый разговор</p>
+          <p className="font-serif text-lg md:text-2xl leading-relaxed mb-6">
+            Час, без презентаций и форм. Я задаю много вопросов,{" "}
+            <span className="italic text-gradient-gold">иногда неудобных</span>.
+            На выходе вы знаете, в чём настоящая задача — и стоит ли вообще
+            что-то делать. Это уже результат, даже если дальше мы не работаем.
           </p>
-          <p className="text-lg md:text-xl leading-relaxed text-foreground/90 mb-8">
-            Час, без презентаций и форм. Я задаю много вопросов, иногда неудобных.
-            На выходе вы знаете, в чём настоящая задача и стоит ли вообще что-то делать.
-            Это уже результат — даже если дальше мы не работаем.
-          </p>
-          <p className="font-serif italic text-base md:text-lg text-muted-foreground">
+          <div className="divider-gold mx-auto mb-6" />
+          <p className="font-serif italic text-base md:text-lg text-foreground/65">
             Это работа одного человека — то, что обычно делает команда из четырёх.
             Так и задумано.
           </p>

@@ -2,13 +2,18 @@ export default function FooterSection() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border bg-background">
-      <div className="container-wide px-6 md:px-10 lg:px-16 py-12">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 text-sm text-muted-foreground">
+    <footer className="bg-navy border-t border-golden-light/10 text-golden-light/70">
+      <div className="container-wide px-6 md:px-12 lg:px-20 py-12">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 text-sm">
           <div className="space-y-1">
-            <p className="font-serif text-foreground text-base">Татьяна Мирошина</p>
+            <p className="font-serif text-golden-light text-base">
+              Татьяна Мирошина
+            </p>
             <p>
-              <a href="mailto:pc@gleni.it" className="hover:text-primary transition">
+              <a
+                href="mailto:pc@gleni.it"
+                className="hover:text-primary transition"
+              >
                 pc@gleni.it
               </a>
             </p>
@@ -31,7 +36,7 @@ export default function FooterSection() {
             </a>
           </nav>
 
-          <p className="text-xs opacity-70">© {year}</p>
+          <p className="text-xs opacity-60">© {year}</p>
         </div>
       </div>
     </footer>
