@@ -6,12 +6,7 @@ export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden bg-paper">
       <header className="page-wide pt-10 md:pt-12 flex items-center justify-between relative z-10">
-        <div className="flex items-center gap-3">
-          <Monogram size={42} />
-          <p className="font-serif text-lg md:text-xl text-ink leading-tight">
-            Tatiana <em>Miroshina</em>
-          </p>
-        </div>
+        <Monogram size={42} />
         <p className="eyebrow-mute hidden md:block">criteriodigitale.ru</p>
       </header>
 
@@ -31,6 +26,14 @@ export default function HeroSection() {
             Я помогаю разобраться — до того, как вы потратите
             деньги, время и команду на не ту задачу.
           </p>
+
+          <div className="mt-10 pt-7 border-t border-ink/15 max-w-[620px]">
+            <p className="font-serif text-2xl md:text-3xl leading-snug text-ink">
+              Главный вопрос — не «что делать».
+              <br />
+              А <em className="accent-italic">«чтобы что?»</em>
+            </p>
+          </div>
         </div>
 
         {/* Right — decorative gutter (hidden on mobile to avoid clash) */}

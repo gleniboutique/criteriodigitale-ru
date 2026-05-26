@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Monogram from "./ornaments/Monogram";
 
 export default function FooterSection() {
@@ -12,6 +13,9 @@ export default function FooterSection() {
             <div>
               <p className="font-serif italic text-lg text-ink leading-tight">
                 Tatiana<br />Miroshina
+              </p>
+              <p className="text-xs text-mute mt-2 leading-snug">
+                Italia · prestazione<br />occasionale
               </p>
             </div>
           </div>
@@ -48,19 +52,33 @@ export default function FooterSection() {
               </a>
             </p>
             <p className="text-mute italic">italiano</p>
+            <p className="pt-1">
+              <a
+                href="https://life-angel.lovable.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-ink-soft hover:text-gold-deep"
+              >
+                Life Angel
+              </a>
+            </p>
+            <p className="text-mute italic">экзистенц. сопровождение</p>
           </nav>
 
           <nav className="space-y-2 text-sm">
             <p className="eyebrow-mute mb-3">Правовое</p>
             <p>
-              <a href="/privacy" className="text-ink-soft hover:text-gold-deep">
-                Privacy Policy
-              </a>
+              <Link to="/privacy" className="text-ink-soft hover:text-gold-deep">
+                Политика конфиденциальности
+              </Link>
             </p>
             <p>
-              <a href="/cookie" className="text-ink-soft hover:text-gold-deep">
+              <Link to="/cookie" className="text-ink-soft hover:text-gold-deep">
                 Cookie Policy
-              </a>
+              </Link>
+            </p>
+            <p className="text-xs text-mute italic pt-2 leading-snug">
+              GDPR · D.Lgs. 196/2003
             </p>
           </nav>
         </div>
