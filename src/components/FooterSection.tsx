@@ -86,7 +86,7 @@ export default function FooterSection() {
         <hr className="rule-hair" />
 
         <div className="flex flex-col sm:flex-row items-baseline justify-between gap-2 pt-6 text-xs text-mute">
-          <p>© {year} · criteriodigitale.ru</p>
+          <p>© {year} · ru.criteriodigitale.it</p>
           <p className="font-serif italic">Italia · {year}</p>
         </div>
       </div>

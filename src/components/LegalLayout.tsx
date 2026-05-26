@@ -18,7 +18,7 @@ export default function LegalLayout({ eyebrow, title, updated, children }: Props
             <Monogram size={42} />
             <span className="eyebrow-mute hidden md:inline">← на главную</span>
           </Link>
-          <p className="eyebrow-mute">criteriodigitale.ru</p>
+          <p className="eyebrow-mute">ru.criteriodigitale.it</p>
         </header>
 
         <article className="page py-16 md:py-24">

@@ -7,7 +7,7 @@ export default function HeroSection() {
     <section className="relative min-h-screen flex flex-col overflow-hidden bg-paper">
       <header className="page-wide pt-10 md:pt-12 flex items-center justify-between relative z-10">
         <Monogram size={42} />
-        <p className="eyebrow-mute hidden md:block">criteriodigitale.ru</p>
+        <p className="eyebrow-mute hidden md:block">ru.criteriodigitale.it</p>
       </header>
 
       <div className="page-wide flex-1 grid md:grid-cols-[1fr_280px] gap-8 md:gap-16 items-center py-20 md:py-24 relative z-10">

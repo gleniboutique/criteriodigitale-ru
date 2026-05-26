@@ -17,13 +17,13 @@ const pages = [
     url: "/privacy",
     out: "privacy/index.html",
     title: "Политика конфиденциальности — Татьяна Мирошина",
-    description: "Политика обработки персональных данных сайта criteriodigitale.ru по GDPR.",
+    description: "Политика обработки персональных данных сайта ru.criteriodigitale.it по GDPR.",
   },
   {
     url: "/cookie",
     out: "cookie/index.html",
     title: "Cookie Policy — Татьяна Мирошина",
-    description: "Использование cookies на сайте criteriodigitale.ru.",
+    description: "Использование cookies на сайте ru.criteriodigitale.it.",
   },
 ];
 
