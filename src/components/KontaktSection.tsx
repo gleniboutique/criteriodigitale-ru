@@ -2,14 +2,14 @@ import GoldenSwirls from "./ornaments/GoldenSwirls";
 
 export default function KontaktSection() {
   return (
-    <section className="section-spacing bg-paper-2 relative overflow-hidden border-t border-ink/8">
+    <section id="kontakt" className="section-spacing bg-paper-2 relative overflow-hidden border-t border-ink/8 scroll-mt-4">
       <div className="ornament">
         <GoldenSwirls opacity={0.35} />
       </div>
 
       <div className="page-wide relative">
         <header className="section-head flex items-baseline justify-between">
-          <p className="eyebrow-mute">№ 08 · Контакт</p>
+          <p className="eyebrow-mute">№ 07 · Контакт</p>
           <p className="eyebrow-mute">ответ в течение 2 дней</p>
         </header>
 

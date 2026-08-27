@@ -15,7 +15,7 @@ export default function ChemNeZanimausSection() {
     <section className="section-spacing bg-paper relative overflow-hidden border-t border-ink/8">
       <div className="page-wide relative">
         <header className="section-head flex items-baseline justify-between">
-          <p className="eyebrow-mute">№ 07 · Границы</p>
+          <p className="eyebrow-mute">№ 06 · Границы</p>
           <p className="eyebrow-mute">7 пунктов · открыто</p>
         </header>
 
