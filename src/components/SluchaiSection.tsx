@@ -5,6 +5,7 @@ type Case = {
   came: string;
   actually: string;
   inWork: string;
+  became?: string;
   confirms: string;
 };
 
@@ -37,9 +38,11 @@ const cases: Case[] = [
     actually:
       "Это не «обучить агентов». Это собрать структуру, которая держит связь и доверие на расстоянии — без постоянных поездок. И самой перестать чувствовать, что всё рассыпается.",
     inWork:
-      "Платформа с уже накопленными материалами для агентов. Регулярные онлайн-встречи — живой разговор, нетворк. Эксперт остаётся ядром, а не растворяется в файлах.",
+      "Учить агентов продукту не понадобилось — они его знают. Поэтому вместо курса: разобран весь архив (полсотни видео расшифрованы слово в слово, кадры и фотографии отобраны, всё разложено по темам); собраны и разобраны ответы агентов — семь повторяющихся причин, почему не продаётся; собран сайт на её собственном материале и её словами; приём заявок устроен так, чтобы данные покупателей не хранились за границей; посчитан сезон — обратный счёт от главной даты, деньги до первой выручки, кто что делает и кого нанять.",
+    became:
+      "Вместо «обновить обучение» — работающая система и честный ответ на вопрос, сколько получится продать в первый год: вдвое меньше, чем планировалось. По дороге нашлась ошибка вдвое в расчёте объёма — до того, как под неё напечатали упаковку. Сезон впереди, цифры продаж будут зимой.",
     confirms:
-      "Когда привычные мосты обрываются — нужны не новые инструменты, а помощь нащупать, какие мосты ещё возможны.",
+      "Когда привычные мосты обрываются — нужны не новые инструменты, а помощь нащупать, какие мосты ещё возможны. И заявленная задача снова оказалась не настоящей.",
   },
   {
     title: "Поиск результатов в спорте",
@@ -78,14 +81,14 @@ const cases: Case[] = [
 
 export default function SluchaiSection() {
   return (
-    <section className="section-spacing bg-paper relative overflow-hidden border-t border-ink/8">
+    <section className="section-spacing bg-paper-2 relative overflow-hidden border-t border-ink/8">
       <div className="page-wide relative">
         <div className="mb-3 opacity-50">
           <RulerGrid />
         </div>
 
         <header className="section-head flex items-baseline justify-between">
-          <p className="eyebrow-mute">№ 03 · Случаи</p>
+          <p className="eyebrow-mute">№ 04 · Случаи</p>
           <p className="eyebrow-mute">6 историй · в разных стадиях</p>
         </header>
 
@@ -138,12 +141,24 @@ export default function SluchaiSection() {
                         {c.actually}
                       </dd>
                     </div>
-                    <div className="grid md:grid-cols-[150px_1fr] gap-2 md:gap-6">
+                    <div
+                      className={`grid md:grid-cols-[150px_1fr] gap-2 md:gap-6 ${
+                        c.became ? "pb-4 border-b border-ink/10" : ""
+                      }`}
+                    >
                       <dt className="eyebrow-mute pt-1">Что в работе</dt>
                       <dd className="text-base md:text-lg leading-[1.6] text-ink">
                         {c.inWork}
                       </dd>
                     </div>
+                    {c.became && (
+                      <div className="grid md:grid-cols-[150px_1fr] gap-2 md:gap-6">
+                        <dt className="eyebrow pt-1">Что стало</dt>
+                        <dd className="text-base md:text-lg leading-[1.6] text-ink">
+                          {c.became}
+                        </dd>
+                      </div>
+                    )}
                   </dl>
 
                   <div className="border-l-2 border-gold pl-5 mt-6">

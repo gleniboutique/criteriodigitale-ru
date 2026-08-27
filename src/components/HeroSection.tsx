@@ -51,7 +51,7 @@ export default function HeroSection() {
               01
             </p>
             <p className="text-sm text-mute leading-snug">
-              из шести — открытие
+              из восьми — открытие
             </p>
           </div>
 
@@ -64,7 +64,7 @@ export default function HeroSection() {
       {/* Bottom indicator: clear hero/next-section boundary */}
       <div className="page-wide pb-6 flex items-baseline justify-between relative z-10">
         <span className="eyebrow-mute">↓ читать</span>
-        <span className="font-serif italic text-base text-mute">шесть глав</span>
+        <span className="font-serif italic text-base text-mute">восемь глав</span>
       </div>
     </section>
   );

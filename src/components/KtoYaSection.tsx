@@ -3,7 +3,7 @@ export default function KtoYaSection() {
     <section className="section-spacing bg-paper-2 relative overflow-hidden border-t border-ink/8">
       <div className="page-wide relative">
         <header className="section-head flex items-baseline justify-between">
-          <p className="eyebrow-mute">№ 04 · Кто я</p>
+          <p className="eyebrow-mute">№ 06 · Кто я</p>
           <p className="eyebrow-mute">биография</p>
         </header>
 

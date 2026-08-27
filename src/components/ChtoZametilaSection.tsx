@@ -5,6 +5,7 @@ const observations = [
   "Сайт чаще симптом, чем решение.",
   "«Найдите подрядчика» — это конец работы, а не её часть.",
   "Сейчас одному человеку доступно то, что десять лет назад требовало команды из пяти. Я работаю с этого края.",
+  "Человек редко знает, что у него уже есть. Самое важное он говорит, а не пишет, — и только если его спросить.",
 ];
 
 export default function ChtoZametilaSection() {
@@ -17,7 +18,7 @@ export default function ChtoZametilaSection() {
 
         <header className="section-head flex items-baseline justify-between">
           <p className="eyebrow-mute">№ 02 · Позиция</p>
-          <p className="eyebrow-mute">4 наблюдения</p>
+          <p className="eyebrow-mute">5 наблюдений</p>
         </header>
 
         <h2 className="display-2 mb-3">

@@ -9,7 +9,7 @@ export default function KontaktSection() {
 
       <div className="page-wide relative">
         <header className="section-head flex items-baseline justify-between">
-          <p className="eyebrow-mute">№ 06 · Контакт</p>
+          <p className="eyebrow-mute">№ 08 · Контакт</p>
           <p className="eyebrow-mute">ответ в течение 2 дней</p>
         </header>
 

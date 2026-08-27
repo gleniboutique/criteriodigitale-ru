@@ -6,6 +6,7 @@ const notDoing = [
   "Не работаю с корпорациями на 1000+ человек.",
   "Не обещаю «трансформацию» и не гарантирую результатов в цифрах.",
   "Не делаю маркетинг, брендинг и SMM как отдельные услуги.",
+  "Не веду переписку с покупателями и приём заказов — это работа оператора; помогу найти человека и объясню ему систему.",
   "Не работаю здесь как экзистенциально-аналитический консультант — хотя слышу глубже именно благодаря этому образованию.",
 ];
 
@@ -14,8 +15,8 @@ export default function ChemNeZanimausSection() {
     <section className="section-spacing bg-paper relative overflow-hidden border-t border-ink/8">
       <div className="page-wide relative">
         <header className="section-head flex items-baseline justify-between">
-          <p className="eyebrow-mute">№ 05 · Границы</p>
-          <p className="eyebrow-mute">6 пунктов · открыто</p>
+          <p className="eyebrow-mute">№ 07 · Границы</p>
+          <p className="eyebrow-mute">7 пунктов · открыто</p>
         </header>
 
         <h2 className="display-2 mb-3">
