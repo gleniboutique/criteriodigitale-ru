@@ -19,18 +19,10 @@ const method = [
   ["07", "действие", "Что можно проверить"],
 ];
 
-const outcomes = [
-  "стратегическая карта",
-  "критерии выбора",
-  "структура продукта",
-  "архитектура процесса",
-  "workflow",
-  "сайт / landing",
-  "документация",
-  "AI-assisted workflow",
-  "автоматизация",
-  "система работы",
-  "следующее обоснованное действие",
+const outcomeFamilies = [
+  ["01", "Решение", ["стратегическая карта", "критерии выбора", "выбранное направление", "следующие действия"]],
+  ["02", "Система", ["структура продукта", "архитектура процесса", "workflow", "документация", "система работы"]],
+  ["03", "Реализация", ["landing / сайт", "AI-assisted workflow", "автоматизация", "цифровые инструменты"]],
 ];
 
 const trajectory = [
@@ -82,9 +74,10 @@ export default function Home() {
         <div className="hero-statement">
           <p className="hero-second">Потом решать,<br />что с этим делать.</p>
           <p className="lede">
-            Помогаю экспертам и небольшим проектам разобраться в сложной задаче,
-            увидеть возможности и собрать работающую систему — от продукта и
-            процессов до цифровых инструментов и AI.
+            Помогаю экспертам и небольшим проектам разобраться в сложной задаче —
+            особенно когда непонятно, что именно менять, что выбирать и нужен ли
+            вообще новый инструмент. После этого собираем решение, которое можно
+            реально выполнить: от продукта и процессов до digital и AI.
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href="#contact">
@@ -126,7 +119,7 @@ export default function Home() {
 
         <ol className="situation-list">
           {entryPoints.map(([number, title, body]) => (
-            <li key={number}>
+            <li className={number === "01" ? undefined : "situation-featured"} key={number}>
               <span className="item-number">{number}</span>
               <h3>{title}</h3>
               <p>{body}</p>
@@ -144,6 +137,7 @@ export default function Home() {
           <header className="method-head">
             <p className="kicker kicker-light">Я не начинаю с инструмента</p>
             <h2 id="method-title">Инструмент — следствие понимания, а не начало работы.</h2>
+            <p className="method-signature">Living System / способ работы</p>
           </header>
 
           <ol className="method-route" aria-label="Последовательность метода">
@@ -177,14 +171,19 @@ export default function Home() {
           </p>
         </header>
 
-        <ol className="outcomes-index">
-          {outcomes.map((item, index) => (
-            <li key={item}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <strong>{item}</strong>
-            </li>
+        <div className="outcome-families">
+          {outcomeFamilies.map(([number, title, items]) => (
+            <section className="outcome-family" key={String(title)}>
+              <div>
+                <span>{String(number)}</span>
+                <h3>{String(title)}</h3>
+              </div>
+              <ul>
+                {(items as string[]).map((item) => <li key={item}>{item}</li>)}
+              </ul>
+            </section>
           ))}
-        </ol>
+        </div>
       </section>
 
       <section className="section human-wrap" aria-labelledby="human-title">
@@ -205,7 +204,8 @@ export default function Home() {
               <span>Граница решения / 04.8</span>
               <p>Что мы получаем — и какой ценой.</p>
               <p>Сколько это требует времени, внимания и энергии.</p>
-              <p>Что можно делегировать и автоматизировать.</p>
+              <p>Что человек хочет оставить под своим контролем — и где проходит граница автономии.</p>
+              <p>Что можно делегировать, а что — автоматизировать.</p>
               <p>Где AI помогает, а где начинает подменять человеческое суждение.</p>
             </div>
           </div>
@@ -234,11 +234,14 @@ export default function Home() {
         </ol>
 
         <p className="trajectory-copy">
-          Более двадцати лет собственной практики: продукт и производство,
-          сотрудничество с ремесленными мастерскими, международные продажи,
-          многоязычные интернет-магазины, SEO и маркетинг, регулируемые процессы CITES,
-          недвижимость и B&amp;B, образовательные платформы, системное мышление и ежедневная работа с AI.
+          Этот способ мышления вырос из практики, где продукт нужно было не только придумать,
+          но и произвести, вывести на международный рынок и удержать внутри сложных процессов.
         </p>
+        <div className="trajectory-evidence" aria-label="Опыт, сформировавший подход">
+          <p><span>01</span>Собственный продуктовый бренд, производство и многолетняя работа с ремесленными мастерскими.</p>
+          <p><span>02</span>Международные B2B и B2C продажи и управление четырьмя интернет-магазинами на разных языках.</p>
+          <p><span>03</span>Самостоятельная работа с сайтами, SEO, digital marketing и процессами; экспертиза CITES и опыт в сложной регуляторной среде.</p>
+        </div>
       </section>
 
       <section className="section observatory" id="thinking" aria-labelledby="observatory-title">
@@ -253,12 +256,26 @@ export default function Home() {
               Смотреть не только на инструменты, но и на то, как они меняют способ думать и действовать.
             </h2>
           </header>
-          <div className="observatory-index" aria-label="Темы наблюдений">
-            <p><span>01</span>AI и технологии</p>
-            <p><span>02</span>системы и сложность</p>
-            <p><span>03</span>философия и этика</p>
-            <p><span>04</span>экзистенциальный анализ</p>
-            <p><span>05</span>непрерывное образование</p>
+          <div className="observatory-materials" aria-label="Материалы Observatory">
+            <article>
+              <span>01</span>
+              <h3>AI не должен начинать с ответа</h3>
+              <p>2 минуты чтения</p>
+            </article>
+            <article>
+              <span>02</span>
+              <h3>Что происходит, когда мы автоматизируем плохой процесс</h3>
+              <p>4 минуты чтения</p>
+            </article>
+            <article>
+              <span>03</span>
+              <h3>Человек как часть, а не помеха системе</h3>
+              <p>3 минуты чтения</p>
+            </article>
+            <p className="observatory-future">
+              Здесь будут появляться исследования, наблюдения, Мастерская AI,
+              тексты и эксперименты.
+            </p>
           </div>
         </div>
       </section>
@@ -294,7 +311,8 @@ export default function Home() {
                   подходит ли задача формату работы.
                 </p>
                 <p className="boundary-note">
-                  Это не бесплатная консультация и не попытка решить задачу за полчаса.
+                  За эти 30 минут мы обозначим контур ситуации и поймём,
+                  есть ли здесь задача для совместной работы.
                 </p>
                 <a className="button button-primary" href="mailto:hello@example.com">
                   Обсудить задачу <Arrow />
@@ -313,7 +331,7 @@ export default function Home() {
                 <h3>От задачи<br />к решению</h3>
                 <div className="core-price">
                   <strong>600&nbsp;€</strong>
-                  <small>Оплата в другой валюте — по эквиваленту на день оплаты.</small>
+                  <small>В другой валюте — эквивалент на день оплаты.</small>
                 </div>
               </header>
 
@@ -393,9 +411,9 @@ export default function Home() {
         </div>
         <p className="eyebrow">Start where it is unclear</p>
         <h2 id="contact-title">Не уверены, как называется ваша задача?</h2>
-        <p className="final-answer">Это нормальное место для начала.</p>
+        <p className="final-answer">Можно начать с этого.</p>
         <a className="button button-primary" href="mailto:hello@example.com">
-          Принести задачу <Arrow />
+          Обсудить задачу <Arrow />
         </a>
         <aside>
           <span>Можно начать без готового ТЗ</span>
