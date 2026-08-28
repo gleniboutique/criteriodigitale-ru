@@ -1,3 +1,4 @@
+import Image from "next/image";
 import SystemMap from "@/components/SystemMap";
 
 const entryPoints = [
@@ -233,14 +234,32 @@ export default function Home() {
           ))}
         </ol>
 
-        <p className="trajectory-copy">
-          Этот способ мышления вырос из практики, где продукт нужно было не только придумать,
-          но и произвести, вывести на международный рынок и удержать внутри сложных процессов.
-        </p>
-        <div className="trajectory-evidence" aria-label="Опыт, сформировавший подход">
-          <p><span>01</span>Собственный продуктовый бренд, производство и многолетняя работа с ремесленными мастерскими.</p>
-          <p><span>02</span>Международные B2B и B2C продажи и управление четырьмя интернет-магазинами на разных языках.</p>
-          <p><span>03</span>Самостоятельная работа с сайтами, SEO, digital marketing и процессами; экспертиза CITES и опыт в сложной регуляторной среде.</p>
+        <div className="trajectory-ground">
+          <figure className="trajectory-portrait">
+            <Image
+              src="/images/photo-02-editorial.webp"
+              alt="Татьяна Мирошина делает записи за круглым деревянным столом под аркой."
+              width={800}
+              height={1153}
+              sizes="(max-width: 780px) 82vw, (max-width: 1100px) 38vw, 420px"
+            />
+            <figcaption>
+              <span>Field note / 05.2</span>
+              <em>20+ лет собственной практики</em>
+            </figcaption>
+          </figure>
+
+          <div className="trajectory-context">
+            <p className="trajectory-copy">
+              Этот способ мышления вырос из практики, где продукт нужно было не только придумать,
+              но и произвести, вывести на международный рынок и удержать внутри сложных процессов.
+            </p>
+            <div className="trajectory-evidence" aria-label="Опыт, сформировавший подход">
+              <p><span>01</span>Собственный продуктовый бренд, производство и многолетняя работа с ремесленными мастерскими.</p>
+              <p><span>02</span>Международные B2B и B2C продажи и управление четырьмя интернет-магазинами на разных языках.</p>
+              <p><span>03</span>Самостоятельная работа с сайтами, SEO, digital marketing и процессами; экспертиза CITES и опыт в сложной регуляторной среде.</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -276,6 +295,19 @@ export default function Home() {
               Здесь будут появляться исследования, наблюдения, Мастерская AI,
               тексты и эксперименты.
             </p>
+            <figure className="observatory-note">
+              <Image
+                src="/images/photo-05-authentic.webp"
+                alt="Татьяна Мирошина у окна в естественном свете."
+                width={640}
+                height={853}
+                sizes="(max-width: 780px) 48vw, 190px"
+              />
+              <figcaption>
+                <span>Human note / 06.1</span>
+                <em>Человек внутри наблюдения</em>
+              </figcaption>
+            </figure>
           </div>
         </div>
       </section>
