@@ -297,8 +297,8 @@ export default function Home() {
             </p>
             <figure className="observatory-note">
               <Image
-                src="/images/photo-05-authentic.webp"
-                alt="Татьяна Мирошина у окна в естественном свете."
+                src="/images/photo-04-authentic.webp"
+                alt="Татьяна Мирошина на улице в осеннем городе."
                 width={640}
                 height={853}
                 sizes="(max-width: 780px) 48vw, 190px"
