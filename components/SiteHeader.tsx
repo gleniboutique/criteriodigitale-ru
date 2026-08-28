@@ -11,7 +11,7 @@ export default function SiteHeader({ context = "home" }: SiteHeaderProps) {
         <span>Татьяна</span>
         <span>Мирошина</span>
       </a>
-      <p className="brand-field">Living system<br />Roma / online</p>
+      <p className="brand-field">Living system<br />Marche, Italia / online</p>
       <nav aria-label="Главная навигация">
         <a href={isHome ? "#work" : "/#work"}>Метод</a>
         <a href={isHome ? "#experience" : "/#experience"}>Траектория</a>
