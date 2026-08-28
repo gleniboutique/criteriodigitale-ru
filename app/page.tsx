@@ -1,5 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
+import SiteFooter from "@/components/SiteFooter";
+import SiteHeader from "@/components/SiteHeader";
 import SystemMap from "@/components/SystemMap";
+import { getReadingLabel, observatoryArticles } from "@/content/observatory";
 
 const entryPoints = [
   ["01", "Нужно что-то конкретно сделать.", "Задача уже видна, но ещё неясно, как лучше её собрать и чем реализовать."],
@@ -42,21 +46,11 @@ function Arrow() {
 }
 
 export default function Home() {
+  const selectedMaterials = observatoryArticles.filter((article) => article.selected);
+
   return (
     <main id="top">
-      <header className="topbar page-shell">
-        <a className="brand" href="#top" aria-label="Татьяна Мирошина — на главную">
-          <span>Татьяна</span>
-          <span>Мирошина</span>
-        </a>
-        <p className="brand-field">Living system<br />Roma / online</p>
-        <nav aria-label="Главная навигация">
-          <a href="#work">Метод</a>
-          <a href="#experience">Траектория</a>
-          <a href="#thinking">Наблюдения</a>
-        </nav>
-        <span className="lang">RU&nbsp;&nbsp;·&nbsp;&nbsp;IT</span>
-      </header>
+      <SiteHeader />
 
       <section className="hero page-shell" aria-labelledby="hero-title">
         <div className="hero-heading">
@@ -276,23 +270,27 @@ export default function Home() {
             </h2>
           </header>
           <div className="observatory-materials" aria-label="Материалы Observatory">
-            <article>
-              <span>01</span>
-              <h3>AI не должен начинать с ответа</h3>
-              <p>2 минуты чтения</p>
-            </article>
-            <article>
-              <span>02</span>
-              <h3>Что происходит, когда мы автоматизируем плохой процесс</h3>
-              <p>4 минуты чтения</p>
-            </article>
-            <article>
-              <span>03</span>
-              <h3>Человек как часть, а не помеха системе</h3>
-              <p>3 минуты чтения</p>
-            </article>
+            {selectedMaterials.map((article) => (
+              <article key={article.slug}>
+                <Link className="observatory-preview" href={`/observatory/${article.slug}`}>
+                  <div className="observatory-preview-label">
+                    <span>Observatory / {article.number}</span>
+                    <small>{article.category}</small>
+                  </div>
+                  <h3>{article.title}</h3>
+                  <p className="observatory-preview-lead">{article.lead}</p>
+                  <div className="observatory-preview-meta">
+                    <span>{getReadingLabel(article)}</span>
+                    <strong>Читать →</strong>
+                  </div>
+                </Link>
+              </article>
+            ))}
+            <Link className="observatory-index-link" href="/observatory">
+              Все материалы →
+            </Link>
             <p className="observatory-future">
-              Здесь будут появляться исследования, наблюдения, Мастерская AI,
+              Здесь появляются исследования, наблюдения, Мастерская AI,
               тексты и эксперименты.
             </p>
             <figure className="observatory-note">
@@ -454,11 +452,7 @@ export default function Home() {
         </aside>
       </section>
 
-      <footer className="footer page-shell">
-        <span>© Tatiana Miroshina</span>
-        <a href="#top">Наверх ↑</a>
-        <span>Living System / Russian edition</span>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }
