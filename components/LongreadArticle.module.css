@@ -516,9 +516,10 @@
   grid-template-columns: 1fr 1fr;
   gap: 0 36px;
   margin: 22px 0 12px;
-  padding: 0;
+  padding: 12px 24px 18px;
   list-style: none;
-  border-top: 1px solid var(--line);
+  border: 1px solid var(--line);
+  background: var(--paper);
 }
 
 .checklist li {
@@ -995,6 +996,7 @@
   .checklist {
     display: block;
     margin-top: 20px;
+    padding: 6px 18px 12px;
   }
 
   .checklist li {

@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import { CONTACT_TELEGRAM } from "@/config/contact";
 import {
   AI_GOTOVO_LONGREAD,
   LONGREAD_HEADING_IDS,
@@ -13,6 +12,8 @@ import {
   getReadingLabel,
 } from "@/content/observatory";
 import styles from "./LongreadArticle.module.css";
+
+const MEJDU_TELEGRAM_URL = "https://t.me/mejdu_ai";
 
 const resultCards = [
   ["01", "Результат", "Что появилось или изменилось во внешней системе."],
@@ -294,7 +295,7 @@ function AuthorNote() {
           и из моего опыта работы с агентной системой. Здесь они впервые собраны в одну
           последовательную модель: <strong>результат → маршрут → след → границы → возможность возврата.</strong>
         </p>
-        <a href={CONTACT_TELEGRAM} rel="noreferrer" target="_blank">
+        <a href={MEJDU_TELEGRAM_URL} rel="noreferrer" target="_blank">
           Telegram-канал «Между» ↗
         </a>
       </div>
