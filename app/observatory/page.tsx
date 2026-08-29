@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import { ITALIAN_OBSERVATORY_URL } from "@/config/site";
 import { getReadingLabel, observatoryArticles } from "@/content/observatory";
 
 export const metadata: Metadata = {
@@ -11,8 +12,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/observatory",
     languages: {
-      "ru-RU": "/observatory",
-      "it-IT": "https://criteriodigitale.it/osservatorio",
+      ru: "/observatory",
+      it: ITALIAN_OBSERVATORY_URL,
     },
   },
   openGraph: {

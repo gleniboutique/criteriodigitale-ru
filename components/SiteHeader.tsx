@@ -1,14 +1,24 @@
+import { ITALIAN_OBSERVATORY_URL, ITALIAN_SITE_URL } from "@/config/site";
+
 type SiteHeaderProps = {
   context?: "home" | "observatory" | "contact";
+  italianHref?: string;
+  russianHref?: string;
 };
 
-export default function SiteHeader({ context = "home" }: SiteHeaderProps) {
+export default function SiteHeader({
+  context = "home",
+  italianHref,
+  russianHref,
+}: SiteHeaderProps) {
   const isHome = context === "home";
   const isObservatory = context === "observatory";
+  const defaultRussianHref = isHome ? "/" : isObservatory ? "/observatory" : "/contact";
+  const defaultItalianHref = isObservatory ? ITALIAN_OBSERVATORY_URL : ITALIAN_SITE_URL;
 
   return (
     <header className="topbar page-shell">
-      <a className="brand" href={isHome ? "#top" : "/"} aria-label="Татьяна Мирошина — на главную">
+      <a className="brand" href={isHome ? "#top" : "/"}>
         <span>Татьяна</span>
         <span>Мирошина</span>
       </a>
@@ -20,7 +30,15 @@ export default function SiteHeader({ context = "home" }: SiteHeaderProps) {
           Наблюдения
         </a>
       </nav>
-      <span className="lang">RU&nbsp;&nbsp;·&nbsp;&nbsp;IT</span>
+      <div className="lang" role="navigation" aria-label="Выбор языка">
+        <a href={russianHref ?? defaultRussianHref} hrefLang="ru" lang="ru" aria-current="page">
+          RU
+        </a>
+        <span aria-hidden="true">·</span>
+        <a href={italianHref ?? defaultItalianHref} hrefLang="it" lang="it" rel="alternate">
+          IT
+        </a>
+      </div>
     </header>
   );
 }

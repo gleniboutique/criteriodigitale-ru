@@ -35,8 +35,8 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     alternates: {
       canonical,
       languages: {
-        "ru-RU": canonical,
-        "it-IT": article.originalUrl,
+        ru: canonical,
+        it: article.originalUrl,
       },
     },
     openGraph: {
@@ -67,7 +67,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   return (
     <main className="article-page" id="top">
-      <SiteHeader context="observatory" />
+      <SiteHeader
+        context="observatory"
+        russianHref={`/observatory/${article.slug}`}
+        italianHref={article.originalUrl}
+      />
 
       <article className="article-shell page-shell">
         <header className="article-header">

@@ -124,9 +124,25 @@ button:focus-visible {
 
 .lang {
   grid-column: 12 / 13;
+  display: flex;
+  gap: 8px;
+  align-items: center;
   justify-self: end;
   color: var(--ink);
   white-space: nowrap;
+}
+
+.lang a {
+  transition: color 200ms ease;
+}
+
+.lang a[aria-current="page"] {
+  color: var(--copper);
+}
+
+.lang a:hover,
+.lang a:focus-visible {
+  color: var(--copper);
 }
 
 .eyebrow,
@@ -2257,6 +2273,44 @@ button:focus-visible {
 
 .footer span:last-child {
   justify-self: end;
+}
+
+/* Keep small system labels legible on light surfaces; copper remains in rules, nodes and markers. */
+.lang a[aria-current="page"],
+.lang a:hover,
+.lang a:focus-visible,
+.system-atlas figcaption,
+.section-meta:not(.section-meta-light) span:first-child,
+.situation-list .item-number,
+.situation-featured .item-number,
+.outcome-family > div > span,
+.trajectory-path span,
+.trajectory-evidence span,
+.observatory-index-label,
+.article-label,
+.article-reading-meta,
+.article-context-cta > span,
+.contact-label,
+.contact-note,
+.path-index span {
+  color: var(--petrol);
+}
+
+.lang a[aria-current="page"] {
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--copper);
+}
+
+.observatory-index-hero aside,
+.observatory-index-label small,
+.observatory-index-meta,
+.article-label span:last-child,
+.article-reading-meta span:last-child,
+.article-margin,
+.article-edition-link,
+.contact-label span:last-child,
+.contact-annotation {
+  color: var(--ink);
 }
 
 @keyframes draw-route {

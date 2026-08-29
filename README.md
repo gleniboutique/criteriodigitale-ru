@@ -32,9 +32,9 @@ Then open `http://localhost:3000`.
 - restrained system-map animation
 - reduced-motion support
 
-## Important before publishing
+## Contact configuration
 
-The contact email in `app/page.tsx` is deliberately a placeholder (`hello@example.com`). Replace it with the intended contact action only when decided.
+Telegram and email are configured centrally in `config/contact.ts`. The contact page renders direct links only; there is no contact form or backend endpoint for personal data.
 
 The current text is positioning copy, not final sales copy. It is deliberately usable but still designed to be refined after comparing the Claude and Codex visual directions.
 

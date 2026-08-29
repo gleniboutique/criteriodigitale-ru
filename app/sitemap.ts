@@ -1,42 +1,47 @@
 import type { MetadataRoute } from "next";
+import { ITALIAN_OBSERVATORY_URL, ITALIAN_SITE_URL, SITE_URL } from "@/config/site";
 import { observatoryArticles } from "@/content/observatory";
-
-const baseUrl = "https://tatiana-living-system.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: baseUrl,
+      url: SITE_URL,
       lastModified: new Date("2026-08-29"),
       changeFrequency: "monthly",
       priority: 1,
+      alternates: {
+        languages: {
+          ru: SITE_URL,
+          it: ITALIAN_SITE_URL,
+        },
+      },
     },
     {
-      url: `${baseUrl}/contact`,
+      url: `${SITE_URL}/contact`,
       lastModified: new Date("2026-08-29"),
       changeFrequency: "yearly",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/observatory`,
+      url: `${SITE_URL}/observatory`,
       lastModified: new Date("2026-08-28"),
       changeFrequency: "monthly",
       priority: 0.8,
       alternates: {
         languages: {
-          ru: `${baseUrl}/observatory`,
-          it: "https://criteriodigitale.it/osservatorio",
+          ru: `${SITE_URL}/observatory`,
+          it: ITALIAN_OBSERVATORY_URL,
         },
       },
     },
     ...observatoryArticles.map((article) => ({
-      url: `${baseUrl}/observatory/${article.slug}`,
+      url: `${SITE_URL}/observatory/${article.slug}`,
       lastModified: new Date(article.publishedAt),
       changeFrequency: "monthly" as const,
       priority: 0.7,
       alternates: {
         languages: {
-          ru: `${baseUrl}/observatory/${article.slug}`,
+          ru: `${SITE_URL}/observatory/${article.slug}`,
           it: article.originalUrl,
         },
       },
