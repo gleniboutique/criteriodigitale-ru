@@ -60,16 +60,27 @@ button:focus-visible {
   margin-inline: auto;
 }
 
+.topbar-frame {
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  background: var(--ivory);
+  border-bottom: 1px solid var(--line);
+}
+
 .topbar {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 24px;
   align-items: center;
   min-height: 86px;
-  border-bottom: 1px solid var(--line);
   font-size: 10px;
   letter-spacing: 0.13em;
   text-transform: uppercase;
+}
+
+section[id] {
+  scroll-margin-top: 102px;
 }
 
 .brand {
@@ -2402,6 +2413,10 @@ button:focus-visible {
     grid-template-columns: 1fr auto;
     gap: 18px;
     min-height: 72px;
+  }
+
+  section[id] {
+    scroll-margin-top: 88px;
   }
 
   .brand {
