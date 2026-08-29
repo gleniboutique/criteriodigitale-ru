@@ -88,7 +88,7 @@ AI может быть сильным партнёром мышления, ко�
 Различие определяется не самим инструментом. Оно определяется тем, **когда** мы к нему обращаемся и **какую часть работы** оставляем за собой.`,
     cta:
       "Есть задача, в которой ответ появился раньше, чем вы успели сформулировать вопрос? Можно вернуть её к исходной ситуации и разобрать вместе.",
-    ctaHref: "/#start",
+    ctaHref: "/contact",
     originalTitle: "La risposta arriva prima della domanda.",
     originalUrl: "https://criteriodigitale.it/osservatorio/ai-risposta-prima-domanda",
     selected: true,
@@ -168,7 +168,7 @@ AI особенно полезен там, где нужна скорость, �
 Когда ассистент со всем согласен, он может оставаться приятным собеседником. Хорошим советником он в этот момент перестаёт быть.`,
     cta:
       "Есть решение, которое получило много подтверждений, но всё ещё не даёт опоры? Можно проверить критерии, ограничения и альтернативы до следующего шага.",
-    ctaHref: "/#start",
+    ctaHref: "/contact",
     originalTitle: "Quando l’AI è d’accordo con tutto, hai perso il tuo miglior consigliere.",
     originalUrl:
       "https://criteriodigitale.it/osservatorio/ai-troppo-daccordo-consigliere",
@@ -251,7 +251,7 @@ AI умеет ускорять редактуру. Но он не знает р�
 Сначала нужно определить, что текст обязан сохранить. Только после этого выбирать, что можно сократить, объяснить или автоматизировать.`,
     cta:
       "Есть продукт или услуга, которые стали звучать проще, но потеряли собственный характер? Можно вернуть смысл, критерии и профессиональный язык, не делая текст тяжелее.",
-    ctaHref: "/#start",
+    ctaHref: "/contact",
     originalTitle: "L’AI non sa quanto vale il tuo cliente.",
     originalUrl: "https://criteriodigitale.it/osservatorio/ai-semplifica-svaluta-cliente",
     selected: true,
@@ -337,7 +337,7 @@ AI умеет ускорять редактуру. Но он не знает р�
 Умение переводить скорость публичного разговора в скорость собственного дела становится отдельной профессиональной компетенцией. Она позволяет не бежать за каждым инструментом — и не пропустить момент, когда изменение действительно дошло до вашей практики.`,
     cta:
       "Есть технология или AI-инструмент, вокруг которого много срочности, но непонятно, касается ли он вашей задачи? Можно проверить контекст, цену перехода и критерии выбора до внедрения.",
-    ctaHref: "/#start",
+    ctaHref: "/contact",
     originalTitle:
       "Come leggere le notizie sull’AI senza farti travolgere (e senza ignorarle).",
     originalUrl: "https://criteriodigitale.it/osservatorio/come-leggere-notizie-ai",

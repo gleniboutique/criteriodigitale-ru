@@ -75,9 +75,9 @@ export default function Home() {
             реально выполнить: от продукта и процессов до digital и AI.
           </p>
           <div className="hero-actions">
-            <a className="button button-primary" href="#contact">
+            <Link className="button button-primary" href="/contact">
               Принести задачу <Arrow />
-            </a>
+            </Link>
             <a className="text-link" href="#work">Как я работаю</a>
           </div>
         </div>
@@ -344,9 +344,9 @@ export default function Home() {
                   За эти 30 минут мы обозначим контур ситуации и поймём,
                   есть ли здесь задача для совместной работы.
                 </p>
-                <a className="button button-primary" href="mailto:hello@example.com">
+                <Link className="button button-primary" href="/contact">
                   Обсудить задачу <Arrow />
-                </a>
+                </Link>
               </div>
             </article>
 
@@ -442,9 +442,9 @@ export default function Home() {
         <p className="eyebrow">Start where it is unclear</p>
         <h2 id="contact-title">Не уверены, как называется ваша задача?</h2>
         <p className="final-answer">Можно начать с этого.</p>
-        <a className="button button-primary" href="mailto:hello@example.com">
+        <Link className="button button-primary" href="/contact">
           Обсудить задачу <Arrow />
-        </a>
+        </Link>
         <aside>
           <span>Можно начать без готового ТЗ</span>
           <span>Контекст важнее формулировки</span>

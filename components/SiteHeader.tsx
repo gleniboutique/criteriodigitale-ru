@@ -1,9 +1,10 @@
 type SiteHeaderProps = {
-  context?: "home" | "observatory";
+  context?: "home" | "observatory" | "contact";
 };
 
 export default function SiteHeader({ context = "home" }: SiteHeaderProps) {
   const isHome = context === "home";
+  const isObservatory = context === "observatory";
 
   return (
     <header className="topbar page-shell">
@@ -15,7 +16,7 @@ export default function SiteHeader({ context = "home" }: SiteHeaderProps) {
       <nav aria-label="Главная навигация">
         <a href={isHome ? "#work" : "/#work"}>Метод</a>
         <a href={isHome ? "#experience" : "/#experience"}>Траектория</a>
-        <a href={isHome ? "#thinking" : "/observatory"} aria-current={isHome ? undefined : "page"}>
+        <a href={isHome ? "#thinking" : "/observatory"} aria-current={isObservatory ? "page" : undefined}>
           Наблюдения
         </a>
       </nav>
