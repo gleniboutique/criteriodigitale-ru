@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { ITALIAN_OBSERVATORY_URL, ITALIAN_SITE_URL, SITE_URL } from "@/config/site";
+import { AI_GOTOVO_LONGREAD } from "@/content/longread";
 import { observatoryArticles } from "@/content/observatory";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -31,6 +32,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
         languages: {
           ru: `${SITE_URL}/observatory`,
           it: ITALIAN_OBSERVATORY_URL,
+        },
+      },
+    },
+    {
+      url: `${SITE_URL}${AI_GOTOVO_LONGREAD.canonical}`,
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          ru: `${SITE_URL}${AI_GOTOVO_LONGREAD.canonical}`,
         },
       },
     },

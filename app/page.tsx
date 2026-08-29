@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import LongreadFeature from "@/components/LongreadFeature";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import SystemMap from "@/components/SystemMap";
@@ -270,6 +271,7 @@ export default function Home() {
             </h2>
           </header>
           <div className="observatory-materials" aria-label="Материалы Observatory">
+            <LongreadFeature variant="home" />
             {selectedMaterials.map((article) => (
               <article key={article.slug}>
                 <Link className="observatory-preview" href={`/observatory/${article.slug}`}>

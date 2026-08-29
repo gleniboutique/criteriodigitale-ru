@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import LongreadFeature from "@/components/LongreadFeature";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { ITALIAN_OBSERVATORY_URL } from "@/config/site";
@@ -52,6 +53,7 @@ export default function ObservatoryPage() {
       </section>
 
       <section className="observatory-index-list page-shell" aria-label="Все материалы Observatory">
+        <LongreadFeature variant="index" />
         {observatoryArticles.map((article) => (
           <article className="observatory-index-item" key={article.slug}>
             <Link href={`/observatory/${article.slug}`}>
