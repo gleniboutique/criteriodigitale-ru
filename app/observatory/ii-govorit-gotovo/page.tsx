@@ -25,6 +25,8 @@ export const metadata: Metadata = {
     type: "article",
     url: AI_GOTOVO_LONGREAD.canonical,
     authors: [AI_GOTOVO_LONGREAD.author],
+    publishedTime: AI_GOTOVO_LONGREAD.publicationDate,
+    modifiedTime: AI_GOTOVO_LONGREAD.modifiedDate,
     locale: "ru_RU",
   },
   twitter: {
@@ -51,6 +53,8 @@ export default function AiGotovoLongreadPage() {
       },
       timeRequired: `PT${getLongreadReadingMinutes()}M`,
       keywords: AI_GOTOVO_LONGREAD.tags.join(", "),
+      datePublished: AI_GOTOVO_LONGREAD.publicationDate,
+      dateModified: AI_GOTOVO_LONGREAD.modifiedDate,
     },
     {
       "@context": "https://schema.org",

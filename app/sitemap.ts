@@ -37,6 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${SITE_URL}${AI_GOTOVO_LONGREAD.canonical}`,
+      lastModified: AI_GOTOVO_LONGREAD.modifiedDate,
       changeFrequency: "monthly",
       priority: 0.8,
       alternates: {

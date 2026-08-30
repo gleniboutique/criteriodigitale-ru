@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import {
   AI_GOTOVO_LONGREAD,
+  formatLongreadDate,
   LONGREAD_HEADING_IDS,
   LONGREAD_SOURCES,
   LONGREAD_TOC,
@@ -369,8 +370,13 @@ export default function LongreadArticle({ markdown }: { markdown: string }) {
           {AI_GOTOVO_LONGREAD.tags.map((tag) => <span key={tag}>{tag}</span>)}
         </div>
         <div className={styles.meta}>
-          <span>Автор / {AI_GOTOVO_LONGREAD.author}</span>
-          <span>{getLongreadReadingLabel()}</span>
+          <span>
+            {AI_GOTOVO_LONGREAD.author} ·{" "}
+            <time dateTime={AI_GOTOVO_LONGREAD.publicationDate}>
+              {formatLongreadDate(AI_GOTOVO_LONGREAD.publicationDate)}
+            </time>{" "}
+            · {getLongreadReadingLabel()}
+          </span>
           <span>Русское издание</span>
         </div>
       </header>

@@ -17,6 +17,8 @@ export const AI_GOTOVO_LONGREAD = {
     "Что изменяется, когда система не только отвечает, но самостоятельно действует — и почему хороший результат ещё не доказывает, что процесс был управляемым.",
   tags: ["ИИ-агенты", "делегирование", "управляемость"],
   author: "Татьяна Мирошина",
+  publicationDate: "2026-08-30",
+  modifiedDate: "2026-08-30",
   canonical: "/observatory/ii-govorit-gotovo",
 } as const;
 
@@ -92,4 +94,17 @@ export function getLongreadReadingMinutes() {
 
 export function getLongreadReadingLabel() {
   return `${getLongreadReadingMinutes()} минут чтения`;
+}
+
+export function formatLongreadDate(date: string) {
+  const [year, month, day] = date.split("-").map(Number);
+
+  return new Intl.DateTimeFormat("ru-RU", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  })
+    .format(new Date(Date.UTC(year, month - 1, day)))
+    .replace(/\s*г\.$/u, "");
 }
