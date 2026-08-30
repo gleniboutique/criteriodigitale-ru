@@ -33,6 +33,21 @@ const dimensions = [
   "Сохранение намерения.",
 ] as const;
 
+type EditorialMarker =
+  | "main-question"
+  | "delegation-question"
+  | "case-snapshot"
+  | "audit-questions"
+  | "done-levels";
+
+const editorialMarkers = new Map<string, EditorialMarker>([
+  ["[[MAIN_QUESTION]]", "main-question"],
+  ["[[DELEGATION_QUESTION]]", "delegation-question"],
+  ["[[CASE_SNAPSHOT]]", "case-snapshot"],
+  ["[[AUDIT_QUESTIONS]]", "audit-questions"],
+  ["[[DONE_LEVELS]]", "done-levels"],
+]);
+
 function renderInline(text: string) {
   return text
     .split(/(\*\*.*?\*\*|\*[^*]+\*)/g)
@@ -111,6 +126,62 @@ function ResultTraceCards() {
   );
 }
 
+function getNumberedItems(block: string) {
+  const lines = block.split("\n").map((line) => line.trim()).filter(Boolean);
+
+  if (lines.length === 0 || lines.some((line) => !/^\d+\. /.test(line))) {
+    return [];
+  }
+
+  return lines.map((line) => line.replace(/^\d+\. /, ""));
+}
+
+function CaseSnapshot({ items }: { items: string[] }) {
+  return (
+    <aside className={styles.caseSnapshot} aria-label="Карта трёх расхождений">
+      <ol>
+        {items.map((item, index) => (
+          <li key={item}>
+            <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+            <p>{renderInline(item)}</p>
+          </li>
+        ))}
+      </ol>
+    </aside>
+  );
+}
+
+function AuditQuestions({ items }: { items: string[] }) {
+  return (
+    <section className={styles.auditQuestions} aria-label="Пять вопросов к системе">
+      <div>Контрольная сверка / 05 вопросов</div>
+      <ol>
+        {items.map((item, index) => (
+          <li key={item}>
+            <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+            <p>{renderInline(item)}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
+
+function DoneLevels({ items }: { items: string[] }) {
+  return (
+    <section className={styles.doneLevels} aria-label="Пять уровней значения «готово»">
+      <ol>
+        {items.map((item, index) => (
+          <li key={item}>
+            <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+            <p>{renderInline(item)}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
+
 function DimensionsSummary() {
   return (
     <aside className={styles.dimensions} aria-label="Шесть измерений управляемости — кратко">
@@ -134,9 +205,23 @@ function LongreadBody({ markdown }: { markdown: string }) {
   const blocks = markdown.trim().split(/\n{2,}/);
   const rendered: ReactNode[] = [];
   let currentSection = "";
+  let pendingMarker: EditorialMarker | undefined;
+  let insertCaseDiagramAfterParagraph = false;
 
   for (let index = 0; index < blocks.length; index += 1) {
     const block = blocks[index].trim();
+
+    if (block === "[[LONGREAD_TOC]]") {
+      rendered.push(<TableOfContents key="longread-toc" />);
+      continue;
+    }
+
+    const editorialMarker = editorialMarkers.get(block);
+
+    if (editorialMarker) {
+      pendingMarker = editorialMarker;
+      continue;
+    }
 
     if (block.startsWith("## ")) {
       const heading = block.slice(3);
@@ -171,12 +256,33 @@ function LongreadBody({ markdown }: { markdown: string }) {
       continue;
     }
 
-    if (/^\d+\. /.test(block)) {
-      const items = [block.replace(/^\d+\. /, "")];
+    const numberedItems = getNumberedItems(block);
 
-      while (/^\d+\. /.test(blocks[index + 1]?.trim() ?? "")) {
+    if (numberedItems.length > 0) {
+      const items = [...numberedItems];
+
+      while (getNumberedItems(blocks[index + 1]?.trim() ?? "").length > 0) {
         index += 1;
-        items.push(blocks[index].trim().replace(/^\d+\. /, ""));
+        items.push(...getNumberedItems(blocks[index].trim()));
+      }
+
+      if (pendingMarker === "case-snapshot") {
+        rendered.push(<CaseSnapshot items={items} key="case-snapshot" />);
+        pendingMarker = undefined;
+        insertCaseDiagramAfterParagraph = true;
+        continue;
+      }
+
+      if (pendingMarker === "audit-questions") {
+        rendered.push(<AuditQuestions items={items} key="audit-questions" />);
+        pendingMarker = undefined;
+        continue;
+      }
+
+      if (pendingMarker === "done-levels") {
+        rendered.push(<DoneLevels items={items} key="done-levels" />);
+        pendingMarker = undefined;
+        continue;
       }
 
       rendered.push(
@@ -201,13 +307,22 @@ function LongreadBody({ markdown }: { markdown: string }) {
       const quote = block.slice(2);
       const plainQuote = quote.replaceAll("**", "");
 
-      if (plainQuote.startsWith("Что именно означает слово «готово»")) {
+      if (pendingMarker === "main-question") {
         rendered.push(
           <blockquote className={styles.transitionQuestion} key={`quote-${index}`}>
             <span>Главный вопрос</span>
             <p>{renderInline(quote)}</p>
           </blockquote>,
         );
+        pendingMarker = undefined;
+      } else if (pendingMarker === "delegation-question") {
+        rendered.push(
+          <blockquote className={styles.delegationQuestion} key={`quote-${index}`}>
+            <span>Вопрос о делегировании</span>
+            <p>{renderInline(quote)}</p>
+          </blockquote>,
+        );
+        pendingMarker = undefined;
       } else if (plainQuote.startsWith("Работа сделана, когда существует внешний результат")) {
         rendered.push(
           <figure className={styles.criterion} key={`criterion-${index}`}>
@@ -234,15 +349,11 @@ function LongreadBody({ markdown }: { markdown: string }) {
       </p>
     );
 
-    if (block === "После неё они стали для меня основным условием делегирования.") {
-      rendered.push(
-        <div className={styles.introEnd} key={`p-${index}`}>
-          {paragraph}
-          <TableOfContents />
-        </div>,
-      );
-    } else {
-      rendered.push(<div key={`p-${index}`}>{paragraph}</div>);
+    rendered.push(<div key={`p-${index}`}>{paragraph}</div>);
+
+    if (insertCaseDiagramAfterParagraph) {
+      rendered.push(<LongreadDiagram key="case-diagram" />);
+      insertCaseDiagramAfterParagraph = false;
     }
 
     if (block.startsWith("Поэтому хороший результат ещё не доказывает")) {
@@ -252,6 +363,10 @@ function LongreadBody({ markdown }: { markdown: string }) {
     if (block.startsWith("Именно поэтому не всякая задача может быть целиком передана системе")) {
       rendered.push(<DimensionsSummary key="dimensions" />);
     }
+  }
+
+  if (pendingMarker) {
+    throw new Error(`Редакционный маркер не связан с блоком: ${pendingMarker}`);
   }
 
   return <div className={styles.body}>{rendered}</div>;
@@ -384,7 +499,6 @@ export default function LongreadArticle({ markdown }: { markdown: string }) {
         </div>
       </header>
 
-      <LongreadDiagram />
       <LongreadBody markdown={markdown} />
       <Sources />
       <AuthorNote />

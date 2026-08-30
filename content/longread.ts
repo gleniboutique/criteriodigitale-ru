@@ -23,6 +23,7 @@ export const AI_GOTOVO_LONGREAD = {
 } as const;
 
 export const LONGREAD_TOC = [
+  ["Разбор случая: отчёт был, внешнего результата не было", "razbor-sluchaya"],
   ["Пока ИИ отвечает, мы проверяем ответ", "poka-ii-otvechaet"],
   ["Результат, маршрут и след — не одно и то же", "rezultat-marshrut-sled"],
   ["Прослеживаемость нужна не только тогда, когда произошла ошибка", "proslezhivaemost"],
