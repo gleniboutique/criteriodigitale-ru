@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ArticleBody from "@/components/ArticleBody";
+import ArticlePager from "@/components/ArticlePager";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import { SITE_URL } from "@/config/site";
 import {
   getObservatoryArticle,
   getReadingLabel,
@@ -65,16 +68,55 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     notFound();
   }
 
+  const canonical = `/observatory/${article.slug}`;
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Главная",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Наблюдения",
+        item: `${SITE_URL}/observatory`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: article.title,
+        item: `${SITE_URL}${canonical}`,
+      },
+    ],
+  };
+
   return (
     <main className="article-page" id="top">
       <SiteHeader
-        context="observatory"
-        russianHref={`/observatory/${article.slug}`}
+        context="article"
+        russianHref={canonical}
         italianHref={article.originalUrl}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        }}
       />
 
       <article className="article-shell page-shell">
         <header className="article-header">
+          <Breadcrumbs
+            items={[
+              { label: "Главная", href: "/" },
+              { label: "Наблюдения", href: "/observatory" },
+              { label: article.title },
+            ]}
+          />
           <div className="article-label">
             <span>Observatory / {article.number}</span>
             <span>{article.category}</span>
@@ -110,9 +152,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             </a>
           </div>
 
-          <Link className="article-back" href="/observatory">
-            ← Все материалы Observatory
-          </Link>
+          <ArticlePager currentSlug={article.slug} />
         </footer>
       </article>
 

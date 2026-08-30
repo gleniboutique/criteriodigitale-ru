@@ -101,6 +101,30 @@ section[id] {
   line-height: 1.45;
 }
 
+.topbar-article .brand-field {
+  display: none;
+}
+
+.article-context-link {
+  grid-column: 4 / 6;
+  justify-self: start;
+  padding: 8px 0;
+  color: var(--petrol);
+  white-space: nowrap;
+}
+
+.article-context-link span {
+  display: inline-block;
+  margin-right: 5px;
+  color: var(--copper);
+  transition: transform 180ms ease;
+}
+
+.article-context-link:hover span,
+.article-context-link:focus-visible span {
+  transform: translateX(-3px);
+}
+
 .topbar nav {
   grid-column: 7 / 12;
   display: flex;
@@ -1184,11 +1208,19 @@ section[id] {
 
 .observatory-materials article {
   border-top: 1px solid rgba(255, 255, 255, 0.18);
+  transition: border-color 180ms ease, background-color 180ms ease;
+}
+
+.observatory-materials article:hover,
+.observatory-materials article:focus-within {
+  border-color: #d6987f;
+  background: rgba(255, 255, 255, 0.035);
 }
 
 .observatory-preview {
   display: block;
   padding: 22px 0 25px;
+  cursor: pointer;
 }
 
 .observatory-preview-label,
@@ -1217,6 +1249,12 @@ section[id] {
   font-weight: 400;
   line-height: 1.16;
   letter-spacing: -0.02em;
+  transition: color 180ms ease;
+}
+
+.observatory-preview:hover h3,
+.observatory-preview:focus-visible h3 {
+  color: #f0c1ae;
 }
 
 .observatory-preview-lead {
@@ -1358,6 +1396,13 @@ section[id] {
 
 .observatory-index-item {
   border-top: 1px solid var(--line);
+  transition: border-color 180ms ease, background-color 180ms ease;
+}
+
+.observatory-index-item:hover,
+.observatory-index-item:focus-within {
+  border-color: var(--copper);
+  background: rgba(21, 61, 58, 0.035);
 }
 
 .observatory-index-item:last-child {
@@ -1370,6 +1415,7 @@ section[id] {
   gap: 24px;
   align-items: start;
   padding: 52px 0 58px;
+  cursor: pointer;
 }
 
 .observatory-index-label {
@@ -1395,6 +1441,12 @@ section[id] {
   font-weight: 400;
   line-height: 1.02;
   letter-spacing: -0.04em;
+  transition: color 180ms ease;
+}
+
+.observatory-index-item > a:hover h2,
+.observatory-index-item > a:focus-visible h2 {
+  color: var(--petrol);
 }
 
 .observatory-index-item > a > p {
@@ -1615,14 +1667,6 @@ section[id] {
 
 .article-edition-link a {
   color: var(--ink);
-}
-
-.article-back {
-  display: inline-block;
-  margin-top: 48px;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
 }
 
 .contact-page {
@@ -2357,6 +2401,10 @@ section[id] {
     display: none;
   }
 
+  .article-context-link {
+    grid-column: 3 / 5;
+  }
+
   .topbar nav {
     grid-column: 5 / 12;
   }
@@ -2415,6 +2463,11 @@ section[id] {
     min-height: 72px;
   }
 
+  .topbar-article {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 12px;
+  }
+
   section[id] {
     scroll-margin-top: 88px;
   }
@@ -2428,8 +2481,20 @@ section[id] {
     display: none;
   }
 
+  .topbar-article .article-context-link {
+    grid-column: 2;
+    justify-self: center;
+    overflow: hidden;
+    font-size: 9px;
+    text-overflow: ellipsis;
+  }
+
   .lang {
     grid-column: 2;
+  }
+
+  .topbar-article .lang {
+    grid-column: 3;
   }
 
   .hero {

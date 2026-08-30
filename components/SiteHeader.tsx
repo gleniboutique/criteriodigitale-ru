@@ -1,7 +1,8 @@
+import Link from "next/link";
 import { ITALIAN_OBSERVATORY_URL, ITALIAN_SITE_URL } from "@/config/site";
 
 type SiteHeaderProps = {
-  context?: "home" | "observatory" | "contact";
+  context?: "home" | "observatory" | "article" | "contact";
   italianHref?: string;
   russianHref?: string;
 };
@@ -13,17 +14,27 @@ export default function SiteHeader({
 }: SiteHeaderProps) {
   const isHome = context === "home";
   const isObservatory = context === "observatory";
-  const defaultRussianHref = isHome ? "/" : isObservatory ? "/observatory" : "/contact";
-  const defaultItalianHref = isObservatory ? ITALIAN_OBSERVATORY_URL : ITALIAN_SITE_URL;
+  const isArticle = context === "article";
+  const defaultRussianHref = isHome
+    ? "/"
+    : isObservatory || isArticle
+      ? "/observatory"
+      : "/contact";
+  const defaultItalianHref = isObservatory || isArticle ? ITALIAN_OBSERVATORY_URL : ITALIAN_SITE_URL;
 
   return (
     <header className="topbar-frame">
-      <div className="topbar page-shell">
+      <div className={`topbar page-shell${isArticle ? " topbar-article" : ""}`}>
         <a className="brand" href={isHome ? "#top" : "/"}>
           <span>Татьяна</span>
           <span>Мирошина</span>
         </a>
         <p className="brand-field">Living system<br />Marche, Italia / online</p>
+        {isArticle && (
+          <Link className="article-context-link" href="/observatory">
+            <span aria-hidden="true">←</span> Наблюдения
+          </Link>
+        )}
         <nav aria-label="Главная навигация">
           <a href={isHome ? "#work" : "/#work"}>Метод</a>
           <a href={isHome ? "#experience" : "/#experience"}>Траектория</a>

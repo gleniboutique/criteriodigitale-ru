@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
+import ArticlePager from "@/components/ArticlePager";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import {
   AI_GOTOVO_LONGREAD,
   formatLongreadDate,
@@ -351,13 +353,14 @@ export default function LongreadArticle({ markdown }: { markdown: string }) {
   return (
     <article className={styles.article}>
       <header className={styles.header}>
-        <nav className={styles.breadcrumbs} aria-label="Хлебные крошки">
-          <ol>
-            <li><Link href="/">Главная</Link></li>
-            <li><Link href="/observatory">Наблюдения</Link></li>
-            <li aria-current="page">{AI_GOTOVO_LONGREAD.shortTitle}</li>
-          </ol>
-        </nav>
+        <Breadcrumbs
+          className={styles.headerBreadcrumbs}
+          items={[
+            { label: "Главная", href: "/" },
+            { label: "Наблюдения", href: "/observatory" },
+            { label: AI_GOTOVO_LONGREAD.shortTitle },
+          ]}
+        />
 
         <div className={styles.headerLabel}>
           <span>{AI_GOTOVO_LONGREAD.type}</span>
@@ -387,10 +390,7 @@ export default function LongreadArticle({ markdown }: { markdown: string }) {
       <AuthorNote />
       <ArticleCta />
       <RelatedArticles />
-
-      <div className={styles.back}>
-        <Link href="/observatory">← Все материалы Observatory</Link>
-      </div>
+      <ArticlePager className={styles.pager} currentSlug="ii-govorit-gotovo" />
     </article>
   );
 }

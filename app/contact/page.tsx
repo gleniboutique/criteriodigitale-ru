@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import {
@@ -31,6 +32,12 @@ export default function ContactPage() {
 
       <section className="contact-shell page-shell" aria-labelledby="contact-page-title">
         <header className="contact-intro">
+          <Breadcrumbs
+            items={[
+              { label: "Главная", href: "/" },
+              { label: "Контакты" },
+            ]}
+          />
           <div className="contact-label">
             <span>Contact / 01</span>
             <span>Marche, Italia / online</span>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import LongreadFeature from "@/components/LongreadFeature";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
@@ -37,6 +38,12 @@ export default function ObservatoryPage() {
           <span>Observatory / index</span>
         </div>
         <div className="observatory-index-heading">
+          <Breadcrumbs
+            items={[
+              { label: "Главная", href: "/" },
+              { label: "Наблюдения" },
+            ]}
+          />
           <p className="kicker">Исследования / мастерская / наблюдения</p>
           <h1 id="observatory-index-title">Наблюдать, прежде чем делать вывод.</h1>
           <p>

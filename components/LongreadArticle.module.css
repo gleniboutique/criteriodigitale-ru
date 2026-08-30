@@ -13,41 +13,8 @@
   border-bottom: 1px solid var(--line);
 }
 
-.breadcrumbs {
-  margin-bottom: 74px;
-  color: var(--ink);
-  font-size: 9px;
-  line-height: 1.5;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.breadcrumbs ol {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.breadcrumbs li:not(:last-child)::after {
-  margin-left: 8px;
-  color: var(--sage);
-  content: "/";
-}
-
-.breadcrumbs li:last-child {
-  color: var(--ink);
-}
-
-.breadcrumbs a {
-  padding-block: 5px;
-  border-bottom: 1px solid transparent;
-}
-
-.breadcrumbs a:hover {
-  border-color: var(--copper);
+.headerBreadcrumbs {
+  margin-bottom: 70px;
 }
 
 .headerLabel,
@@ -742,12 +709,8 @@
   color: var(--petrol);
 }
 
-.back {
-  grid-column: 3 / 11;
-  margin-top: 58px;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.pager {
+  grid-column: 2 / 12;
 }
 
 @media (max-width: 1100px) {
@@ -770,7 +733,7 @@
   .related,
   .checklist,
   .dimensions,
-  .back {
+  .pager {
     grid-column: 2 / 12;
   }
 }
@@ -785,8 +748,8 @@
     padding: 30px 0 66px;
   }
 
-  .breadcrumbs {
-    margin-bottom: 52px;
+  .headerBreadcrumbs {
+    margin-bottom: 48px;
   }
 
   .headerLabel,
@@ -1066,9 +1029,6 @@
     font-size: 28px;
   }
 
-  .back {
-    margin-top: 48px;
-  }
 }
 
 @media (max-width: 420px) {

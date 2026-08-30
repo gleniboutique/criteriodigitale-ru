@@ -85,7 +85,7 @@ export default function AiGotovoLongreadPage() {
   return (
     <main className="article-page" id="top">
       <SiteHeader
-        context="observatory"
+        context="article"
         russianHref={AI_GOTOVO_LONGREAD.canonical}
       />
       <script
