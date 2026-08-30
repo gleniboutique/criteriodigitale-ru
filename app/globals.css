@@ -1570,7 +1570,7 @@ section[id] {
   color: var(--copper);
   font-size: 9px;
   letter-spacing: 0.11em;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .article-label span:last-child,
@@ -1599,26 +1599,8 @@ section[id] {
   margin: 46px 0 0 18%;
 }
 
-.article-margin {
-  grid-column: 1 / 3;
-  display: flex;
-  flex-direction: column;
-  align-self: start;
-  margin-top: 104px;
-  border-bottom: 1px solid var(--line);
-  color: var(--sage);
-  font-size: 8px;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-}
-
-.article-margin span {
-  padding: 12px 0;
-  border-top: 1px solid var(--line);
-}
-
 .article-body {
-  grid-column: 4 / 10;
+  grid-column: 3 / 10;
   padding-top: 94px;
 }
 
@@ -1690,7 +1672,7 @@ section[id] {
   color: var(--copper);
   font-size: 9px;
   letter-spacing: 0.11em;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .article-context-cta p {
@@ -1711,6 +1693,13 @@ section[id] {
   font-size: 10px;
   letter-spacing: 0.09em;
   text-transform: uppercase;
+  transition: color 180ms ease, border-color 180ms ease;
+}
+
+.article-context-cta a:hover,
+.article-context-cta a:focus-visible {
+  color: var(--copper);
+  border-color: var(--copper);
 }
 
 .article-edition-link {
@@ -1722,11 +1711,24 @@ section[id] {
   color: var(--sage);
   font-size: 9px;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .article-edition-link a {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--ink);
   color: var(--ink);
+  cursor: pointer;
+  transition: color 180ms ease, border-color 180ms ease;
+}
+
+.article-edition-link a:hover,
+.article-edition-link a:focus-visible {
+  color: var(--copper);
+  border-color: var(--copper);
 }
 
 .contact-page {
@@ -2388,6 +2390,8 @@ section[id] {
 
 .footer span:last-child {
   justify-self: end;
+  letter-spacing: 0.08em;
+  text-transform: none;
 }
 
 /* Keep small system labels legible on light surfaces; copper remains in rules, nodes and markers. */
@@ -2421,7 +2425,6 @@ section[id] {
 .observatory-index-meta,
 .article-label span:last-child,
 .article-reading-meta span:last-child,
-.article-margin,
 .article-edition-link,
 .contact-label span:last-child,
 .contact-annotation {
@@ -2501,10 +2504,6 @@ section[id] {
 
   .article-body {
     grid-column: 3 / 10;
-  }
-
-  .article-margin {
-    grid-column: 1 / 3;
   }
 
   .article-end {
@@ -3092,17 +3091,6 @@ section[id] {
   .article-reading-meta {
     justify-content: space-between;
     margin: 38px 0 0 9%;
-  }
-
-  .article-margin {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin: 54px 0 0;
-  }
-
-  .article-margin span:nth-child(even) {
-    padding-left: 14px;
-    border-left: 1px solid var(--line);
   }
 
   .article-body {

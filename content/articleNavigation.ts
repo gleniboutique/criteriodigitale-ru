@@ -11,7 +11,7 @@ export const articleNavigation: ArticleNavigationItem[] = [
   {
     slug: "ii-govorit-gotovo",
     href: AI_GOTOVO_LONGREAD.canonical,
-    title: AI_GOTOVO_LONGREAD.shortTitle,
+    title: AI_GOTOVO_LONGREAD.title,
   },
   ...observatoryArticles.map((article) => ({
     slug: article.slug,

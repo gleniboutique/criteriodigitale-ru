@@ -9,6 +9,7 @@ import SiteHeader from "@/components/SiteHeader";
 import { SITE_URL } from "@/config/site";
 import {
   getObservatoryArticle,
+  getObservatoryCategoryLabel,
   getReadingLabel,
   observatoryArticles,
 } from "@/content/observatory";
@@ -118,37 +119,30 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             ]}
           />
           <div className="article-label">
-            <span>Observatory / {article.number}</span>
-            <span>{article.category}</span>
+            <span>Наблюдения · {article.number}</span>
+            <span>{getObservatoryCategoryLabel(article.category)}</span>
           </div>
           <h1>{article.title}</h1>
           <p className="article-lead">{article.lead}</p>
           <div className="article-reading-meta">
             <span>{getReadingLabel(article)}</span>
-            <span>Russian edition</span>
+            <span>Русское издание</span>
           </div>
         </header>
-
-        <aside className="article-margin" aria-label="Системная аннотация">
-          <span>FIELD / {article.number}</span>
-          <span>RELATIONS</span>
-          <span>CRITERIA</span>
-          <span>HUMAN JUDGMENT</span>
-        </aside>
 
         <ArticleBody body={article.body} />
 
         <footer className="article-end">
           <div className="article-context-cta">
-            <span>Possible action / {article.number}</span>
+            <span>Возможное действие · {article.number}</span>
             <p>{article.cta}</p>
             <Link href={article.ctaHref}>Разобрать ситуацию →</Link>
           </div>
 
           <div className="article-edition-link">
-            <span>Italian original</span>
+            <span>Итальянская версия</span>
             <a href={article.originalUrl} hrefLang="it" rel="alternate">
-              Итальянская версия →
+              Читать по-итальянски <span aria-hidden="true">→</span>
             </a>
           </div>
 

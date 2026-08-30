@@ -34,6 +34,11 @@
   color: var(--ink);
 }
 
+.headerLabel span:last-child {
+  letter-spacing: 0.08em;
+  text-transform: none;
+}
+
 .header h1 {
   max-width: 1120px;
   margin: 42px 0 0;
@@ -786,6 +791,8 @@
 
 .cta > span {
   color: #c5a08f;
+  letter-spacing: 0.08em;
+  text-transform: none;
 }
 
 .cta h2 {

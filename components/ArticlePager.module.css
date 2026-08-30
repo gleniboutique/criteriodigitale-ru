@@ -13,13 +13,31 @@
   min-width: 0;
 }
 
+.previous {
+  grid-column: 1;
+}
+
+.all {
+  grid-column: 2;
+}
+
+.next {
+  grid-column: 3;
+}
+
 .previous a,
 .next a {
   display: flex;
+  width: 100%;
   min-width: 0;
+  min-height: 132px;
   flex-direction: column;
-  gap: 12px;
-  padding: 10px 0;
+  gap: 14px;
+  padding: 19px 20px 21px;
+  border: 1px solid var(--line);
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease;
 }
 
 .next a {
@@ -27,13 +45,23 @@
   text-align: right;
 }
 
-.previous span,
-.next span,
+.direction,
 .all {
   color: var(--petrol);
   font-size: 10px;
   letter-spacing: 0.09em;
   text-transform: uppercase;
+}
+
+.direction {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 180ms ease;
 }
 
 .previous strong,
@@ -44,62 +72,73 @@
   font-size: 20px;
   font-weight: 400;
   line-height: 1.25;
-  transition: color 180ms ease, transform 180ms ease;
+  transition: color 180ms ease;
+}
+
+.previous a:hover,
+.previous a:focus-visible,
+.next a:hover,
+.next a:focus-visible {
+  border-color: var(--copper);
+  background: var(--paper);
 }
 
 .previous a:hover strong,
-.previous a:focus-visible strong {
-  color: var(--petrol);
-  transform: translateX(-3px);
-}
-
+.previous a:focus-visible strong,
 .next a:hover strong,
 .next a:focus-visible strong {
   color: var(--petrol);
+}
+
+.previous a:hover .arrow,
+.previous a:focus-visible .arrow {
+  transform: translateX(-3px);
+}
+
+.next a:hover .arrow,
+.next a:focus-visible .arrow {
   transform: translateX(3px);
 }
 
 .all {
   align-self: start;
-  margin-top: 10px;
-  padding: 7px 0 6px;
-  border-bottom: 1px solid var(--ink);
+  margin-top: 15px;
+  padding: 10px 12px 9px;
+  border: 1px solid var(--petrol);
   white-space: nowrap;
-  transition: color 180ms ease, border-color 180ms ease;
+  cursor: pointer;
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
 }
 
 .all:hover,
 .all:focus-visible {
   color: var(--copper);
   border-color: var(--copper);
+  background: var(--paper);
 }
 
 @media (max-width: 780px) {
   .pager {
-    grid-template-columns: 1fr 1fr;
-    gap: 28px 18px;
+    grid-template-columns: 1fr;
+    gap: 18px;
     margin-top: 52px;
     padding-top: 26px;
   }
 
   .all {
-    grid-column: 1 / 3;
-    grid-row: 1;
+    grid-column: 1;
     justify-self: center;
     margin-top: 0;
   }
 
   .previous,
   .next {
-    grid-row: 2;
-  }
-
-  .previous {
     grid-column: 1;
   }
 
-  .next {
-    grid-column: 2;
+  .previous a,
+  .next a {
+    min-height: 0;
   }
 
   .previous strong,
@@ -109,8 +148,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .previous a,
+  .next a,
   .previous strong,
   .next strong,
+  .arrow,
   .all {
     transition: none;
   }

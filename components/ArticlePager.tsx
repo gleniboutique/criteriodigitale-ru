@@ -15,27 +15,33 @@ export default function ArticlePager({ currentSlug, className }: ArticlePagerPro
       className={[styles.pager, className].filter(Boolean).join(" ")}
       aria-label="Навигация между статьями"
     >
-      <div className={styles.previous}>
-        {previous && (
+      {previous && (
+        <div className={styles.previous}>
           <Link href={previous.href}>
-            <span>← Предыдущая статья</span>
+            <span className={styles.direction}>
+              <span className={styles.arrow} aria-hidden="true">←</span>
+              Предыдущая статья
+            </span>
             <strong>{previous.title}</strong>
           </Link>
-        )}
-      </div>
+        </div>
+      )}
 
       <Link className={styles.all} href="/observatory">
         Все наблюдения
       </Link>
 
-      <div className={styles.next}>
-        {next && (
+      {next && (
+        <div className={styles.next}>
           <Link href={next.href}>
-            <span>Следующая статья →</span>
+            <span className={styles.direction}>
+              Следующая статья
+              <span className={styles.arrow} aria-hidden="true">→</span>
+            </span>
             <strong>{next.title}</strong>
           </Link>
-        )}
-      </div>
+        </div>
+      )}
     </nav>
   );
 }

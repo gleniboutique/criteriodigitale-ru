@@ -350,6 +350,16 @@ export function getObservatoryArticle(slug: string) {
   return observatoryArticles.find((article) => article.slug === slug);
 }
 
+export function getObservatoryCategoryLabel(category: string) {
+  const [system, description] = category.split(" / ", 2);
+
+  if (!description) {
+    return category;
+  }
+
+  return `${system === "AI" ? "ИИ" : system} · ${description}`;
+}
+
 export function countRussianWords(text: string) {
   return text.match(/[\p{L}\p{M}]+(?:[-’][\p{L}\p{M}]+)*|\d+/gu)?.length ?? 0;
 }

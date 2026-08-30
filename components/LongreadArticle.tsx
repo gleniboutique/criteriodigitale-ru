@@ -11,6 +11,7 @@ import {
   getLongreadReadingLabel,
 } from "@/content/longread";
 import {
+  getObservatoryCategoryLabel,
   getObservatoryArticle,
   getReadingLabel,
 } from "@/content/observatory";
@@ -424,7 +425,7 @@ function AuthorNote() {
 function ArticleCta() {
   return (
     <aside className={styles.cta} aria-labelledby="longread-cta-title">
-      <span>Possible action / рабочий процесс</span>
+      <span>Возможное действие · рабочий процесс</span>
       <h2 id="longread-cta-title">Планируется дать ИИ доступ к файлам, сайту или рабочим сервисам?</h2>
       <p>
         До запуска стоит определить, что система может делать самостоятельно, где требуется
@@ -452,7 +453,7 @@ function RelatedArticles() {
         {related.map((article) => (
           <article key={article.slug}>
             <Link href={`/observatory/${article.slug}`}>
-              <span>{article.category}</span>
+              <span>{getObservatoryCategoryLabel(article.category)}</span>
               <h3>{article.title}</h3>
               <p>{article.lead}</p>
               <small>{getReadingLabel(article)} · Читать →</small>
@@ -479,7 +480,7 @@ export default function LongreadArticle({ markdown }: { markdown: string }) {
 
         <div className={styles.headerLabel}>
           <span>{AI_GOTOVO_LONGREAD.type}</span>
-          <span>Observatory / {AI_GOTOVO_LONGREAD.number}</span>
+          <span>Наблюдения · {AI_GOTOVO_LONGREAD.number}</span>
         </div>
         <h1>{AI_GOTOVO_LONGREAD.title}</h1>
         <p className={styles.lead}>{AI_GOTOVO_LONGREAD.lead}</p>
