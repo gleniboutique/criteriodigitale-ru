@@ -57,10 +57,12 @@ export const LONGREAD_SOURCES = [
 ] as const;
 
 function loadSource() {
-  return readFileSync(
+  const source = readFileSync(
     path.join(process.cwd(), "content", "ii-govorit-gotovo.md"),
     "utf8",
   );
+
+  return source.replace(/\r\n?/g, "\n");
 }
 
 export function getLongreadMarkdown() {
