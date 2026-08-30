@@ -32,34 +32,56 @@ export default function ObservatoryPage() {
     <main className="observatory-page" id="top">
       <SiteHeader context="observatory" />
 
+      <div className="observatory-index-breadcrumbs page-shell">
+        <Breadcrumbs
+          className="observatory-index-breadcrumbs-nav"
+          items={[
+            { label: "Главная", href: "/" },
+            { label: "Наблюдения" },
+          ]}
+        />
+      </div>
+
       <section className="observatory-index-hero page-shell" aria-labelledby="observatory-index-title">
-        <div className="section-meta">
-          <span>O</span>
-          <span>Observatory / index</span>
-        </div>
         <div className="observatory-index-heading">
-          <Breadcrumbs
-            items={[
-              { label: "Главная", href: "/" },
-              { label: "Наблюдения" },
-            ]}
-          />
-          <p className="kicker">Исследования / мастерская / наблюдения</p>
+          <p className="kicker observatory-index-kicker">Исследования · мастерская · наблюдения</p>
           <h1 id="observatory-index-title">Наблюдать, прежде чем делать вывод.</h1>
           <p>
             Материалы о том, как AI и цифровые инструменты входят в работу,
             меняют решения и требуют новых критериев — технических и человеческих.
           </p>
         </div>
-        <aside aria-label="Логика Observatory">
-          <span>FIELD</span>
-          <span>RELATIONS</span>
-          <span>STRUCTURE</span>
-          <span>POSSIBLE ACTION</span>
+        <aside className="observatory-index-legend" aria-labelledby="observatory-legend-title">
+          <h2 id="observatory-legend-title">Как устроены материалы</h2>
+          <dl>
+            <div>
+              <dt>Контекст</dt>
+              <dd>что происходит</dd>
+            </div>
+            <div>
+              <dt>Связи</dt>
+              <dd>что с чем связано</dd>
+            </div>
+            <div>
+              <dt>Структура</dt>
+              <dd>как это устроено</dd>
+            </div>
+            <div>
+              <dt>Возможное действие</dt>
+              <dd>что можно сделать</dd>
+            </div>
+          </dl>
+          <a className="observatory-materials-link" href="#materials">
+            Перейти к материалам <span aria-hidden="true">↓</span>
+          </a>
         </aside>
       </section>
 
-      <section className="observatory-index-list page-shell" aria-label="Все материалы Observatory">
+      <section
+        className="observatory-index-list page-shell"
+        id="materials"
+        aria-label="Все материалы Observatory"
+      >
         <LongreadFeature variant="index" />
         {observatoryArticles.map((article) => (
           <article className="observatory-index-item" key={article.slug}>
