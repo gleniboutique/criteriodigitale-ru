@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { withDefaultSocialImage } from "@/config/metadata";
 import LongreadArticle from "@/components/LongreadArticle";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
@@ -10,7 +11,7 @@ import {
 } from "@/content/longread";
 import { personSchema } from "@/content/structured-data";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withDefaultSocialImage({
   title: `${AI_GOTOVO_LONGREAD.title} — Татьяна Мирошина`,
   description: AI_GOTOVO_LONGREAD.lead,
   authors: [{ name: AI_GOTOVO_LONGREAD.author }],
@@ -31,11 +32,11 @@ export const metadata: Metadata = {
     locale: "ru_RU",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: AI_GOTOVO_LONGREAD.title,
     description: AI_GOTOVO_LONGREAD.lead,
   },
-};
+});
 
 export default function AiGotovoLongreadPage() {
   const markdown = getLongreadMarkdown();

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { withDefaultSocialImage } from "@/config/metadata";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
@@ -8,7 +9,7 @@ import {
   CONTACT_TELEGRAM,
 } from "@/config/contact";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withDefaultSocialImage({
   title: "Обсудить задачу — Татьяна Мирошина",
   description:
     "Способы связаться с Татьяной Мирошиной, чтобы обозначить контур задачи и понять, подходит ли она для совместной работы.",
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ru_RU",
   },
-};
+});
 
 export default function ContactPage() {
   return (

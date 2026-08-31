@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import { withDefaultSocialImage } from "@/config/metadata";
 import { ITALIAN_SITE_URL, SITE_URL } from "@/config/site";
 import "./globals.css";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withDefaultSocialImage({
   metadataBase: new URL(SITE_URL),
   title: "Татьяна Мирошина — системы, AI, человек",
   description:
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     locale: "ru_RU",
     alternateLocale: ["it_IT"],
   },
-};
+});
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

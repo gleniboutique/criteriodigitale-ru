@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { withDefaultSocialImage } from "@/config/metadata";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ArticleBody from "@/components/ArticleBody";
@@ -34,7 +35,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
 
   const canonical = `/observatory/${article.slug}`;
 
-  return {
+  return withDefaultSocialImage({
     title: `${article.title} — Observatory`,
     description: article.lead,
     authors: [{ name: "Татьяна Мирошина" }],
@@ -56,11 +57,11 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
       alternateLocale: ["it_IT"],
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title: article.title,
       description: article.lead,
     },
-  };
+  });
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {

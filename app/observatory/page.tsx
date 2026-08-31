@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { withDefaultSocialImage } from "@/config/metadata";
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import LongreadFeature from "@/components/LongreadFeature";
@@ -7,7 +8,7 @@ import SiteHeader from "@/components/SiteHeader";
 import { ITALIAN_OBSERVATORY_URL } from "@/config/site";
 import { getReadingLabel, observatoryArticles } from "@/content/observatory";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withDefaultSocialImage({
   title: "Observatory — исследования, AI и человеческое суждение",
   description:
     "Авторские наблюдения Татьяны Мирошиной об AI, системах, критериях выбора и человеческой ответственности.",
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
     type: "website",
     url: "/observatory",
   },
-};
+});
 
 export default function ObservatoryPage() {
   return (
