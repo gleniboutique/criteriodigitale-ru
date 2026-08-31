@@ -11,8 +11,10 @@ import {
   getObservatoryArticle,
   getObservatoryCategoryLabel,
   getReadingLabel,
+  getReadingTime,
   observatoryArticles,
 } from "@/content/observatory";
+import { personSchema } from "@/content/structured-data";
 
 type ArticlePageProps = {
   params: Promise<{ slug: string }>;
@@ -70,6 +72,22 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   }
 
   const canonical = `/observatory/${article.slug}`;
+  const articleUrl = `${SITE_URL}${canonical}`;
+  const articleStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.lead,
+    url: articleUrl,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": articleUrl,
+    },
+    author: personSchema,
+    datePublished: article.publishedAt,
+    inLanguage: "ru",
+    timeRequired: `PT${getReadingTime(article)}M`,
+  };
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -101,6 +119,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         context="article"
         russianHref={canonical}
         italianHref={article.originalUrl}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleStructuredData).replace(/</g, "\\u003c"),
+        }}
       />
       <script
         type="application/ld+json"
