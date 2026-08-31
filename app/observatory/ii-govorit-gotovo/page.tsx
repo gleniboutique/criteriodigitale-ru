@@ -8,6 +8,7 @@ import {
   getLongreadMarkdown,
   getLongreadReadingMinutes,
 } from "@/content/longread";
+import { personSchema } from "@/content/structured-data";
 
 export const metadata: Metadata = {
   title: `${AI_GOTOVO_LONGREAD.title} — Татьяна Мирошина`,
@@ -47,10 +48,7 @@ export default function AiGotovoLongreadPage() {
       description: AI_GOTOVO_LONGREAD.lead,
       inLanguage: "ru",
       mainEntityOfPage: pageUrl,
-      author: {
-        "@type": "Person",
-        name: AI_GOTOVO_LONGREAD.author,
-      },
+      author: personSchema,
       timeRequired: `PT${getLongreadReadingMinutes()}M`,
       keywords: AI_GOTOVO_LONGREAD.tags.join(", "),
       datePublished: AI_GOTOVO_LONGREAD.publicationDate,

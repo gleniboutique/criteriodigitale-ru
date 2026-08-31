@@ -5,6 +5,7 @@ import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import SystemMap from "@/components/SystemMap";
 import { getReadingLabel, observatoryArticles } from "@/content/observatory";
+import { websiteStructuredData } from "@/content/structured-data";
 
 const entryPoints = [
   ["01", "Нужно что-то конкретно сделать.", "Задача уже видна, но ещё неясно, как лучше её собрать и чем реализовать."],
@@ -52,6 +53,12 @@ export default function Home() {
   return (
     <main id="top">
       <SiteHeader />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(websiteStructuredData).replace(/</g, "\\u003c"),
+        }}
+      />
 
       <section className="hero page-shell" aria-labelledby="hero-title">
         <div className="hero-heading">
