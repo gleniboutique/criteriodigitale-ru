@@ -25,7 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${SITE_URL}/observatory`,
-      lastModified: new Date("2026-08-28"),
+      lastModified: new Date("2026-08-30"),
       changeFrequency: "monthly",
       priority: 0.8,
       alternates: {
