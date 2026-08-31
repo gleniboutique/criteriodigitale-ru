@@ -1596,7 +1596,12 @@ section[id] {
 }
 
 .article-reading-meta {
+  flex-wrap: wrap;
+  row-gap: 8px;
   margin: 46px 0 0 18%;
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
 }
 
 .article-body {

@@ -71,6 +71,15 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     notFound();
   }
 
+  const publishedDateLabel = new Intl.DateTimeFormat("ru-RU", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  })
+    .format(new Date(article.publishedAt))
+    .replace(/\s*г\.$/u, "");
+
   const canonical = `/observatory/${article.slug}`;
   const articleUrl = `${SITE_URL}${canonical}`;
   const articleStructuredData = {
@@ -149,6 +158,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           <h1>{article.title}</h1>
           <p className="article-lead">{article.lead}</p>
           <div className="article-reading-meta">
+            <span>
+              {personSchema.name} ·{" "}
+              <time dateTime={article.publishedAt}>{publishedDateLabel}</time>
+            </span>
             <span>{getReadingLabel(article)}</span>
             <span>Русское издание</span>
           </div>
