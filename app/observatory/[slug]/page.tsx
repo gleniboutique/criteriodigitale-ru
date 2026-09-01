@@ -15,10 +15,55 @@ import {
   getReadingTime,
   observatoryArticles,
 } from "@/content/observatory";
+import { articleNavigation } from "@/content/articleNavigation";
 import { personSchema } from "@/content/structured-data";
 
 type ArticlePageProps = {
   params: Promise<{ slug: string }>;
+};
+
+type ThematicRelation = {
+  slug: string;
+  label: string;
+};
+
+const thematicRelations: Record<string, ThematicRelation[]> = {
+  "otvet-ranshe-voprosa": [
+    {
+      slug: "ii-govorit-gotovo",
+      label: "Как проверить, что AI действительно сделал работу",
+    },
+    {
+      slug: "novosti-ob-ai",
+      label: "Как отделять важные AI-сигналы от шума",
+    },
+  ],
+  "ai-soglasen-so-vsem": [
+    {
+      slug: "ii-govorit-gotovo",
+      label: "О проверяемости утверждений и действий AI",
+    },
+    {
+      slug: "chto-sposoben-ponyat-klient",
+      label: "Как сохранить профессиональный критерий в AI-редактуре",
+    },
+  ],
+  "chto-sposoben-ponyat-klient": [
+    {
+      slug: "ai-soglasen-so-vsem",
+      label: "Почему соглашательство AI — плохой совет",
+    },
+    {
+      slug: "otvet-ranshe-voprosa",
+      label: "Почему собственный вопрос должен появиться раньше ответа",
+    },
+  ],
+  "novosti-ob-ai": [
+    {
+      slug: "ai-soglasen-so-vsem",
+      label: "Как отличить проверку от убедительного согласия",
+    },
+  ],
 };
 
 export function generateStaticParams() {
@@ -83,6 +128,13 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   const canonical = `/observatory/${article.slug}`;
   const articleUrl = `${SITE_URL}${canonical}`;
+  const relatedObservations = (thematicRelations[article.slug] ?? []).flatMap(
+    (relation) => {
+      const target = articleNavigation.find((item) => item.slug === relation.slug);
+
+      return target ? [{ ...target, label: relation.label }] : [];
+    },
+  );
   const articleStructuredData = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -183,6 +235,29 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               Читать по-итальянски <span aria-hidden="true">→</span>
             </a>
           </div>
+
+          {relatedObservations.length > 0 && (
+            <section
+              className="article-related"
+              aria-labelledby={`article-related-${article.slug}`}
+            >
+              <div className="article-related-heading">
+                <span>По теме</span>
+                <h2 id={`article-related-${article.slug}`}>Связанные наблюдения</h2>
+              </div>
+              <ul className="article-related-list">
+                {relatedObservations.map((related) => (
+                  <li key={related.slug}>
+                    <Link href={related.href}>
+                      <span>{related.label}</span>
+                      <strong>{related.title}</strong>
+                      <span aria-hidden="true">→</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
 
           <ArticlePager currentSlug={article.slug} />
         </footer>
