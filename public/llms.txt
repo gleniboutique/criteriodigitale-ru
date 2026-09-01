@@ -1,0 +1,17 @@
+# Criterio Digitale — русская версия
+
+> Статьи Татьяны Мирошиной о системном мышлении, AI, человеческом суждении и практике работы с AI.
+
+## Основные страницы
+
+- [Главная](https://ru.criteriodigitale.it): Подход к системам, отношениям и возможному действию.
+- [Обсерватория](https://ru.criteriodigitale.it/observatory): Статьи и разборы о работе с AI.
+- [Контакты](https://ru.criteriodigitale.it/contact): Способ связаться с Татьяной Мирошиной.
+
+## Статьи Обсерватории
+
+- [Когда ИИ говорит «готово»](https://ru.criteriodigitale.it/observatory/ii-govorit-gotovo): Как проверить результат, маршрут и оставленный системой след.
+- [Ответ приходит раньше вопроса](https://ru.criteriodigitale.it/observatory/otvet-ranshe-voprosa): Что меняется, когда AI отвечает раньше собственной формулировки.
+- [AI, который со всем согласен, — плохой советник](https://ru.criteriodigitale.it/observatory/ai-soglasen-so-vsem): Почему поддержка не заменяет критическую проверку.
+- [Что способен понять ваш клиент](https://ru.criteriodigitale.it/observatory/chto-sposoben-ponyat-klient): Как сохранить профессиональный критерий при AI-редактуре.
+- [Новости об AI](https://ru.criteriodigitale.it/observatory/novosti-ob-ai): Как отличать важные сигналы от информационного шума.
