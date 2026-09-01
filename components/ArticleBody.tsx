@@ -1,13 +1,25 @@
 import type { ReactNode } from "react";
 
 function renderInline(text: string) {
-  return text.split(/(\*\*.*?\*\*)/g).map((part, index): ReactNode => {
-    if (part.startsWith("**") && part.endsWith("**")) {
-      return <strong key={`${part}-${index}`}>{part.slice(2, -2)}</strong>;
-    }
+  return text
+    .split(/(\*\*.*?\*\*|\[[^\]]+\]\(https:\/\/[^)\s]+\))/g)
+    .map((part, index): ReactNode => {
+      const link = part.match(/^\[([^\]]+)\]\((https:\/\/[^)\s]+)\)$/);
 
-    return part;
-  });
+      if (link) {
+        return (
+          <a href={link[2]} key={`${link[2]}-${index}`} rel="noreferrer" target="_blank">
+            {link[1]}
+          </a>
+        );
+      }
+
+      if (part.startsWith("**") && part.endsWith("**")) {
+        return <strong key={`${part}-${index}`}>{part.slice(2, -2)}</strong>;
+      }
+
+      return part;
+    });
 }
 
 export default function ArticleBody({ body }: { body: string }) {

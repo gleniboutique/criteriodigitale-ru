@@ -1638,6 +1638,21 @@ section[id] {
   font-weight: 600;
 }
 
+.article-body a {
+  color: var(--petrol);
+  text-decoration: underline;
+  text-decoration-color: var(--sage);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: color 180ms ease, text-decoration-color 180ms ease;
+}
+
+.article-body a:hover,
+.article-body a:focus-visible {
+  color: var(--copper);
+  text-decoration-color: currentColor;
+}
+
 .article-body .article-step-title {
   margin: 44px 0 12px;
   font-family: var(--sans);

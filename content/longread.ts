@@ -18,7 +18,7 @@ export const AI_GOTOVO_LONGREAD = {
   tags: ["ИИ-агенты", "делегирование", "управляемость"],
   author: "Татьяна Мирошина",
   publicationDate: "2026-08-30",
-  modifiedDate: "2026-08-30",
+  modifiedDate: "2026-09-01",
   canonical: "/observatory/ii-govorit-gotovo",
 } as const;
 
