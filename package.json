@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "review:status": "node scripts/review-status.mjs",
+    "review:due": "node scripts/review-status.mjs --due"
   },
   "dependencies": {
     "next": "15.5.24",

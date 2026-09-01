@@ -1,0 +1,49 @@
+{
+  "articles": [
+    {
+      "article": "ii-govorit-gotovo",
+      "language": "RU",
+      "source": "content/longread.ts",
+      "sourceKind": "longread",
+      "reviewClass": "T2",
+      "nextReviewAt": "2027-03-01",
+      "reviewReason": "Проверить актуальность описания агентных возможностей, наблюдаемости и практик делегирования."
+    },
+    {
+      "article": "otvet-ranshe-voprosa",
+      "language": "RU",
+      "source": "content/observatory.ts",
+      "sourceKind": "observatory",
+      "reviewClass": "T2",
+      "nextReviewAt": "2027-03-01",
+      "reviewReason": "Проверить утверждения о неопределённости и поведении моделей в диалоге."
+    },
+    {
+      "article": "ai-soglasen-so-vsem",
+      "language": "RU",
+      "source": "content/observatory.ts",
+      "sourceKind": "observatory",
+      "reviewClass": "T2",
+      "nextReviewAt": "2027-03-01",
+      "reviewReason": "Проверить актуальность исследований соглашательства и personal guidance."
+    },
+    {
+      "article": "chto-sposoben-ponyat-klient",
+      "language": "RU",
+      "source": "content/observatory.ts",
+      "sourceKind": "observatory",
+      "reviewClass": "T2",
+      "nextReviewAt": "2027-03-01",
+      "reviewReason": "Проверить данные о суммаризации, потере информации и профессиональном языке."
+    },
+    {
+      "article": "novosti-ob-ai",
+      "language": "RU",
+      "source": "content/observatory.ts",
+      "sourceKind": "observatory",
+      "reviewClass": "T1",
+      "nextReviewAt": "2027-09-01",
+      "reviewReason": "Ежегодно проверять актуальность evergreen-рамки для оценки AI-новостей."
+    }
+  ]
+}
