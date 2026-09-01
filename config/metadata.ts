@@ -11,6 +11,8 @@ export function withDefaultSocialImage(metadata: Metadata): Metadata {
   return {
     ...metadata,
     openGraph: {
+      siteName: "Criterio Digitale",
+      locale: "ru_RU",
       ...metadata.openGraph,
       images: metadata.openGraph?.images ?? [defaultSocialImage],
     },
