@@ -1574,8 +1574,15 @@ section[id] {
 }
 
 .article-label span:last-child,
-.article-reading-meta span:last-child {
+.article-reading-meta > span:last-child,
+.article-editorial-dates > span:last-child {
   color: var(--sage);
+}
+
+.article-editorial-dates {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .article-header h1 {
@@ -2526,7 +2533,8 @@ section[id] {
 .observatory-index-label small,
 .observatory-index-meta,
 .article-label span:last-child,
-.article-reading-meta span:last-child,
+.article-reading-meta > span:last-child,
+.article-editorial-dates > span:last-child,
 .article-edition-link,
 .contact-label span:last-child,
 .contact-annotation {
@@ -3193,6 +3201,10 @@ section[id] {
   .article-reading-meta {
     justify-content: space-between;
     margin: 38px 0 0 9%;
+  }
+
+  .article-editorial-dates {
+    flex-basis: 100%;
   }
 
   .article-body {

@@ -30,7 +30,20 @@
 }
 
 .headerLabel span:last-child,
-.meta span:not(:first-child) {
+.meta > span:not(:first-child) {
+  color: var(--ink);
+}
+
+.editorialDates {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.editorialDates > span:last-child {
   color: var(--ink);
 }
 

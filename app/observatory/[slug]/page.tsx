@@ -3,6 +3,7 @@ import { withDefaultSocialImage } from "@/config/metadata";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ArticleBody from "@/components/ArticleBody";
+import ArticleEditorialDates from "@/components/ArticleEditorialDates";
 import ArticlePager from "@/components/ArticlePager";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SiteFooter from "@/components/SiteFooter";
@@ -97,6 +98,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
       type: "article",
       url: canonical,
       publishedTime: article.publishedAt,
+      modifiedTime: article.updatedAt,
       authors: ["Татьяна Мирошина"],
       locale: "ru_RU",
       alternateLocale: ["it_IT"],
@@ -116,15 +118,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   if (!article) {
     notFound();
   }
-
-  const publishedDateLabel = new Intl.DateTimeFormat("ru-RU", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
-  })
-    .format(new Date(article.publishedAt))
-    .replace(/\s*г\.$/u, "");
 
   const canonical = `/observatory/${article.slug}`;
   const articleUrl = `${SITE_URL}${canonical}`;
@@ -147,6 +140,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     },
     author: personSchema,
     datePublished: article.publishedAt,
+    ...(article.updatedAt ? { dateModified: article.updatedAt } : {}),
     inLanguage: "ru",
     timeRequired: `PT${getReadingTime(article)}M`,
   };
@@ -211,10 +205,13 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           <h1>{article.title}</h1>
           <p className="article-lead">{article.lead}</p>
           <div className="article-reading-meta">
-            <span>
-              {personSchema.name} ·{" "}
-              <time dateTime={article.publishedAt}>{publishedDateLabel}</time>
-            </span>
+            <ArticleEditorialDates
+              author={personSchema.name}
+              publishedAt={article.publishedAt}
+              updatedAt={article.updatedAt}
+              reviewedAt={article.reviewedAt}
+              className="article-editorial-dates"
+            />
             <span>{getReadingLabel(article)}</span>
             <span>Русское издание</span>
           </div>

@@ -13,6 +13,8 @@ export type ObservatoryArticle = {
   originalUrl: string;
   selected: boolean;
   publishedAt: string;
+  updatedAt?: string;
+  reviewedAt?: string;
 };
 
 export const observatoryArticles: ObservatoryArticle[] = [
@@ -93,6 +95,8 @@ AI может быть сильным партнёром мышления, ко�
     originalUrl: "https://criteriodigitale.it/osservatorio/ai-risposta-prima-domanda",
     selected: true,
     publishedAt: "2026-08-28",
+    updatedAt: "2026-09-01",
+    reviewedAt: "2026-09-01",
   },
   {
     number: "02",
@@ -174,6 +178,8 @@ AI особенно полезен там, где нужна скорость, �
       "https://criteriodigitale.it/osservatorio/ai-troppo-daccordo-consigliere",
     selected: true,
     publishedAt: "2026-08-28",
+    updatedAt: "2026-09-01",
+    reviewedAt: "2026-09-01",
   },
   {
     number: "03",
@@ -256,6 +262,8 @@ AI умеет ускорять редактуру. Но он не знает р�
     originalUrl: "https://criteriodigitale.it/osservatorio/ai-semplifica-svaluta-cliente",
     selected: true,
     publishedAt: "2026-08-28",
+    updatedAt: "2026-09-01",
+    reviewedAt: "2026-09-01",
   },
   {
     number: "04",
@@ -343,6 +351,7 @@ AI умеет ускорять редактуру. Но он не знает р�
     originalUrl: "https://criteriodigitale.it/osservatorio/come-leggere-notizie-ai",
     selected: false,
     publishedAt: "2026-08-28",
+    reviewedAt: "2026-09-01",
   },
 ];
 

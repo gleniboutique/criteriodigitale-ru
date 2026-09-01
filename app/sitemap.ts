@@ -48,7 +48,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...observatoryArticles.map((article) => ({
       url: `${SITE_URL}/observatory/${article.slug}`,
-      lastModified: new Date(article.publishedAt),
+      lastModified: new Date(article.updatedAt || article.publishedAt),
       changeFrequency: "monthly" as const,
       priority: 0.7,
       alternates: {
