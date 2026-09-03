@@ -302,6 +302,9 @@ export default function Home() {
               Здесь появляются исследования, наблюдения, Мастерская AI,
               тексты и эксперименты.
             </p>
+            <Link className="observatory-index-link" href="/checklist-ai-act">
+              Практический документ: Checklist AI Act 2026 →
+            </Link>
             <figure className="observatory-note">
               <Image
                 src="/images/photo-04-authentic.webp"

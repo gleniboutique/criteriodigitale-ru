@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ITALIAN_OBSERVATORY_URL, ITALIAN_SITE_URL } from "@/config/site";
 
 type SiteHeaderProps = {
-  context?: "home" | "observatory" | "article" | "contact";
+  context?: "home" | "observatory" | "article" | "contact" | "resource";
   italianHref?: string;
   russianHref?: string;
 };
@@ -15,12 +15,19 @@ export default function SiteHeader({
   const isHome = context === "home";
   const isObservatory = context === "observatory";
   const isArticle = context === "article";
+  const isResource = context === "resource";
   const defaultRussianHref = isHome
     ? "/"
     : isObservatory || isArticle
       ? "/observatory"
-      : "/contact";
-  const defaultItalianHref = isObservatory || isArticle ? ITALIAN_OBSERVATORY_URL : ITALIAN_SITE_URL;
+      : isResource
+        ? "/checklist-ai-act"
+        : "/contact";
+  const defaultItalianHref = isObservatory || isArticle
+    ? ITALIAN_OBSERVATORY_URL
+    : isResource
+      ? `${ITALIAN_SITE_URL}/checklist-ai-act`
+      : ITALIAN_SITE_URL;
 
   return (
     <header className="topbar-frame">
