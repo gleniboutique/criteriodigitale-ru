@@ -1301,6 +1301,43 @@ section[id] {
   line-height: 1.6;
 }
 
+.observatory-resource-entry {
+  margin: 34px 0 0 46px;
+  padding: 20px 0 4px 16px;
+  border-left: 1px solid var(--copper);
+}
+
+.observatory-materials .observatory-resource-entry h3 {
+  max-width: 20ch;
+  margin: 0;
+  font-size: clamp(22px, 2vw, 28px);
+}
+
+.observatory-resource-entry p {
+  max-width: 48ch;
+  margin: 14px 0 0;
+  color: #b8c2bf;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.observatory-resource-entry a {
+  display: inline-block;
+  margin-top: 18px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  color: var(--paper);
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+}
+
+.observatory-resource-entry a:hover,
+.observatory-resource-entry a:focus-visible {
+  border-color: #d6987f;
+  color: #f0c1ae;
+}
+
 .observatory-note {
   width: 38%;
   margin: 52px 0 0 46px;
@@ -3065,6 +3102,10 @@ section[id] {
 
   .observatory-future {
     margin-top: 38px;
+  }
+
+  .observatory-resource-entry {
+    margin-left: 0;
   }
 
   .observatory-note {

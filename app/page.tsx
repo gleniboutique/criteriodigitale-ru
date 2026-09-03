@@ -302,9 +302,18 @@ export default function Home() {
               Здесь появляются исследования, наблюдения, Мастерская AI,
               тексты и эксперименты.
             </p>
-            <Link className="observatory-index-link" href="/checklist-ai-act">
-              Практический документ: Checklist AI Act 2026 →
-            </Link>
+            <aside
+              className="observatory-resource-entry"
+              aria-labelledby="ai-act-entry-title"
+            >
+              <h3 id="ai-act-entry-title">Работаете в ЕС или с европейским рынком?</h3>
+              <p>
+                Русская версия EU AI Act checklist помогает провести первый скрининг,
+                если компания, работа или AI-сценарий связаны с ЕС. Важны организация,
+                рынок и то, где используются система и её результат.
+              </p>
+              <Link href="/checklist-ai-act">Проверить свой случай →</Link>
+            </aside>
             <figure className="observatory-note">
               <Image
                 src="/images/photo-04-authentic.webp"
