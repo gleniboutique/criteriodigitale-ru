@@ -11,8 +11,8 @@ export const metadata: Metadata = withDefaultSocialImage({
   alternates: {
     canonical: "/",
     languages: {
-      ru: "/",
-      it: ITALIAN_SITE_URL,
+      "ru-RU": "/",
+      "it-IT": ITALIAN_SITE_URL,
     },
   },
   openGraph: {

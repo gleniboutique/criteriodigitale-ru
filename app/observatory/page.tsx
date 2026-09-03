@@ -15,8 +15,8 @@ export const metadata: Metadata = withDefaultSocialImage({
   alternates: {
     canonical: "/observatory",
     languages: {
-      ru: "/observatory",
-      it: ITALIAN_OBSERVATORY_URL,
+      "ru-RU": "/observatory",
+      "it-IT": ITALIAN_OBSERVATORY_URL,
     },
   },
   openGraph: {
@@ -31,7 +31,7 @@ export const metadata: Metadata = withDefaultSocialImage({
 export default function ObservatoryPage() {
   return (
     <main className="observatory-page" id="top">
-      <SiteHeader context="observatory" />
+      <SiteHeader context="observatory" hasLanguageCounterpart />
 
       <div className="observatory-index-breadcrumbs page-shell">
         <Breadcrumbs

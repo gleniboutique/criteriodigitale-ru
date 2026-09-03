@@ -18,7 +18,7 @@ export const metadata: Metadata = withDefaultSocialImage({
   alternates: {
     canonical: AI_GOTOVO_LONGREAD.canonical,
     languages: {
-      ru: AI_GOTOVO_LONGREAD.canonical,
+      "ru-RU": AI_GOTOVO_LONGREAD.canonical,
     },
   },
   openGraph: {

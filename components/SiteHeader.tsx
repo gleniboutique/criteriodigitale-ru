@@ -5,12 +5,14 @@ type SiteHeaderProps = {
   context?: "home" | "observatory" | "article" | "contact" | "resource";
   italianHref?: string;
   russianHref?: string;
+  hasLanguageCounterpart?: boolean;
 };
 
 export default function SiteHeader({
   context = "home",
   italianHref,
   russianHref,
+  hasLanguageCounterpart = false,
 }: SiteHeaderProps) {
   const isHome = context === "home";
   const isObservatory = context === "observatory";
@@ -50,11 +52,22 @@ export default function SiteHeader({
           </a>
         </nav>
         <div className="lang" role="navigation" aria-label="Выбор языка">
-          <a href={russianHref ?? defaultRussianHref} hrefLang="ru" lang="ru" aria-current="page">
+          <a
+            href={russianHref ?? defaultRussianHref}
+            hrefLang={hasLanguageCounterpart ? "ru-RU" : undefined}
+            lang="ru"
+            rel={hasLanguageCounterpart ? "alternate" : undefined}
+            aria-current="page"
+          >
             RU
           </a>
           <span aria-hidden="true">·</span>
-          <a href={italianHref ?? defaultItalianHref} hrefLang="it" lang="it" rel="alternate">
+          <a
+            href={italianHref ?? defaultItalianHref}
+            hrefLang={hasLanguageCounterpart ? "it-IT" : undefined}
+            lang="it"
+            rel={hasLanguageCounterpart ? "alternate" : undefined}
+          >
             IT
           </a>
         </div>

@@ -88,8 +88,8 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     alternates: {
       canonical,
       languages: {
-        ru: canonical,
-        it: article.originalUrl,
+        "ru-RU": canonical,
+        "it-IT": article.originalUrl,
       },
     },
     openGraph: {
@@ -175,6 +175,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         context="article"
         russianHref={canonical}
         italianHref={article.originalUrl}
+        hasLanguageCounterpart
       />
       <script
         type="application/ld+json"
@@ -228,7 +229,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
           <div className="article-edition-link">
             <span>Итальянская версия</span>
-            <a href={article.originalUrl} hrefLang="it" rel="alternate">
+            <a href={article.originalUrl} hrefLang="it-IT" rel="alternate">
               Читать по-итальянски <span aria-hidden="true">→</span>
             </a>
           </div>

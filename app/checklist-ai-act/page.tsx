@@ -16,7 +16,13 @@ const pageUrl = `${SITE_URL}/checklist-ai-act`;
 export const metadata: Metadata = withDefaultSocialImage({
   title,
   description,
-  alternates: { canonical: "/checklist-ai-act" },
+  alternates: {
+    canonical: "/checklist-ai-act",
+    languages: {
+      "ru-RU": "/checklist-ai-act",
+      "it-IT": `${ITALIAN_SITE_URL}/checklist-ai-act`,
+    },
+  },
   openGraph: {
     title,
     description,
@@ -77,6 +83,7 @@ export default function ChecklistAIActPage() {
         context="resource"
         russianHref="/checklist-ai-act"
         italianHref={`${ITALIAN_SITE_URL}/checklist-ai-act`}
+        hasLanguageCounterpart
       />
       <main className={styles.page} id="top">
         <div className={`${styles.breadcrumbWrap} page-shell`}>

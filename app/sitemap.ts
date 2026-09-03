@@ -12,8 +12,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
       alternates: {
         languages: {
-          ru: SITE_URL,
-          it: ITALIAN_SITE_URL,
+          "ru-RU": `${SITE_URL}/`,
+          "it-IT": `${ITALIAN_SITE_URL}/`,
         },
       },
     },
@@ -28,6 +28,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date("2026-09-03"),
       changeFrequency: "monthly",
       priority: 0.7,
+      alternates: {
+        languages: {
+          "ru-RU": `${SITE_URL}/checklist-ai-act`,
+          "it-IT": `${ITALIAN_SITE_URL}/checklist-ai-act`,
+        },
+      },
     },
     {
       url: `${SITE_URL}/observatory`,
@@ -36,8 +42,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
       alternates: {
         languages: {
-          ru: `${SITE_URL}/observatory`,
-          it: ITALIAN_OBSERVATORY_URL,
+          "ru-RU": `${SITE_URL}/observatory`,
+          "it-IT": ITALIAN_OBSERVATORY_URL,
         },
       },
     },
@@ -48,7 +54,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
       alternates: {
         languages: {
-          ru: `${SITE_URL}${AI_GOTOVO_LONGREAD.canonical}`,
+          "ru-RU": `${SITE_URL}${AI_GOTOVO_LONGREAD.canonical}`,
         },
       },
     },
@@ -59,8 +65,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
       alternates: {
         languages: {
-          ru: `${SITE_URL}/observatory/${article.slug}`,
-          it: article.originalUrl,
+          "ru-RU": `${SITE_URL}/observatory/${article.slug}`,
+          "it-IT": article.originalUrl,
         },
       },
     })),

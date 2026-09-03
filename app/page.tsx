@@ -52,7 +52,7 @@ export default function Home() {
 
   return (
     <main id="top">
-      <SiteHeader />
+      <SiteHeader hasLanguageCounterpart />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
