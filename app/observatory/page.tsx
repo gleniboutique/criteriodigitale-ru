@@ -29,6 +29,10 @@ export const metadata: Metadata = withDefaultSocialImage({
 });
 
 export default function ObservatoryPage() {
+  const articlesByNewest = [...observatoryArticles].sort((first, second) =>
+    second.publishedAt.localeCompare(first.publishedAt),
+  );
+
   return (
     <main className="observatory-page" id="top">
       <SiteHeader context="observatory" hasLanguageCounterpart />
@@ -84,7 +88,7 @@ export default function ObservatoryPage() {
         aria-label="Все материалы Observatory"
       >
         <LongreadFeature variant="index" />
-        {observatoryArticles.map((article) => (
+        {articlesByNewest.map((article) => (
           <article className="observatory-index-item" key={article.slug}>
             <Link href={`/observatory/${article.slug}`}>
               <div className="observatory-index-label">

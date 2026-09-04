@@ -179,7 +179,7 @@ AI особенно полезен там, где нужна скорость, �
     originalTitle: "Quando l’AI è d’accordo con tutto, hai perso il tuo miglior consigliere.",
     originalUrl:
       "https://criteriodigitale.it/osservatorio/ai-troppo-daccordo-consigliere",
-    selected: true,
+    selected: false,
     publishedAt: "2026-08-28",
     updatedAt: "2026-09-01",
     reviewedAt: "2026-09-01",
@@ -702,7 +702,7 @@ Philippe Aghion и Jean Tirole различают в организациях ф
 3. Philippe Aghion, Jean Tirole. [Formal and Real Authority in Organizations](https://doi.org/10.1086/262063). Journal of Political Economy, 1997.
 
 4. Shakked Noy, Whitney Zhang. [Experimental Evidence on the Productivity Effects of Generative Artificial Intelligence](https://doi.org/10.1126/science.adh2586). Science, 2023.`,
-    selected: false,
+    selected: true,
     publishedAt: "2026-09-04",
     language: "ru-RU",
   },

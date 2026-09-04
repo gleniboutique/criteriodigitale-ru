@@ -48,7 +48,10 @@ function Arrow() {
 }
 
 export default function Home() {
-  const selectedMaterials = observatoryArticles.filter((article) => article.selected);
+  const selectedMaterials = observatoryArticles
+    .filter((article) => article.selected)
+    .sort((first, second) => second.publishedAt.localeCompare(first.publishedAt))
+    .slice(0, 3);
 
   return (
     <main id="top">
