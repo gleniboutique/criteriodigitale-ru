@@ -25,3 +25,34 @@ export const websiteStructuredData = {
     personSchema,
   ],
 } as const;
+
+type PageSchemaType = "WebPage" | "AboutPage" | "ContactPage";
+
+export function createPageStructuredData({
+  type,
+  path,
+  name,
+  description,
+}: {
+  type: PageSchemaType;
+  path: string;
+  name: string;
+  description: string;
+}) {
+  const url = `${SITE_URL}${path === "/" ? "/" : path}`;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": type,
+    "@id": `${url}#webpage`,
+    url,
+    name,
+    description,
+    inLanguage: "ru-RU",
+    isPartOf: { "@id": RU_WEBSITE_ID },
+    creator: { "@id": PERSON_ID },
+    ...(type === "AboutPage" || type === "ContactPage"
+      ? { mainEntity: { "@id": PERSON_ID } }
+      : {}),
+  } as const;
+}

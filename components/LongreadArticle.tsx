@@ -432,8 +432,8 @@ function ArticleCta() {
         подтверждение, какой след она должна оставлять и что именно будет считаться выполненной работой.
       </p>
       <div>
-        <Link href="/contact">Обсудить рабочий процесс →</Link>
-        <Link href="/#work">Посмотреть мой подход</Link>
+        <Link href="/ai-i-cennost">ИИ: нужен ли он и создаёт ли ценность →</Link>
+        <Link href="/kak-ya-rabotayu">Посмотреть мой подход</Link>
       </div>
     </aside>
   );

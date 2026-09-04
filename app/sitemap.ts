@@ -2,12 +2,13 @@ import type { MetadataRoute } from "next";
 import { ITALIAN_OBSERVATORY_URL, ITALIAN_SITE_URL, SITE_URL } from "@/config/site";
 import { AI_GOTOVO_LONGREAD } from "@/content/longread";
 import { observatoryArticles } from "@/content/observatory";
+import { phaseOnePaths } from "@/content/phaseOne";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: SITE_URL,
-      lastModified: new Date("2026-08-29"),
+      lastModified: new Date("2026-09-04"),
       changeFrequency: "monthly",
       priority: 1,
       alternates: {
@@ -19,10 +20,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${SITE_URL}/contact`,
-      lastModified: new Date("2026-08-29"),
+      lastModified: new Date("2026-09-04"),
       changeFrequency: "yearly",
       priority: 0.8,
+      alternates: {
+        languages: {
+          "ru-RU": `${SITE_URL}/contact`,
+        },
+      },
     },
+    ...phaseOnePaths.map((path) => ({
+      url: `${SITE_URL}${path}`,
+      lastModified: new Date("2026-09-04"),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+      alternates: {
+        languages: {
+          "ru-RU": `${SITE_URL}${path}`,
+        },
+      },
+    })),
     {
       url: `${SITE_URL}/checklist-ai-act`,
       lastModified: new Date("2026-09-03"),

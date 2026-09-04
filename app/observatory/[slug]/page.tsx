@@ -235,6 +235,14 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             </div>
           ) : null}
 
+          {article.contextualRoute ? (
+            <div className="article-context-route">
+              <Link href={article.contextualRoute.href}>
+                {article.contextualRoute.label} <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          ) : null}
+
           {article.originalUrl ? (
             <div className="article-edition-link">
               <span>Итальянская версия</span>

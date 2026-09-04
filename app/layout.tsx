@@ -5,9 +5,9 @@ import "./globals.css";
 
 export const metadata: Metadata = withDefaultSocialImage({
   metadataBase: new URL(SITE_URL),
-  title: "Татьяна Мирошина — системы, AI, человек",
+  title: "Criterio Digitale — когда решение уже есть, а проблема осталась",
   description:
-    "Работа со сложными задачами: контекст, системное мышление, цифровые процессы и AI без подмены человеческого решения.",
+    "Люди, сайт, автоматизация или ИИ уже есть, но проблема осталась? Criterio Digitale помогает сначала различить причины и факты, а потом выбирать следующий шаг.",
   alternates: {
     canonical: "/",
     languages: {
@@ -16,9 +16,9 @@ export const metadata: Metadata = withDefaultSocialImage({
     },
   },
   openGraph: {
-    title: "Татьяна Мирошина — системы, AI, человек",
+    title: "Criterio Digitale — когда решение уже есть, а проблема осталась",
     description:
-      "Работа со сложными задачами: контекст, системное мышление, цифровые процессы и AI без подмены человеческого решения.",
+      "Люди, сайт, автоматизация или ИИ уже есть, но проблема осталась? Criterio Digitale помогает сначала различить причины и факты, а потом выбирать следующий шаг.",
     type: "website",
     url: "/",
     locale: "ru_RU",

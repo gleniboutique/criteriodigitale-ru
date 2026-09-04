@@ -193,6 +193,9 @@ export default function ChecklistAIActPage() {
             <Link className={styles.crossLink} href={`${ITALIAN_SITE_URL}/checklist-ai-act`}>
               Итальянская версия / Versione italiana <span aria-hidden="true">→</span>
             </Link>
+            <Link className={styles.crossLink} href="/ai-pravila-v-rabote">
+              ИИ: как правила работают на практике <span aria-hidden="true">→</span>
+            </Link>
           </div>
         </section>
       </main>
