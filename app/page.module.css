@@ -1,31 +1,109 @@
 .hero {
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(300px, 4fr);
-  gap: clamp(52px, 8vw, 126px);
-  min-height: calc(100vh - 86px);
-  padding-top: clamp(66px, 9vw, 132px);
-  padding-bottom: 54px;
-  align-content: space-between;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: auto auto 1fr;
+  gap: 0 24px;
+  min-height: min(960px, calc(100svh - 86px));
+  padding-block: clamp(66px, 7vh, 92px) 42px;
+}
+
+.heroHeading {
+  z-index: 2;
+  grid-column: 1 / 9;
+  grid-row: 1;
+  align-self: start;
 }
 
 .heroHeading h1 {
-  max-width: 930px;
   margin: 0;
   font-family: var(--serif);
-  font-size: clamp(64px, 7.4vw, 106px);
-  font-weight: 440;
-  line-height: 0.94;
-  letter-spacing: -0.055em;
-  text-wrap: balance;
+  font-size: clamp(65px, 6.55vw, 94px);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.048em;
+}
+
+.heroHeading h1 span {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+}
+
+.heroHeading h1 span:nth-child(2) {
+  margin-left: 0.48em;
+  font-size: 0.92em;
+}
+
+.heroHeading h1 span:nth-child(3) {
+  margin-left: 1.18em;
+  color: var(--petrol);
+}
+
+.systemMap {
+  z-index: 1;
+  grid-column: 6 / 13;
+  grid-row: 1 / 4;
+  align-self: center;
+  min-width: 0;
+  margin-top: 8px;
+}
+
+.systemMap :global(.system-atlas) {
+  margin: 0;
+}
+
+.heroLead {
+  z-index: 3;
+  grid-column: 2 / 6;
+  grid-row: 2;
+  align-self: end;
+  max-width: 550px;
+  margin-top: clamp(42px, 5.5vh, 66px);
+  color: #40494a;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.heroLead p {
+  margin: 0;
+}
+
+.heroLead p:first-child {
+  max-width: 44ch;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.heroLead p + p {
+  margin-top: 1.05em;
+}
+
+.heroLead p:nth-child(2) {
+  max-width: 15ch;
+  margin-top: 28px;
+  color: var(--petrol);
+  font-family: var(--serif);
+  font-size: clamp(28px, 2.45vw, 36px);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+}
+
+.heroLead p:nth-child(3) {
+  max-width: 48ch;
+  margin-top: 32px;
+  font-size: 16px;
+  line-height: 1.62;
 }
 
 .primaryLink {
   display: inline-flex;
   gap: 12px;
   align-items: center;
-  margin-top: 48px;
+  margin-top: 28px;
   padding-bottom: 8px;
   border-bottom: 1px solid var(--ink);
+  color: var(--ink);
   font-weight: 650;
 }
 
@@ -33,43 +111,47 @@
   color: var(--copper);
 }
 
-.heroLead {
-  max-width: 570px;
-  padding-top: 10px;
-  font-size: clamp(18px, 1.5vw, 21px);
-  line-height: 1.68;
+.conceptRail {
+  width: 100%;
+  background: var(--paper);
+  border-block: 1px solid var(--line);
+  color: var(--ink);
 }
 
-.heroLead p {
-  margin: 0 0 1.1em;
-}
-
-.heroMap {
-  grid-column: 1 / -1;
+.conceptRail > div {
   display: grid;
   grid-template-columns: auto 1fr auto 1fr auto 1fr auto;
-  gap: 14px;
+  gap: 22px;
   align-items: center;
-  color: var(--sage);
+  min-height: 68px;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.14em;
 }
 
-.heroMap i {
+.conceptRail i {
+  display: block;
   height: 1px;
   background: var(--line);
+}
+
+.conceptRail span:last-child {
+  color: var(--petrol);
 }
 
 .recognition,
 .selfCheck,
 .boundary {
   display: grid;
-  grid-template-columns: minmax(230px, 4fr) minmax(0, 8fr);
-  gap: clamp(48px, 8vw, 126px);
-  padding-top: clamp(74px, 10vw, 142px);
-  padding-bottom: clamp(74px, 10vw, 142px);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(18px, 2.1vw, 34px);
+  padding-top: clamp(88px, 10vw, 150px);
+  padding-bottom: clamp(88px, 10vw, 150px);
   border-top: 1px solid var(--line);
+}
+
+.sectionHeader {
+  grid-column: 1 / 4;
 }
 
 .sectionHeader > span,
@@ -87,53 +169,71 @@
 .sectionHeader h2,
 .sectionHeaderLight h2,
 .trust h2 {
-  max-width: 430px;
+  max-width: 450px;
   margin: 0;
   font-family: var(--serif);
-  font-size: clamp(38px, 4.2vw, 62px);
+  font-size: clamp(39px, 4.25vw, 64px);
   font-weight: 450;
-  line-height: 1.02;
-  letter-spacing: -0.04em;
+  line-height: 1.01;
+  letter-spacing: -0.043em;
   text-wrap: balance;
 }
 
 .recognitionList {
+  grid-column: 4 / 13;
   border-top: 1px solid var(--line);
 }
 
 .recognitionItem {
   display: grid;
-  grid-template-columns: 46px minmax(0, 1fr) minmax(170px, auto);
+  grid-template-columns: 44px minmax(0, 1.45fr) minmax(170px, 0.72fr);
   gap: 24px;
+  align-items: start;
+  width: 100%;
+  min-height: 166px;
   padding: 32px 0;
   border-bottom: 1px solid var(--line);
-  align-items: start;
+}
+
+.recognitionItem:nth-child(2),
+.recognitionItem:nth-child(4) {
+  width: calc(100% - clamp(36px, 5vw, 76px));
+  margin-left: clamp(36px, 5vw, 76px);
+}
+
+.recognitionItem:nth-child(3) {
+  padding-block: 40px;
 }
 
 .recognitionItem > span {
+  padding-top: 7px;
   color: var(--copper);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
+  letter-spacing: 0.12em;
 }
 
 .recognitionItem h3 {
   max-width: 620px;
   margin: 0 0 12px;
   font-family: var(--serif);
-  font-size: clamp(24px, 2.1vw, 32px);
+  font-size: clamp(25px, 2.25vw, 34px);
   font-weight: 500;
-  line-height: 1.15;
+  line-height: 1.12;
 }
 
 .recognitionItem p {
   max-width: 650px;
   margin: 0;
+  color: #4d5758;
+  font-size: 14px;
   line-height: 1.65;
 }
 
 .recognitionItem > a {
   justify-self: end;
-  max-width: 210px;
+  max-width: 200px;
+  padding-top: 5px;
   font-size: 13px;
   font-weight: 650;
   line-height: 1.4;
@@ -147,29 +247,44 @@
   color: var(--copper);
 }
 
-.principle,
-.trust {
+.principle {
+  position: relative;
+  overflow: hidden;
   background: var(--petrol);
   color: var(--paper);
 }
 
-.principleInner,
-.trustInner {
+.principle::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 1px);
+  width: 1px;
+  content: "";
+  background: rgb(255 255 255 / 7%);
+}
+
+.principleInner {
+  position: relative;
+  z-index: 1;
   display: grid;
-  grid-template-columns: minmax(230px, 4fr) minmax(0, 8fr);
-  gap: clamp(48px, 8vw, 126px);
-  padding-top: clamp(76px, 10vw, 140px);
-  padding-bottom: clamp(76px, 10vw, 140px);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(18px, 2.1vw, 34px);
+  padding-top: clamp(96px, 11vw, 158px);
+  padding-bottom: clamp(96px, 11vw, 158px);
+}
+
+.sectionHeaderLight {
+  grid-column: 1 / 4;
 }
 
 .sectionHeaderLight h2 {
   color: var(--paper);
 }
 
-.principleBody,
-.boundaryBody,
-.trustInner > div {
-  max-width: 760px;
+.principleBody {
+  grid-column: 5 / 12;
+  max-width: 770px;
   font-size: clamp(18px, 1.5vw, 21px);
   line-height: 1.72;
 }
@@ -181,13 +296,12 @@
 }
 
 .principleBody blockquote {
-  margin: 38px 0;
-  padding: 24px 0;
-  border-top: 1px solid rgb(251 250 247 / 35%);
-  border-bottom: 1px solid rgb(251 250 247 / 35%);
+  margin: 44px 0;
+  padding: 30px 0;
+  border-block: 1px solid rgb(251 250 247 / 24%);
   font-family: var(--serif);
-  font-size: clamp(32px, 4vw, 58px);
-  line-height: 1.05;
+  font-size: clamp(36px, 4.4vw, 64px);
+  line-height: 1.02;
 }
 
 .principleBody ul {
@@ -197,23 +311,22 @@
   padding-left: 22px;
 }
 
-.principleBody a,
-.trustInner a {
+.principleBody a {
   color: var(--paper);
   font-weight: 650;
 }
 
 .selfCheckBody {
+  grid-column: 5 / 13;
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  gap: clamp(34px, 6vw, 90px);
+  align-items: start;
 }
 
 .selfCheckBody article {
-  padding: clamp(30px, 4vw, 54px);
-  background: var(--paper);
+  padding-top: 28px;
+  border-top: 1px solid var(--ink);
 }
 
 .selfCheckBody h3 {
@@ -237,38 +350,134 @@
 }
 
 .aiActNote {
-  background: var(--ivory) !important;
+  position: relative;
+  margin-top: clamp(56px, 7vw, 96px);
+  padding-left: clamp(22px, 3vw, 40px);
+  border-left: 1px solid var(--copper);
 }
 
 .boundary {
-  background: var(--paper);
+  background: var(--ivory);
+}
+
+.boundary .sectionHeader {
+  grid-column: 1 / 5;
+}
+
+.boundaryBody {
+  grid-column: 6 / 12;
+  max-width: 750px;
+  padding-left: clamp(24px, 4vw, 58px);
+  border-left: 1px solid var(--copper);
+  font-size: clamp(18px, 1.5vw, 21px);
+  line-height: 1.72;
 }
 
 .trust {
   position: relative;
   overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
 }
 
-.trust::after {
+.trust::before {
   position: absolute;
-  right: -90px;
-  bottom: -180px;
-  width: 430px;
-  height: 430px;
-  border: 1px solid rgb(251 250 247 / 18%);
-  border-radius: 50%;
+  top: 0;
+  right: calc((100% - min(1320px, calc(100% - 96px))) / 2);
+  bottom: 0;
+  width: 1px;
   content: "";
+  background: var(--copper);
 }
 
 .trustInner {
   position: relative;
-  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: auto 1fr;
+  gap: 0 clamp(18px, 2.1vw, 34px);
+  min-height: 760px;
+  padding-top: clamp(88px, 10vw, 142px);
+  padding-bottom: clamp(88px, 10vw, 142px);
+}
+
+.trustInner > header {
+  grid-column: 2 / 11;
+}
+
+.trust h2 {
+  max-width: none;
+  font-size: clamp(64px, 5.7vw, 82px);
+  font-weight: 400;
+  line-height: 0.91;
+}
+
+.humanNote {
+  grid-column: 2 / 4;
+  grid-row: 2;
+  align-self: end;
+  justify-self: start;
+  width: min(100%, 190px);
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.humanNote img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.humanNote figcaption {
+  display: grid;
+  gap: 8px;
+  margin-top: 13px;
+  font-size: 9px;
+  line-height: 1.45;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.humanNote figcaption span {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.humanNote figcaption span::before {
+  display: inline-block;
+  width: 15px;
+  height: 1px;
+  margin: 0 8px 3px 0;
+  content: "";
+  background: var(--copper);
+}
+
+.humanNote figcaption em {
+  color: var(--ink);
+  font-style: normal;
+}
+
+.trustInner > div {
+  grid-column: 7 / 12;
+  grid-row: 2;
+  align-self: end;
+  max-width: 580px;
+  margin-top: clamp(72px, 9vw, 126px);
+  padding: 24px 0 24px clamp(28px, 3.5vw, 46px);
+  border-left: 1px solid var(--copper);
+  font-size: clamp(18px, 1.45vw, 21px);
+  line-height: 1.72;
 }
 
 .trust nav {
   display: flex;
   gap: 28px;
   margin-top: 34px;
+}
+
+.trustInner a {
+  font-weight: 650;
 }
 
 .observatoryIntro {
@@ -279,53 +488,131 @@
   line-height: 1.65;
 }
 
-@media (max-width: 980px) {
-  .hero,
-  .recognition,
-  .selfCheck,
-  .boundary,
-  .principleInner,
-  .trustInner {
-    grid-template-columns: 1fr;
+@media (max-width: 1020px) {
+  .heroHeading {
+    grid-column: 1 / 9;
   }
 
-  .hero {
-    min-height: auto;
+  .systemMap {
+    grid-column: 6 / 13;
   }
 
-  .recognitionItem {
-    grid-template-columns: 38px 1fr;
+  .heroLead {
+    grid-column: 1 / 6;
   }
 
-  .recognitionItem > a {
-    grid-column: 2;
-    justify-self: start;
+  .sectionHeader,
+  .sectionHeaderLight {
+    grid-column: 1 / 5;
+  }
+
+  .recognitionList,
+  .selfCheckBody,
+  .principleBody {
+    grid-column: 5 / 13;
+  }
+
+  .trustInner > header {
+    grid-column: 1 / 11;
+  }
+
+  .trustInner > div {
+    grid-column: 6 / 12;
   }
 }
 
 @media (max-width: 780px) {
   .hero {
-    gap: 38px;
-    padding-top: 58px;
-    padding-bottom: 38px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    min-height: 0;
+    padding-block: 50px 42px;
+  }
+
+  .heroHeading,
+  .systemMap,
+  .heroLead {
+    grid-column: 1;
+  }
+
+  .heroHeading {
+    grid-row: 1;
   }
 
   .heroHeading h1 {
-    font-size: clamp(48px, 14.5vw, 64px);
-    line-height: 0.98;
+    font-size: clamp(36px, 10vw, 44px);
+    line-height: 0.94;
+    letter-spacing: -0.055em;
+  }
+
+  .heroHeading h1 span:nth-child(2) {
+    margin-left: 0.12em;
+    font-size: 0.88em;
+  }
+
+  .heroHeading h1 span:nth-child(3) {
+    margin-left: 0.66em;
+  }
+
+  .systemMap {
+    grid-row: 2;
+    width: calc(100% + 36px);
+    margin: -10px 0 -20px -18px;
+    overflow: hidden;
+  }
+
+  .systemMap :global(.system-atlas figcaption) {
+    margin-inline: 8%;
+    font-size: 8px;
+  }
+
+  .systemMap :global(.system-atlas figcaption span:last-child) {
+    text-align: right;
+  }
+
+  .heroLead {
+    grid-row: 3;
+    margin: 28px 0 0;
+    font-size: 15px;
+  }
+
+  .heroLead p:first-child,
+  .heroLead p:nth-child(3) {
+    max-width: 100%;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .heroLead p:nth-child(2) {
+    max-width: 12ch;
+    margin-top: 25px;
+    font-size: 30px;
   }
 
   .primaryLink {
-    margin-top: 32px;
+    margin-top: 27px;
   }
 
-  .heroMap {
-    grid-template-columns: auto 1fr auto;
+  .conceptRail > div {
+    grid-template-columns: auto 1fr auto 1fr;
+    gap: 10px;
+    min-height: 62px;
+    font-size: 8px;
   }
 
-  .heroMap i:nth-of-type(n + 2),
-  .heroMap span:nth-of-type(n + 3) {
+  .conceptRail i:nth-of-type(2),
+  .conceptRail i:nth-of-type(3) {
     display: none;
+  }
+
+  .conceptRail span:nth-of-type(3),
+  .conceptRail span:nth-of-type(4) {
+    grid-row: 2;
+  }
+
+  .conceptRail span:nth-of-type(4) {
+    grid-column: 3 / 5;
+    text-align: right;
   }
 
   .recognition,
@@ -333,19 +620,76 @@
   .boundary,
   .principleInner,
   .trustInner {
-    gap: 46px;
-    padding-top: 62px;
-    padding-bottom: 62px;
+    display: block;
+    padding-top: 76px;
+    padding-bottom: 76px;
   }
 
-  .recognitionItem {
+  .sectionHeader,
+  .sectionHeaderLight {
+    margin-bottom: 48px;
+  }
+
+  .recognitionItem,
+  .recognitionItem:nth-child(2),
+  .recognitionItem:nth-child(3),
+  .recognitionItem:nth-child(4) {
     grid-template-columns: 30px 1fr;
     gap: 12px;
-    padding: 26px 0;
+    width: 100%;
+    min-height: 0;
+    margin-left: 0;
+    padding: 30px 0;
+  }
+
+  .recognitionItem > a {
+    grid-column: 2;
+    justify-self: start;
+    margin-top: 5px;
+  }
+
+  .principle::after {
+    left: 18px;
   }
 
   .selfCheckBody {
-    grid-template-columns: 1fr;
+    display: block;
+  }
+
+  .selfCheckBody article + article {
+    margin-top: 58px;
+  }
+
+  .aiActNote {
+    padding-left: 22px;
+  }
+
+  .boundaryBody {
+    padding-left: 20px;
+  }
+
+  .trust::before {
+    display: none;
+  }
+
+  .trustInner {
+    min-height: 0;
+  }
+
+  .trust h2 {
+    font-size: clamp(52px, 14.6vw, 62px);
+    line-height: 0.94;
+  }
+
+  .humanNote {
+    width: 48%;
+    margin: 54px 0 0 9%;
+  }
+
+  .trustInner > div {
+    width: 91%;
+    margin: 64px 0 0 9%;
+    padding: 4px 0 24px 24px;
   }
 
   .trust nav {

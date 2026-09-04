@@ -6,10 +6,10 @@ export default function SystemMap() {
         role="img"
         aria-labelledby="atlas-title atlas-description"
       >
-        <title id="atlas-title">Карта проявления возможного действия</title>
+        <title id="atlas-title">Карта перехода от проблемы к обоснованному действию</title>
         <desc id="atlas-description">
-          Открытое поле постепенно проявляет отношения, структуру и направление действия.
-          AI отмечен как один из инструментов внутри системы.
+          От наблюдаемой проблемы путь проходит через возможные причины и факты к следующему действию.
+          ИИ отмечен как один из инструментов, а человек — как источник критерия.
         </desc>
 
         <g className="atlas-grid" aria-hidden="true">

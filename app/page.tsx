@@ -1,8 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 import LongreadFeature from "@/components/LongreadFeature";
 import ObservatoryArticleCard from "@/components/ObservatoryArticleCard";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import SystemMap from "@/components/SystemMap";
 import { homepageRecognition } from "@/content/phaseOne";
 import {
   getFeaturedObservatoryMaterial,
@@ -42,20 +44,30 @@ export default function Home() {
 
       <section className={`${styles.hero} page-shell`} aria-labelledby="home-title">
         <div className={styles.heroHeading}>
-          <h1 id="home-title">Решение уже есть. Почему проблема осталась?</h1>
-          <Link className={styles.primaryLink} href="#situations">
-            Найти свою ситуацию <span aria-hidden="true">↓</span>
-          </Link>
+          <h1 id="home-title">
+            <span>Решение уже есть.</span>
+            <span>Почему проблема</span>
+            <span>осталась?</span>
+          </h1>
+        </div>
+        <div className={styles.systemMap}>
+          <SystemMap />
         </div>
         <div className={styles.heroLead}>
           <p>Людей стало больше. Появились инструкции и инструменты. Сайт уже переделывали. ИИ внедрили или только собираются покупать. Требования записали.</p>
           <p>Но ожидаемого изменения не произошло.</p>
           <p>Criterio Digitale работает с такими ситуациями: когда прежде чем снова нанимать, автоматизировать, переделывать сайт или покупать ИИ, нужно понять, <strong>что именно осталось неизменным и почему</strong>.</p>
-        </div>
-        <div className={styles.heroMap} aria-hidden="true">
-          <span>FIELD</span><i /><span>RELATIONS</span><i /><span>STRUCTURE</span><i /><span>POSSIBLE ACTION</span>
+          <Link className={styles.primaryLink} href="#situations">
+            Найти свою ситуацию <span aria-hidden="true">↓</span>
+          </Link>
         </div>
       </section>
+
+      <div className={styles.conceptRail} aria-label="Логика работы">
+        <div className="page-shell">
+          <span>FIELD</span><i /><span>RELATIONS</span><i /><span>STRUCTURE</span><i /><span>POSSIBLE ACTION</span>
+        </div>
+      </div>
 
       <section className={`${styles.recognition} page-shell`} id="situations" aria-labelledby="situations-title">
         <header className={styles.sectionHeader}>
@@ -142,6 +154,19 @@ export default function Home() {
             <span>05 / Trust</span>
             <h2 id="trust-title">Татьяна Мирошина</h2>
           </header>
+          <figure className={styles.humanNote}>
+            <Image
+              src="/images/photo-04-authentic.webp"
+              alt="Татьяна Мирошина на улице в осеннем городе."
+              width={640}
+              height={853}
+              sizes="(max-width: 780px) 48vw, 190px"
+            />
+            <figcaption>
+              <span>Human note / 06.1</span>
+              <em>Человек внутри наблюдения</em>
+            </figcaption>
+          </figure>
           <div>
             <p>Мой подход вырос из практического опыта с продуктом, производством, международными онлайн-продажами, цифровыми системами и бизнес-процессами.</p>
             <p>Позже к этому добавились системное мышление и работа с ИИ.</p>
