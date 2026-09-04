@@ -80,33 +80,35 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   }
 
   const canonical = `/observatory/${article.slug}`;
+  const metadataTitle = article.seoTitle ?? `${article.title} — Observatory`;
+  const metadataDescription = article.searchDescription ?? article.lead;
 
   return withDefaultSocialImage({
-    title: `${article.title} — Observatory`,
-    description: article.lead,
+    title: metadataTitle,
+    description: metadataDescription,
     authors: [{ name: "Татьяна Мирошина" }],
     alternates: {
       canonical,
       languages: {
         "ru-RU": canonical,
-        "it-IT": article.originalUrl,
+        ...(article.originalUrl ? { "it-IT": article.originalUrl } : {}),
       },
     },
     openGraph: {
-      title: article.title,
-      description: article.lead,
+      title: metadataTitle,
+      description: metadataDescription,
       type: "article",
       url: canonical,
       publishedTime: article.publishedAt,
       modifiedTime: article.updatedAt,
       authors: ["Татьяна Мирошина"],
       locale: "ru_RU",
-      alternateLocale: ["it_IT"],
+      alternateLocale: article.originalUrl ? ["it_IT"] : undefined,
     },
     twitter: {
       card: "summary_large_image",
-      title: article.title,
-      description: article.lead,
+      title: metadataTitle,
+      description: metadataDescription,
     },
   });
 }
@@ -141,7 +143,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     author: personSchema,
     datePublished: article.publishedAt,
     ...(article.updatedAt ? { dateModified: article.updatedAt } : {}),
-    inLanguage: "ru",
+    inLanguage: article.language ?? "ru",
     timeRequired: `PT${getReadingTime(article)}M`,
   };
   const structuredData = {
@@ -175,7 +177,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         context="article"
         russianHref={canonical}
         italianHref={article.originalUrl}
-        hasLanguageCounterpart
+        hasLanguageCounterpart={Boolean(article.originalUrl)}
       />
       <script
         type="application/ld+json"
@@ -221,18 +223,22 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         <ArticleBody body={article.body} />
 
         <footer className="article-end">
-          <div className="article-context-cta">
-            <span>Возможное действие · {article.number}</span>
-            <p>{article.cta}</p>
-            <Link href={article.ctaHref}>Разобрать ситуацию →</Link>
-          </div>
+          {article.cta && article.ctaHref ? (
+            <div className="article-context-cta">
+              <span>Возможное действие · {article.number}</span>
+              <p>{article.cta}</p>
+              <Link href={article.ctaHref}>Разобрать ситуацию →</Link>
+            </div>
+          ) : null}
 
-          <div className="article-edition-link">
-            <span>Итальянская версия</span>
-            <a href={article.originalUrl} hrefLang="it-IT" rel="alternate">
-              Читать по-итальянски <span aria-hidden="true">→</span>
-            </a>
-          </div>
+          {article.originalUrl ? (
+            <div className="article-edition-link">
+              <span>Итальянская версия</span>
+              <a href={article.originalUrl} hrefLang="it-IT" rel="alternate">
+                Читать по-итальянски <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          ) : null}
 
           {relatedObservations.length > 0 && (
             <section

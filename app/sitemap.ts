@@ -66,7 +66,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: {
         languages: {
           "ru-RU": `${SITE_URL}/observatory/${article.slug}`,
-          "it-IT": article.originalUrl,
+          ...(article.originalUrl ? { "it-IT": article.originalUrl } : {}),
         },
       },
     })),

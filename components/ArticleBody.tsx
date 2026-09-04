@@ -2,13 +2,20 @@ import type { ReactNode } from "react";
 
 function renderInline(text: string) {
   return text
-    .split(/(\*\*.*?\*\*|\[[^\]]+\]\(https:\/\/[^)\s]+\))/g)
+    .split(/(\*\*.*?\*\*|\[[^\]]+\]\((?:https:\/\/[^)\s]+|\/[^)\s]+)\))/g)
     .map((part, index): ReactNode => {
-      const link = part.match(/^\[([^\]]+)\]\((https:\/\/[^)\s]+)\)$/);
+      const link = part.match(/^\[([^\]]+)\]\((https:\/\/[^)\s]+|\/[^)\s]+)\)$/);
 
       if (link) {
+        const isExternal = link[2].startsWith("https://");
+
         return (
-          <a href={link[2]} key={`${link[2]}-${index}`} rel="noreferrer" target="_blank">
+          <a
+            href={link[2]}
+            key={`${link[2]}-${index}`}
+            rel={isExternal ? "noreferrer" : undefined}
+            target={isExternal ? "_blank" : undefined}
+          >
             {link[1]}
           </a>
         );
