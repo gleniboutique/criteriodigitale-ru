@@ -172,7 +172,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   };
 
   return (
-    <main className="article-page" id="top">
+    <main
+      className={`article-page article-page-${article.format}`}
+      data-article-format={article.format}
+      id="top"
+    >
       <SiteHeader
         context="article"
         russianHref={canonical}

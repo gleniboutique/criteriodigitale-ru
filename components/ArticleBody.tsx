@@ -36,7 +36,16 @@ export default function ArticleBody({ body }: { body: string }) {
     <div className="article-body">
       {blocks.map((block, index) => {
         if (block.startsWith("### ")) {
-          return <h2 key={index}>{block.slice(4)}</h2>;
+          const heading = block.slice(4);
+
+          return (
+            <h2
+              className={heading === "Источники и исследования" ? "article-sources-heading" : undefined}
+              key={index}
+            >
+              {heading}
+            </h2>
+          );
         }
 
         if (block.startsWith("> ")) {

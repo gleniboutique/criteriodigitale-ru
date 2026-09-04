@@ -13,7 +13,8 @@ export type ObservatoryArticle = {
   ctaHref?: string;
   originalTitle?: string;
   originalUrl?: string;
-  selected: boolean;
+  format: "feature" | "analysis" | "note";
+  featured?: boolean;
   publishedAt: string;
   language?: string;
   updatedAt?: string;
@@ -96,7 +97,7 @@ AI может быть сильным партнёром мышления, ко�
     ctaHref: "/contact",
     originalTitle: "La risposta arriva prima della domanda.",
     originalUrl: "https://criteriodigitale.it/osservatorio/ai-risposta-prima-domanda",
-    selected: true,
+    format: "note",
     publishedAt: "2026-08-28",
     updatedAt: "2026-09-01",
     reviewedAt: "2026-09-01",
@@ -179,7 +180,7 @@ AI особенно полезен там, где нужна скорость, �
     originalTitle: "Quando l’AI è d’accordo con tutto, hai perso il tuo miglior consigliere.",
     originalUrl:
       "https://criteriodigitale.it/osservatorio/ai-troppo-daccordo-consigliere",
-    selected: false,
+    format: "note",
     publishedAt: "2026-08-28",
     updatedAt: "2026-09-01",
     reviewedAt: "2026-09-01",
@@ -263,7 +264,7 @@ AI умеет ускорять редактуру. Но он не знает р�
     ctaHref: "/contact",
     originalTitle: "L’AI non sa quanto vale il tuo cliente.",
     originalUrl: "https://criteriodigitale.it/osservatorio/ai-semplifica-svaluta-cliente",
-    selected: true,
+    format: "note",
     publishedAt: "2026-08-28",
     updatedAt: "2026-09-01",
     reviewedAt: "2026-09-01",
@@ -352,7 +353,7 @@ AI умеет ускорять редактуру. Но он не знает р�
     originalTitle:
       "Come leggere le notizie sull’AI senza farti travolgere (e senza ignorarle).",
     originalUrl: "https://criteriodigitale.it/osservatorio/come-leggere-notizie-ai",
-    selected: false,
+    format: "note",
     publishedAt: "2026-08-28",
     reviewedAt: "2026-09-01",
   },
@@ -702,7 +703,7 @@ Philippe Aghion и Jean Tirole различают в организациях ф
 3. Philippe Aghion, Jean Tirole. [Formal and Real Authority in Organizations](https://doi.org/10.1086/262063). Journal of Political Economy, 1997.
 
 4. Shakked Noy, Whitney Zhang. [Experimental Evidence on the Productivity Effects of Generative Artificial Intelligence](https://doi.org/10.1126/science.adh2586). Science, 2023.`,
-    selected: true,
+    format: "analysis",
     publishedAt: "2026-09-04",
     language: "ru-RU",
   },

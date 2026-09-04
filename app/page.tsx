@@ -1,10 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import LongreadFeature from "@/components/LongreadFeature";
+import ObservatoryArticleCard from "@/components/ObservatoryArticleCard";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import SystemMap from "@/components/SystemMap";
-import { getReadingLabel, observatoryArticles } from "@/content/observatory";
+import {
+  getFeaturedObservatoryMaterial,
+  getLatestObservatoryArticles,
+} from "@/content/observatoryDisplay";
 import { websiteStructuredData } from "@/content/structured-data";
 
 const entryPoints = [
@@ -48,10 +52,8 @@ function Arrow() {
 }
 
 export default function Home() {
-  const selectedMaterials = observatoryArticles
-    .filter((article) => article.selected)
-    .sort((first, second) => second.publishedAt.localeCompare(first.publishedAt))
-    .slice(0, 3);
+  const featuredMaterial = getFeaturedObservatoryMaterial();
+  const latestMaterials = getLatestObservatoryArticles(2);
 
   return (
     <main id="top">
@@ -274,63 +276,65 @@ export default function Home() {
             <span>06</span>
             <span>Наблюдения</span>
           </div>
-          <header>
+          <header className="observatory-home-heading">
             <p className="kicker kicker-light">Исследования / мастерская / наблюдения</p>
             <h2 id="observatory-title">
               Смотреть не только на инструменты, но и на то, как они меняют способ думать и действовать.
             </h2>
           </header>
-          <div className="observatory-materials" aria-label="Материалы Observatory">
-            <LongreadFeature variant="home" />
-            {selectedMaterials.map((article) => (
-              <article key={article.slug}>
-                <Link className="observatory-preview" href={`/observatory/${article.slug}`}>
-                  <div className="observatory-preview-label">
-                    <span>Observatory / {article.number}</span>
-                    <small>{article.category}</small>
-                  </div>
-                  <h3>{article.title}</h3>
-                  <p className="observatory-preview-lead">{article.lead}</p>
-                  <div className="observatory-preview-meta">
-                    <span>{getReadingLabel(article)}</span>
-                    <strong>Читать →</strong>
-                  </div>
-                </Link>
-              </article>
-            ))}
-            <Link className="observatory-index-link" href="/observatory">
-              Все материалы →
-            </Link>
-            <p className="observatory-future">
-              Здесь появляются исследования, наблюдения, Мастерская AI,
-              тексты и эксперименты.
-            </p>
-            <aside
-              className="observatory-resource-entry"
-              aria-labelledby="ai-act-entry-title"
-            >
-              <h3 id="ai-act-entry-title">Работаете в ЕС или с европейским рынком?</h3>
-              <p>
-                Русская версия EU AI Act checklist помогает провести первый скрининг,
-                если компания, работа или AI-сценарий связаны с ЕС. Важны организация,
-                рынок и то, где используются система и её результат.
-              </p>
-              <Link href="/checklist-ai-act">Проверить свой случай →</Link>
-            </aside>
-            <figure className="observatory-note">
-              <Image
-                src="/images/photo-04-authentic.webp"
-                alt="Татьяна Мирошина на улице в осеннем городе."
-                width={640}
-                height={853}
-                sizes="(max-width: 780px) 48vw, 190px"
+          <div className="observatory-feature-slot" aria-label="Главный материал Observatory">
+            {featuredMaterial.kind === "longread" ? (
+              <LongreadFeature variant="home" />
+            ) : (
+              <ObservatoryArticleCard
+                article={featuredMaterial.article}
+                featured
+                variant="home"
               />
-              <figcaption>
-                <span>Human note / 06.1</span>
-                <em>Человек внутри наблюдения</em>
-              </figcaption>
-            </figure>
+            )}
           </div>
+          <div className="observatory-latest-grid" aria-label="Последние материалы Observatory">
+            {latestMaterials.map((article) => (
+              <ObservatoryArticleCard article={article} key={article.slug} variant="home" />
+            ))}
+          </div>
+          <Link className="observatory-index-link" href="/observatory">
+            Все наблюдения →
+          </Link>
+        </div>
+      </section>
+
+      <section className="observatory-support" aria-label="Ресурсы и человеческий контекст">
+        <div className="page-shell observatory-support-inner">
+          <p className="observatory-future">
+            Здесь появляются исследования, наблюдения, Мастерская AI,
+            тексты и эксперименты.
+          </p>
+          <aside
+            className="observatory-resource-entry"
+            aria-labelledby="ai-act-entry-title"
+          >
+            <h3 id="ai-act-entry-title">Работаете в ЕС или с европейским рынком?</h3>
+            <p>
+              Русская версия EU AI Act checklist помогает провести первый скрининг,
+              если компания, работа или AI-сценарий связаны с ЕС. Важны организация,
+              рынок и то, где используются система и её результат.
+            </p>
+            <Link href="/checklist-ai-act">Проверить свой случай →</Link>
+          </aside>
+          <figure className="observatory-note">
+            <Image
+              src="/images/photo-04-authentic.webp"
+              alt="Татьяна Мирошина на улице в осеннем городе."
+              width={640}
+              height={853}
+              sizes="(max-width: 780px) 48vw, 190px"
+            />
+            <figcaption>
+              <span>Human note / 06.1</span>
+              <em>Человек внутри наблюдения</em>
+            </figcaption>
+          </figure>
         </div>
       </section>
 

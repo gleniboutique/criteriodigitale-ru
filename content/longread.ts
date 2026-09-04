@@ -5,6 +5,8 @@ import { countRussianWords, READING_WORDS_PER_MINUTE } from "@/content/observato
 export const AI_GOTOVO_LONGREAD = {
   slug: "ii-govorit-gotovo",
   number: "05",
+  format: "feature",
+  featured: true,
   type: "Разбор из практики",
   homeType: "Из практики",
   title: "Когда ИИ говорит «готово»: как понять, что работа действительно сделана",

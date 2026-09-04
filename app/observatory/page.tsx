@@ -3,10 +3,14 @@ import { withDefaultSocialImage } from "@/config/metadata";
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import LongreadFeature from "@/components/LongreadFeature";
+import ObservatoryArticleCard from "@/components/ObservatoryArticleCard";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { ITALIAN_OBSERVATORY_URL } from "@/config/site";
-import { getReadingLabel, observatoryArticles } from "@/content/observatory";
+import {
+  getFeaturedObservatoryMaterial,
+  getObservatoryIndexArticles,
+} from "@/content/observatoryDisplay";
 
 export const metadata: Metadata = withDefaultSocialImage({
   title: "Observatory — исследования, AI и человеческое суждение",
@@ -29,9 +33,8 @@ export const metadata: Metadata = withDefaultSocialImage({
 });
 
 export default function ObservatoryPage() {
-  const articlesByNewest = [...observatoryArticles].sort((first, second) =>
-    second.publishedAt.localeCompare(first.publishedAt),
-  );
+  const featuredMaterial = getFeaturedObservatoryMaterial();
+  const articlesByNewest = getObservatoryIndexArticles();
 
   return (
     <main className="observatory-page" id="top">
@@ -87,22 +90,17 @@ export default function ObservatoryPage() {
         id="materials"
         aria-label="Все материалы Observatory"
       >
-        <LongreadFeature variant="index" />
+        {featuredMaterial.kind === "longread" ? (
+          <LongreadFeature variant="index" />
+        ) : (
+          <ObservatoryArticleCard
+            article={featuredMaterial.article}
+            featured
+            variant="index"
+          />
+        )}
         {articlesByNewest.map((article) => (
-          <article className="observatory-index-item" key={article.slug}>
-            <Link href={`/observatory/${article.slug}`}>
-              <div className="observatory-index-label">
-                <span>Observatory / {article.number}</span>
-                <small>{article.category}</small>
-              </div>
-              <h2>{article.title}</h2>
-              <p>{article.lead}</p>
-              <div className="observatory-index-meta">
-                <span>{getReadingLabel(article)}</span>
-                <strong>Читать →</strong>
-              </div>
-            </Link>
-          </article>
+          <ObservatoryArticleCard article={article} key={article.slug} variant="index" />
         ))}
       </section>
 
