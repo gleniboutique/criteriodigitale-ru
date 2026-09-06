@@ -224,7 +224,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </div>
         </header>
 
-        <ArticleBody body={article.body} />
+        <ArticleBody
+          body={article.body}
+          variant={article.slug === "sait-uzhe-peredelali-problema-ostalas" ? "material-two" : undefined}
+        />
 
         <footer className="article-end">
           {article.cta && article.ctaHref ? (
