@@ -180,7 +180,12 @@ function LegacyPhaseOnePage({
 }) {
   return (
     <main className={styles.page} id="top">
-      <SiteHeader currentPath={page.path} russianHref={page.path} />
+      <SiteHeader
+        currentPath={page.path}
+        russianHref={page.path}
+        italianHref={page.italianCounterpart}
+        hasLanguageCounterpart
+      />
       <StructuredData page={page} />
 
       <header className={`${styles.hero} page-shell`}>
@@ -251,7 +256,12 @@ function SituationPage({
 }) {
   return (
     <main className={[styles.page, styles.situationPage, styles[profile.pageClass]].filter(Boolean).join(" ")} id="top">
-      <SiteHeader currentPath={page.path} russianHref={page.path} />
+      <SiteHeader
+        currentPath={page.path}
+        russianHref={page.path}
+        italianHref={page.italianCounterpart}
+        hasLanguageCounterpart
+      />
       <StructuredData page={page} />
 
       <header className={`${styles.situationHero} ${styles[profile.hero]} page-shell`}>
@@ -346,7 +356,12 @@ function SecondaryPage({
 }) {
   return (
     <main className={`${styles.page} ${styles.secondaryPage} ${styles[profile.family]}`} id="top">
-      <SiteHeader currentPath={page.path} russianHref={page.path} />
+      <SiteHeader
+        currentPath={page.path}
+        russianHref={page.path}
+        italianHref={page.italianCounterpart}
+        hasLanguageCounterpart
+      />
       <StructuredData page={page} />
 
       <header className={`${styles.secondaryHero} ${styles[profile.hero]} page-shell`}>

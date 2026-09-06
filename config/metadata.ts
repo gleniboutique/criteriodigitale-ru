@@ -33,6 +33,7 @@ export function phaseOneMetadata(page: PhaseOnePage): Metadata {
       canonical: page.path,
       languages: {
         "ru-RU": page.path,
+        "it-IT": page.italianCounterpart,
       },
     },
     openGraph: {

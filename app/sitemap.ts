@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { ITALIAN_OBSERVATORY_URL, ITALIAN_SITE_URL, SITE_URL } from "@/config/site";
 import { AI_GOTOVO_LONGREAD } from "@/content/longread";
 import { observatoryArticles } from "@/content/observatory";
-import { phaseOnePaths } from "@/content/phaseOne";
+import { contactPage, phaseOnePages, phaseOnePaths } from "@/content/phaseOne";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -26,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: {
         languages: {
           "ru-RU": `${SITE_URL}/contact`,
+          "it-IT": contactPage.italianCounterpart,
         },
       },
     },
@@ -37,6 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: {
         languages: {
           "ru-RU": `${SITE_URL}${path}`,
+          "it-IT": phaseOnePages[path].italianCounterpart,
         },
       },
     })),

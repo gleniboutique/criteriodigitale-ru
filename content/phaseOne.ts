@@ -12,6 +12,7 @@ export type PhaseOneSection = {
 
 export type PhaseOnePage = {
   path: string;
+  italianCounterpart: string;
   h1: string;
   lead: PhaseOneUnit[];
   sections: PhaseOneSection[];
@@ -62,6 +63,7 @@ export const homepageRecognition = [
 
 const operationalDependency: PhaseOnePage = {
   path: "/vse-derzhitsya-na-vas",
+  italianCounterpart: "https://criteriodigitale.it/tutto-passa-da-me",
   h1: "Людей и инструментов стало больше, а зависимость от вас не исчезла",
   lead: [
     { type: "paragraph", text: "Вы уже сделали многое из того, что обычно советуют: наняли людей, распределили задачи, написали инструкции, возможно, внедрили систему работы с клиентами (CRM), управление проектами или автоматизацию." },
@@ -137,6 +139,7 @@ const operationalDependency: PhaseOnePage = {
 
 const digitalRepresentation: PhaseOnePage = {
   path: "/sait-ne-obyasnyaet-cennost",
+  italianCounterpart: "https://criteriodigitale.it/il-sito-non-porta-clienti",
   h1: "Сайт есть. Возможно, его уже переделывали. Но он всё ещё не объясняет, за что вам платят",
   lead: [
     { type: "paragraph", text: "Это хорошо видно, когда человек приходит по рекомендации." },
@@ -220,6 +223,7 @@ const digitalRepresentation: PhaseOnePage = {
 
 const aiValue: PhaseOnePage = {
   path: "/ai-i-cennost",
+  italianCounterpart: "https://criteriodigitale.it/ai-quando-conviene",
   h1: "Нужен ли ИИ здесь — и создаёт ли он ценность, если уже используется?",
   lead: [
     { type: "paragraph", text: "До покупки вопрос звучит:" },
@@ -319,6 +323,7 @@ const aiValue: PhaseOnePage = {
 
 const aiGovernance: PhaseOnePage = {
   path: "/ai-pravila-v-rabote",
+  italianCounterpart: "https://criteriodigitale.it/regole-ai-in-azienda",
   h1: "Требования по ИИ уже есть. Как сделать так, чтобы они работали в реальной организации?",
   lead: [
     { type: "paragraph", text: "Можно иметь политику, checklist, юридическое заключение или требования заказчика и всё равно не знать, что конкретно должен делать человек в реальной работе." },
@@ -398,6 +403,7 @@ const aiGovernance: PhaseOnePage = {
 
 const howIWork: PhaseOnePage = {
   path: "/kak-ya-rabotayu",
+  italianCounterpart: "https://criteriodigitale.it/approccio",
   h1: "Сначала понять, что происходит. Потом решать, что менять.",
   lead: [
     { type: "paragraph", text: "Большинство ситуаций уже имеют первое правдоподобное объяснение:" },
@@ -469,6 +475,7 @@ const howIWork: PhaseOnePage = {
 
 const workWithCriterio: PhaseOnePage = {
   path: "/rabota-s-criterio-digitale",
+  italianCounterpart: "https://criteriodigitale.it/servizi",
   h1: "Когда имеет смысл передать ситуацию Criterio Digitale",
   lead: [
     { type: "paragraph", text: "Внешняя работа нужна не просто потому, что задача сложная." },
@@ -540,6 +547,7 @@ const workWithCriterio: PhaseOnePage = {
 
 const about: PhaseOnePage = {
   path: "/obo-mne",
+  italianCounterpart: "https://criteriodigitale.it/chi-sono",
   h1: "Татьяна Мирошина — Criterio Digitale",
   lead: [{ type: "paragraph", text: "Мой подход сложился в работе, где продукт, производство, цифровая среда, продажи и реальные процессы невозможно было улучшать изолированно друг от друга." }],
   sections: [
@@ -593,6 +601,7 @@ const about: PhaseOnePage = {
 
 export const contactPage: PhaseOnePage = {
   path: "/contact",
+  italianCounterpart: "https://criteriodigitale.it/contatti",
   h1: "Начнём с контекста",
   lead: [
     { type: "paragraph", text: "Чтобы написать мне, не нужно заранее ставить себе диагноз или выбирать правильную категорию проблемы." },
