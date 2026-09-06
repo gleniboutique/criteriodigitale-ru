@@ -37,7 +37,7 @@ export default function ObservatoryArticleCard({
           <small>{article.category}</small>
         </div>
         {isHome ? <h3>{article.title}</h3> : <h2>{article.title}</h2>}
-        <p className={isHome ? "observatory-preview-lead" : undefined}>{article.lead}</p>
+        <p className={isHome ? "observatory-preview-lead" : undefined}>{article.cardDescription ?? article.lead}</p>
         <div className={isHome ? "observatory-preview-meta" : "observatory-index-meta"}>
           <span>{getReadingLabel(article)}</span>
           <strong>Читать →</strong>

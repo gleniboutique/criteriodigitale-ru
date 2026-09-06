@@ -36,3 +36,4 @@
 - [Что способен понять ваш клиент](https://ru.criteriodigitale.it/observatory/chto-sposoben-ponyat-klient): Как сохранить профессиональный критерий, когда AI помогает редактировать объяснение для клиента.
 - [Новости об AI](https://ru.criteriodigitale.it/observatory/novosti-ob-ai): Как отличать изменения, способные повлиять на реальную работу, от скорости информационного потока.
 - [Инструкции есть. Почему решения всё равно возвращаются к вам](https://ru.criteriodigitale.it/observatory/instruktsii-est-resheniya-vozvrashchayutsya): Почему передача действий ещё не означает передачу критериев, полномочий и правил работы с исключениями.
+- [Сайт уже переделали. Почему проблема осталась?](https://ru.criteriodigitale.it/observatory/sait-uzhe-peredelali-problema-ostalas): Что происходит, когда новый сайт объективно стал лучше, но ожидаемое изменение не произошло — и почему важно различать сам сайт и реальную задачу.

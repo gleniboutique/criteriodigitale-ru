@@ -35,8 +35,8 @@ export default function ArticleBody({ body }: { body: string }) {
   return (
     <div className="article-body">
       {blocks.map((block, index) => {
-        if (block.startsWith("### ")) {
-          const heading = block.slice(4);
+        if (block.startsWith("## ") || block.startsWith("### ")) {
+          const heading = block.startsWith("### ") ? block.slice(4) : block.slice(3);
 
           return (
             <h2
