@@ -8,6 +8,7 @@ import ArticlePager from "@/components/ArticlePager";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import SystemMap from "@/components/SystemMap";
 import { SITE_URL } from "@/config/site";
 import {
   getObservatoryArticle,
@@ -18,6 +19,7 @@ import {
 } from "@/content/observatory";
 import { articleNavigation } from "@/content/articleNavigation";
 import { personSchema } from "@/content/structured-data";
+import automationStyles from "@/components/AutomationArticle.module.css";
 
 type ArticlePageProps = {
   params: Promise<{ slug: string }>;
@@ -123,6 +125,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   const canonical = `/observatory/${article.slug}`;
   const articleUrl = `${SITE_URL}${canonical}`;
+  const isAutomationAtlas =
+    article.slug === "avtomatizatsiya-est-kuda-ischezlo-obeshchannoe-vremya";
   const relatedObservations = (thematicRelations[article.slug] ?? []).flatMap(
     (relation) => {
       const target = articleNavigation.find((item) => item.slug === relation.slug);
@@ -173,7 +177,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   return (
     <main
-      className={`article-page article-page-${article.format}`}
+      className={`article-page article-page-${article.format} ${
+        isAutomationAtlas ? automationStyles.page : ""
+      }`}
       data-article-format={article.format}
       id="top"
     >
@@ -197,8 +203,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       />
 
       <article className="article-shell page-shell">
-        <header className="article-header">
+        <header
+          className={`article-header ${isAutomationAtlas ? automationStyles.header : ""}`}
+        >
           <Breadcrumbs
+            className={isAutomationAtlas ? automationStyles.breadcrumbs : undefined}
             items={[
               { label: "Главная", href: "/" },
               { label: "Наблюдения", href: "/observatory" },
@@ -211,6 +220,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </div>
           <h1>{article.title}</h1>
           <p className="article-lead">{article.lead}</p>
+          {isAutomationAtlas ? (
+            <div className={automationStyles.heroMap} aria-hidden="true">
+              <SystemMap />
+            </div>
+          ) : null}
           <div className="article-reading-meta">
             <ArticleEditorialDates
               author={personSchema.name}
@@ -226,7 +240,13 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
         <ArticleBody
           body={article.body}
-          variant={article.slug === "sait-uzhe-peredelali-problema-ostalas" ? "material-two" : undefined}
+          variant={
+            isAutomationAtlas
+              ? "automation-atlas"
+              : article.slug === "sait-uzhe-peredelali-problema-ostalas"
+                ? "material-two"
+                : undefined
+          }
         />
 
         <footer className="article-end">

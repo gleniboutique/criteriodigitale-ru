@@ -1,8 +1,9 @@
 import type { ReactNode } from "react";
+import automationStyles from "./AutomationArticle.module.css";
 
 type ArticleBodyProps = {
   body: string;
-  variant?: "material-two";
+  variant?: "material-two" | "automation-atlas";
 };
 
 const materialTwoDistinction =
@@ -82,8 +83,78 @@ function renderBlock(block: string, index: number) {
   return <p key={index}>{renderInline(block)}</p>;
 }
 
+function isHeading(block: string) {
+  return block.startsWith("## ") || block.startsWith("### ");
+}
+
+function renderAutomationAtlas(blocks: string[]) {
+  const firstHeadingIndex = blocks.findIndex(isHeading);
+  const prefaceEnd = firstHeadingIndex === -1 ? blocks.length : firstHeadingIndex;
+  const preface = blocks.slice(0, prefaceEnd);
+  const sections: Array<{ heading: string; headingIndex: number; copy: string[] }> = [];
+
+  for (let index = prefaceEnd; index < blocks.length; index += 1) {
+    if (!isHeading(blocks[index])) {
+      continue;
+    }
+
+    const nextHeadingIndex = blocks.findIndex(
+      (block, candidateIndex) => candidateIndex > index && isHeading(block),
+    );
+    const sectionEnd = nextHeadingIndex === -1 ? blocks.length : nextHeadingIndex;
+
+    sections.push({
+      heading: blocks[index],
+      headingIndex: index,
+      copy: blocks.slice(index + 1, sectionEnd),
+    });
+
+    index = sectionEnd - 1;
+  }
+
+  return (
+    <div className={`article-body ${automationStyles.body}`}>
+      {preface.length > 0 ? (
+        <section className={automationStyles.preface} data-section="02">
+          <div className={automationStyles.prefaceCopy}>
+            {preface.map((block, index) => renderBlock(block, index))}
+          </div>
+        </section>
+      ) : null}
+
+      {sections.map((section, sectionIndex) => {
+        const sectionNumber = String(sectionIndex + 3).padStart(2, "0");
+        const isDarkSection = sectionIndex === 2;
+
+        return (
+          <section
+            className={`${automationStyles.section} ${
+              isDarkSection ? automationStyles.darkSection : ""
+            }`}
+            data-section={sectionNumber}
+            key={section.headingIndex}
+          >
+            <div className={automationStyles.sectionHeading}>
+              {renderBlock(section.heading, section.headingIndex)}
+            </div>
+            <div className={automationStyles.sectionCopy}>
+              {section.copy.map((block, copyIndex) =>
+                renderBlock(block, section.headingIndex + copyIndex + 1),
+              )}
+            </div>
+          </section>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function ArticleBody({ body, variant }: ArticleBodyProps) {
   const blocks = body.trim().split(/\n{2,}/);
+
+  if (variant === "automation-atlas") {
+    return renderAutomationAtlas(blocks);
+  }
 
   if (variant === "material-two") {
     const renderedBlocks: ReactNode[] = [];
