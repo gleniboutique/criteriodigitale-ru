@@ -2,9 +2,12 @@ import type { MetadataRoute } from "next";
 import { ITALIAN_OBSERVATORY_URL, ITALIAN_SITE_URL, SITE_URL } from "@/config/site";
 import { AI_GOTOVO_LONGREAD } from "@/content/longread";
 import { observatoryArticles } from "@/content/observatory";
+import { EU4_ARTICLE } from "@/content/eu4";
 import { contactPage, phaseOnePages, phaseOnePaths } from "@/content/phaseOne";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const allObservatoryArticles = [...observatoryArticles, EU4_ARTICLE];
+
   return [
     {
       url: SITE_URL,
@@ -56,7 +59,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${SITE_URL}/observatory`,
-      lastModified: new Date("2026-08-30"),
+      lastModified: new Date("2026-09-08"),
       changeFrequency: "monthly",
       priority: 0.8,
       alternates: {
@@ -77,7 +80,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
-    ...observatoryArticles.map((article) => ({
+    ...allObservatoryArticles.map((article) => ({
       url: `${SITE_URL}/observatory/${article.slug}`,
       lastModified: new Date(article.updatedAt || article.publishedAt),
       changeFrequency: "monthly" as const,

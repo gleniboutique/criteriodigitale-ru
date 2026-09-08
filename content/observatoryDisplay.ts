@@ -3,10 +3,16 @@ import {
   type ObservatoryArticle,
   observatoryArticles,
 } from "@/content/observatory";
+import { EU4_ARTICLE } from "@/content/eu4";
 
 export type FeaturedObservatoryMaterial =
   | { kind: "longread" }
   | { kind: "article"; article: ObservatoryArticle };
+
+const allObservatoryArticles: ObservatoryArticle[] = [
+  ...observatoryArticles,
+  EU4_ARTICLE,
+];
 
 function newestFirst(first: ObservatoryArticle, second: ObservatoryArticle) {
   return second.publishedAt.localeCompare(first.publishedAt);
@@ -15,7 +21,7 @@ function newestFirst(first: ObservatoryArticle, second: ObservatoryArticle) {
 export function getFeaturedObservatoryMaterial(): FeaturedObservatoryMaterial {
   const featuredMaterials: FeaturedObservatoryMaterial[] = [
     ...(AI_GOTOVO_LONGREAD.featured ? [{ kind: "longread" as const }] : []),
-    ...observatoryArticles
+    ...allObservatoryArticles
       .filter((article) => article.featured)
       .map((article) => ({ kind: "article" as const, article })),
   ];
@@ -30,12 +36,14 @@ export function getFeaturedObservatoryMaterial(): FeaturedObservatoryMaterial {
 }
 
 export function getLatestObservatoryArticles(limit = 2) {
-  return observatoryArticles
+  return allObservatoryArticles
     .filter((article) => !article.featured)
     .sort(newestFirst)
     .slice(0, limit);
 }
 
 export function getObservatoryIndexArticles() {
-  return observatoryArticles.filter((article) => !article.featured).sort(newestFirst);
+  return allObservatoryArticles
+    .filter((article) => !article.featured)
+    .sort(newestFirst);
 }

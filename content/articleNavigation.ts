@@ -1,5 +1,6 @@
 import { AI_GOTOVO_LONGREAD } from "@/content/longread";
 import { observatoryArticles } from "@/content/observatory";
+import { EU4_ARTICLE } from "@/content/eu4";
 
 export type ArticleNavigationItem = {
   slug: string;
@@ -18,6 +19,11 @@ export const articleNavigation: ArticleNavigationItem[] = [
     href: `/observatory/${article.slug}`,
     title: article.title,
   })),
+  {
+    slug: EU4_ARTICLE.slug,
+    href: `/observatory/${EU4_ARTICLE.slug}`,
+    title: EU4_ARTICLE.title,
+  },
 ];
 
 export function getArticleNavigation(slug: string) {
