@@ -4,6 +4,15 @@ import ArticleEditorialDates from "@/components/ArticleEditorialDates";
 import ArticlePager from "@/components/ArticlePager";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import {
+  ArticleEnd,
+  AssignmentTraceMap,
+  DarkSystemField,
+  EvidenceField,
+  IndexedField,
+  QuestionCriterionField,
+  SourceTrace,
+} from "@/components/ObservatoryArticleModules";
+import {
   AI_GOTOVO_LONGREAD,
   LONGREAD_HEADING_IDS,
   LONGREAD_SOURCES,
@@ -39,7 +48,10 @@ type EditorialMarker =
   | "delegation-question"
   | "case-snapshot"
   | "audit-questions"
-  | "done-levels";
+  | "done-levels"
+  | "quiet-quote"
+  | "dark-criterion"
+  | "practical-checklist";
 
 const editorialMarkers = new Map<string, EditorialMarker>([
   ["[[MAIN_QUESTION]]", "main-question"],
@@ -47,6 +59,9 @@ const editorialMarkers = new Map<string, EditorialMarker>([
   ["[[CASE_SNAPSHOT]]", "case-snapshot"],
   ["[[AUDIT_QUESTIONS]]", "audit-questions"],
   ["[[DONE_LEVELS]]", "done-levels"],
+  ["[[QUIET_QUOTE]]", "quiet-quote"],
+  ["[[DARK_CRITERION]]", "dark-criterion"],
+  ["[[PRACTICAL_CHECKLIST]]", "practical-checklist"],
 ]);
 
 function renderInline(text: string) {
@@ -67,29 +82,7 @@ function renderInline(text: string) {
 }
 
 function LongreadDiagram() {
-  return (
-    <figure
-      className={styles.diagram}
-      aria-label="Схема: поручение переходит к ИИ-агенту, затем система сообщает «Готово», но связь с внешним результатом остаётся под вопросом."
-    >
-      <figcaption>
-        <span>Схема поручения / 00.1</span>
-        <span>Сообщение и внешний результат — разные слои</span>
-      </figcaption>
-      <div className={styles.diagramRoute} aria-hidden="true">
-        <span className={styles.diagramNode}>Поручение</span>
-        <i>→</i>
-        <span className={styles.diagramNode}>ИИ-агент</span>
-        <i>→</i>
-        <span className={styles.diagramDone}>«Готово»</span>
-      </div>
-      <div className={styles.diagramExternal} aria-hidden="true">
-        <span>Внешний результат</span>
-        <i />
-        <strong>?</strong>
-      </div>
-    </figure>
-  );
+  return <AssignmentTraceMap className={styles.diagram} />;
 }
 
 function TableOfContents() {
@@ -113,9 +106,9 @@ function TableOfContents() {
   );
 }
 
-function ResultTraceCards() {
+function ResultRouteTraceCompare() {
   return (
-    <aside className={styles.resultMap} aria-label="Результат, маршрут и след">
+    <IndexedField className={styles.resultMap} label="Результат, маршрут и след" variant="compare">
       {resultCards.map(([number, title, description]) => (
         <section key={title}>
           <span>{number}</span>
@@ -123,7 +116,7 @@ function ResultTraceCards() {
           <p>{description}</p>
         </section>
       ))}
-    </aside>
+    </IndexedField>
   );
 }
 
@@ -139,7 +132,7 @@ function getNumberedItems(block: string) {
 
 function CaseSnapshot({ items }: { items: string[] }) {
   return (
-    <aside className={styles.caseSnapshot} aria-label="Карта трёх расхождений">
+    <EvidenceField as="aside" className={styles.caseSnapshot} label="Карта трёх расхождений">
       <ol>
         {items.map((item, index) => (
           <li key={item}>
@@ -148,13 +141,13 @@ function CaseSnapshot({ items }: { items: string[] }) {
           </li>
         ))}
       </ol>
-    </aside>
+    </EvidenceField>
   );
 }
 
 function AuditQuestions({ items }: { items: string[] }) {
   return (
-    <section className={styles.auditQuestions} aria-label="Пять вопросов к системе">
+    <EvidenceField className={styles.auditQuestions} label="Пять вопросов к системе">
       <div>Контрольная сверка / 05 вопросов</div>
       <ol>
         {items.map((item, index) => (
@@ -164,13 +157,13 @@ function AuditQuestions({ items }: { items: string[] }) {
           </li>
         ))}
       </ol>
-    </section>
+    </EvidenceField>
   );
 }
 
 function DoneLevels({ items }: { items: string[] }) {
   return (
-    <section className={styles.doneLevels} aria-label="Пять уровней значения «готово»">
+    <IndexedField className={styles.doneLevels} label="Пять уровней значения «готово»" variant="steps">
       <ol>
         {items.map((item, index) => (
           <li key={item}>
@@ -179,13 +172,13 @@ function DoneLevels({ items }: { items: string[] }) {
           </li>
         ))}
       </ol>
-    </section>
+    </IndexedField>
   );
 }
 
 function DimensionsSummary() {
   return (
-    <aside className={styles.dimensions} aria-label="Шесть измерений управляемости — кратко">
+    <IndexedField className={styles.dimensions} label="Шесть измерений управляемости — кратко" variant="steps">
       <div>
         <span>Резюме / 06</span>
         <p>Управляемость складывается из отдельных условий, а не из одного общего обещания контроля.</p>
@@ -198,22 +191,35 @@ function DimensionsSummary() {
           </li>
         ))}
       </ol>
-    </aside>
+    </IndexedField>
   );
 }
 
 function LongreadBody({ markdown }: { markdown: string }) {
   const blocks = markdown.trim().split(/\n{2,}/);
   const rendered: ReactNode[] = [];
-  let currentSection = "";
   let pendingMarker: EditorialMarker | undefined;
-  let insertCaseDiagramAfterParagraph = false;
 
   for (let index = 0; index < blocks.length; index += 1) {
     const block = blocks[index].trim();
 
     if (block === "[[LONGREAD_TOC]]") {
       rendered.push(<TableOfContents key="longread-toc" />);
+      continue;
+    }
+
+    if (block === "[[ASSIGNMENT_TRACE_MAP]]") {
+      rendered.push(<LongreadDiagram key="assignment-trace-map" />);
+      continue;
+    }
+
+    if (block === "[[RESULT_ROUTE_TRACE_COMPARE]]") {
+      rendered.push(<ResultRouteTraceCompare key="result-route-trace-compare" />);
+      continue;
+    }
+
+    if (block === "[[DIMENSIONS_SUMMARY]]") {
+      rendered.push(<DimensionsSummary key="dimensions-summary" />);
       continue;
     }
 
@@ -226,9 +232,9 @@ function LongreadBody({ markdown }: { markdown: string }) {
 
     if (block.startsWith("## ")) {
       const heading = block.slice(3);
-      currentSection = LONGREAD_HEADING_IDS.get(heading) ?? "";
+      const sectionId = LONGREAD_HEADING_IDS.get(heading) ?? "";
       rendered.push(
-        <h2 id={currentSection || undefined} key={`h2-${heading}`}>
+        <h2 id={sectionId || undefined} key={`h2-${heading}`}>
           {heading}
         </h2>,
       );
@@ -270,7 +276,6 @@ function LongreadBody({ markdown }: { markdown: string }) {
       if (pendingMarker === "case-snapshot") {
         rendered.push(<CaseSnapshot items={items} key="case-snapshot" />);
         pendingMarker = undefined;
-        insertCaseDiagramAfterParagraph = true;
         continue;
       }
 
@@ -286,19 +291,31 @@ function LongreadBody({ markdown }: { markdown: string }) {
         continue;
       }
 
+      if (pendingMarker === "practical-checklist") {
+        rendered.push(
+          <IndexedField
+            className={styles.checklist}
+            key="practical-checklist"
+            label="Практическая проверка перед делегированием"
+            variant="steps"
+          >
+            <ol>
+              {items.map((item, itemIndex) => (
+                <li key={item}>
+                  <span aria-hidden="true">{String(itemIndex + 1).padStart(2, "0")}</span>
+                  {renderInline(item)}
+                </li>
+              ))}
+            </ol>
+          </IndexedField>,
+        );
+        pendingMarker = undefined;
+        continue;
+      }
+
       rendered.push(
-        <ol
-          className={currentSection === "prakticheskaya-proverka" ? styles.checklist : styles.proseList}
-          key={`ol-${index}`}
-        >
-          {items.map((item, itemIndex) => (
-            <li key={item}>
-              {currentSection === "prakticheskaya-proverka" && (
-                <span aria-hidden="true">{String(itemIndex + 1).padStart(2, "0")}</span>
-              )}
-              {renderInline(item)}
-            </li>
-          ))}
+        <ol className={styles.proseList} key={`ol-${index}`}>
+          {items.map((item) => <li key={item}>{renderInline(item)}</li>)}
         </ol>,
       );
       continue;
@@ -306,37 +323,41 @@ function LongreadBody({ markdown }: { markdown: string }) {
 
     if (block.startsWith("> ")) {
       const quote = block.slice(2);
-      const plainQuote = quote.replaceAll("**", "");
 
       if (pendingMarker === "main-question") {
         rendered.push(
-          <blockquote className={styles.transitionQuestion} key={`quote-${index}`}>
+          <QuestionCriterionField as="blockquote" className={styles.transitionQuestion} key={`quote-${index}`}>
             <span>Главный вопрос</span>
             <p>{renderInline(quote)}</p>
-          </blockquote>,
+          </QuestionCriterionField>,
         );
         pendingMarker = undefined;
       } else if (pendingMarker === "delegation-question") {
         rendered.push(
-          <blockquote className={styles.delegationQuestion} key={`quote-${index}`}>
+          <QuestionCriterionField as="blockquote" className={styles.delegationQuestion} key={`quote-${index}`}>
             <span>Вопрос о делегировании</span>
             <p>{renderInline(quote)}</p>
+          </QuestionCriterionField>,
+        );
+        pendingMarker = undefined;
+      } else if (pendingMarker === "dark-criterion") {
+        rendered.push(
+          <DarkSystemField as="figure" className={styles.criterion} key={`criterion-${index}`}>
+            <figcaption>Критерий «готово» для агентной системы</figcaption>
+            <blockquote>{renderInline(quote)}</blockquote>
+          </DarkSystemField>,
+        );
+        pendingMarker = undefined;
+      } else if (pendingMarker === "quiet-quote") {
+        rendered.push(
+          <blockquote className={styles.quietQuote} key={`quote-${index}`}>
+            {renderInline(quote)}
           </blockquote>,
         );
         pendingMarker = undefined;
-      } else if (plainQuote.startsWith("Работа сделана, когда существует внешний результат")) {
-        rendered.push(
-          <figure className={styles.criterion} key={`criterion-${index}`}>
-            <figcaption>Критерий «готово» для агентной системы</figcaption>
-            <blockquote>{renderInline(quote)}</blockquote>
-          </figure>,
-        );
       } else {
         rendered.push(
-          <blockquote
-            className={plainQuote.includes("Можем перейти к другому вопросу?") ? styles.quietQuote : styles.pullquote}
-            key={`quote-${index}`}
-          >
+          <blockquote className={styles.pullquote} key={`quote-${index}`}>
             {renderInline(quote)}
           </blockquote>,
         );
@@ -351,19 +372,6 @@ function LongreadBody({ markdown }: { markdown: string }) {
     );
 
     rendered.push(<div key={`p-${index}`}>{paragraph}</div>);
-
-    if (insertCaseDiagramAfterParagraph) {
-      rendered.push(<LongreadDiagram key="case-diagram" />);
-      insertCaseDiagramAfterParagraph = false;
-    }
-
-    if (block.startsWith("Поэтому хороший результат ещё не доказывает")) {
-      rendered.push(<ResultTraceCards key="result-map" />);
-    }
-
-    if (block.startsWith("Именно поэтому не всякая задача может быть целиком передана системе")) {
-      rendered.push(<DimensionsSummary key="dimensions" />);
-    }
   }
 
   if (pendingMarker) {
@@ -375,7 +383,7 @@ function LongreadBody({ markdown }: { markdown: string }) {
 
 function Sources() {
   return (
-    <section className={styles.sources} aria-labelledby="sources-title">
+    <SourceTrace className={styles.sources} labelledBy="sources-title">
       <div className={styles.sectionMarker}>Проверяемый след / источники</div>
       <h2 id="sources-title">Источники и примечания</h2>
       <ol>
@@ -399,7 +407,7 @@ function Sources() {
           <p>Наблюдения и исходные материалы Татьяны Мирошиной.</p>
         </li>
       </ol>
-    </section>
+    </SourceTrace>
   );
 }
 
@@ -502,11 +510,13 @@ export default function LongreadArticle({ markdown }: { markdown: string }) {
       </header>
 
       <LongreadBody markdown={markdown} />
-      <Sources />
-      <AuthorNote />
-      <ArticleCta />
-      <RelatedArticles />
-      <ArticlePager className={styles.pager} currentSlug="ii-govorit-gotovo" />
+      <ArticleEnd className={styles.end}>
+        <Sources />
+        <AuthorNote />
+        <ArticleCta />
+        <RelatedArticles />
+        <ArticlePager className={styles.pager} currentSlug="ii-govorit-gotovo" />
+      </ArticleEnd>
     </article>
   );
 }

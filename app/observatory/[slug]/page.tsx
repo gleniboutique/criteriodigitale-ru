@@ -6,9 +6,13 @@ import ArticleBody from "@/components/ArticleBody";
 import ArticleEditorialDates from "@/components/ArticleEditorialDates";
 import ArticlePager from "@/components/ArticlePager";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import {
+  ArticleEnd,
+  AutomationWorkMap,
+  observatoryModuleStyles,
+} from "@/components/ObservatoryArticleModules";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
-import SystemMap from "@/components/SystemMap";
 import { SITE_URL } from "@/config/site";
 import {
   getObservatoryArticle,
@@ -19,7 +23,6 @@ import {
 } from "@/content/observatory";
 import { articleNavigation } from "@/content/articleNavigation";
 import { personSchema } from "@/content/structured-data";
-import automationStyles from "@/components/AutomationArticle.module.css";
 
 type ArticlePageProps = {
   params: Promise<{ slug: string }>;
@@ -29,6 +32,8 @@ type ThematicRelation = {
   slug: string;
   label: string;
 };
+
+const AUTOMATION_MAP_ARTICLE_ID = "avtomatizatsiya-est-kuda-ischezlo-obeshchannoe-vremya";
 
 const thematicRelations: Record<string, ThematicRelation[]> = {
   "otvet-ranshe-voprosa": [
@@ -125,8 +130,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   const canonical = `/observatory/${article.slug}`;
   const articleUrl = `${SITE_URL}${canonical}`;
-  const isAutomationAtlas =
-    article.slug === "avtomatizatsiya-est-kuda-ischezlo-obeshchannoe-vremya";
+  const hasHeroRelationMap = article.slug === AUTOMATION_MAP_ARTICLE_ID;
   const relatedObservations = (thematicRelations[article.slug] ?? []).flatMap(
     (relation) => {
       const target = articleNavigation.find((item) => item.slug === relation.slug);
@@ -177,9 +181,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   return (
     <main
-      className={`article-page article-page-${article.format} ${
-        isAutomationAtlas ? automationStyles.page : ""
-      }`}
+      className={`article-page article-page-${article.format}`}
       data-article-format={article.format}
       id="top"
     >
@@ -204,10 +206,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
       <article className="article-shell page-shell">
         <header
-          className={`article-header ${isAutomationAtlas ? automationStyles.header : ""}`}
+          className={`article-header ${
+            hasHeroRelationMap ? observatoryModuleStyles.mapHeroHeader : ""
+          }`}
         >
           <Breadcrumbs
-            className={isAutomationAtlas ? automationStyles.breadcrumbs : undefined}
+            className={hasHeroRelationMap ? observatoryModuleStyles.mapHeroBreadcrumbs : undefined}
             items={[
               { label: "Главная", href: "/" },
               { label: "Наблюдения", href: "/observatory" },
@@ -220,9 +224,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </div>
           <h1>{article.title}</h1>
           <p className="article-lead">{article.lead}</p>
-          {isAutomationAtlas ? (
-            <div className={automationStyles.heroMap} aria-hidden="true">
-              <SystemMap />
+          {hasHeroRelationMap ? (
+            <div className={observatoryModuleStyles.mapHeroVisual}>
+              <AutomationWorkMap />
             </div>
           ) : null}
           <div className="article-reading-meta">
@@ -240,16 +244,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
         <ArticleBody
           body={article.body}
-          variant={
-            isAutomationAtlas
-              ? "automation-atlas"
-              : article.slug === "sait-uzhe-peredelali-problema-ostalas"
-                ? "material-two"
-                : undefined
-          }
+          layout={article.format === "analysis" ? "analysis" : "note"}
         />
 
-        <footer className="article-end">
+        <ArticleEnd className="article-end">
           {article.cta && article.ctaHref ? (
             <div className="article-context-cta">
               <span>Возможное действие · {article.number}</span>
@@ -299,7 +297,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           )}
 
           <ArticlePager currentSlug={article.slug} />
-        </footer>
+        </ArticleEnd>
       </article>
 
       <SiteFooter />
