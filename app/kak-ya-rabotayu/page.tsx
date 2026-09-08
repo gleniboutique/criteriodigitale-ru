@@ -2,7 +2,25 @@ import PhaseOnePage from "@/components/PhaseOnePage";
 import { phaseOneMetadata } from "@/config/metadata";
 import { phaseOnePages } from "@/content/phaseOne";
 
-const page = phaseOnePages["/kak-ya-rabotayu"];
+const basePage = phaseOnePages["/kak-ya-rabotayu"];
+const page = {
+  ...basePage,
+  sections: basePage.sections.map((section) =>
+    section.title === "Поэтому нужны реальные случаи"
+      ? {
+          ...section,
+          units: [
+            ...section.units,
+            {
+              type: "link" as const,
+              label: "Реальные проекты / кейсы — на итальянском",
+              href: "https://criteriodigitale.it/progetti",
+            },
+          ],
+        }
+      : section,
+  ),
+} satisfies typeof basePage;
 
 export const metadata = phaseOneMetadata(page);
 
