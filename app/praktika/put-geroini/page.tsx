@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SiteFooter from "@/components/SiteFooter";
@@ -28,7 +29,7 @@ export const metadata: Metadata = withDefaultSocialImage({
 });
 
 const intro = [
-  "Я участвовала ещё в первой цифровой реализации «Пути Героини» и знала её устройство изнутри. К этому моменту уже существовали методика Тамары Рогачёвой, алгоритм теста, последовательность прохождения, видео и содержательные материалы. Проект развивался внутри Клуба Женских Стратегий. Авторство методики принадлежит Тамаре Рогачёвой; моя работа была связана с цифровой реализацией системы.",
+  "Я участвовала ещё в первой цифровой реализации «Пути Героини» и знала её устройство изнутри. К этому моменту уже существовали методика Тамары Рогачёвой, алгоритм теста, последовательность прохождения, видео и содержательные материалы. Проект развивался внутри [Клуба Женских Стратегий](https://women-strategy.com/). Авторство методики принадлежит Тамаре Рогачёвой; моя работа была связана с цифровой реализацией системы.",
   "Первая версия собиралась из нескольких сред. Использовалось другое программное обеспечение, Telegram-боты, страницы и материалы внутри AXL, сама AXL как CRM и внешние скрипты, которые связывали отдельные части между собой.",
   "Эта конструкция работала, но пользовательский путь зависел сразу от нескольких систем и от связей между ними. В какой-то момент один из ключевых скриптов перестал работать. Инфраструктуру, на которой он находился, нужно было переносить, но доступа к ней у меня не было. Воспроизвести прежнюю схему тем же способом стало невозможно.",
   "Именно тогда изменилась постановка задачи.",
@@ -43,7 +44,7 @@ const sections = [
   {
     title: "Что оставить неизменным, а что перестроить",
     paragraphs: [
-      "Алгоритм теста оставался той частью системы, которую не нужно было перепридумывать: количество вариантов, способ подсчёта, порог определения результата, последовательность и правило разрешения равных результатов сохранялись.",
+      "Алгоритм [теста](https://zhenskie-kvesty.vercel.app/) оставался той частью системы, которую не нужно было перепридумывать: количество вариантов, способ подсчёта, порог определения результата, последовательность и правило разрешения равных результатов сохранялись.",
       "А вот само цифровое окружение можно было устроить иначе.",
       "Вместо маршрута между несколькими средами я стала собирать одно веб-приложение, в котором весь пользовательский путь происходит последовательно, а AXL остаётся за интерфейсом — как CRM и бэкенд для необходимых данных.",
       "То есть я не пыталась перенести прежнюю конструкцию элемент за элементом.",
@@ -152,12 +153,75 @@ const sections = [
 ] as const;
 
 function Inline({ text }: { text: string }) {
+  const tokenPattern = /(\*\*[^*]+\*\*|\[[^\]]+\]\(https:\/\/[^)]+\))/g;
+
   return (
     <>
-      {text.split("**").map((part, index) =>
-        index % 2 === 1 ? <strong key={index}>{part}</strong> : <span key={index}>{part}</span>,
-      )}
+      {text.split(tokenPattern).filter(Boolean).map((part, index) => {
+        if (part.startsWith("**") && part.endsWith("**")) {
+          return <strong key={index}>{part.slice(2, -2)}</strong>;
+        }
+
+        const link = part.match(/^\[([^\]]+)\]\((https:\/\/[^)]+)\)$/);
+        if (link) {
+          return (
+            <a className={styles.inlineLiveLink} href={link[2]} key={index}>
+              {link[1]}
+            </a>
+          );
+        }
+
+        return <span key={index}>{part}</span>;
+      })}
     </>
+  );
+}
+
+function ProductInterfaceEvidence() {
+  return (
+    <figure
+      style={{
+        gridColumn: "5 / 13",
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "clamp(24px, 4vw, 52px)",
+        alignItems: "flex-start",
+        margin: "52px 0 0",
+        padding: "clamp(18px, 3vw, 32px)",
+        border: "1px solid var(--line)",
+        background: "#11100d",
+        color: "#f2ead9",
+      }}
+    >
+      <figcaption style={{ flex: "1 1 210px", maxWidth: 300, paddingTop: 4 }}>
+        <span
+          style={{
+            display: "block",
+            marginBottom: 14,
+            fontSize: 11,
+            lineHeight: 1.4,
+            letterSpacing: "0.16em",
+            textTransform: "uppercase",
+            color: "#c79a62",
+          }}
+        >
+          LIVE PRODUCT / TEST INTERFACE · 09.09.2026
+        </span>
+        <p style={{ margin: 0, fontSize: 16, lineHeight: 1.55, color: "#ddd1bc" }}>
+          Рабочий экран теста: Woven Path, прогресс прохождения и структура выбора внутри единого приложения.
+        </p>
+      </figcaption>
+      <div style={{ flex: "1 1 620px", width: "min(100%, 820px)", marginLeft: "auto" }}>
+        <Image
+          src="/practice/put-geroini/put-geroini-test-interface-2026-09-09.webp"
+          alt="Рабочий экран теста «Путь Героини» с линией Woven Path, прогрессом и вариантами ответа"
+          width={1200}
+          height={833}
+          sizes="(max-width: 780px) 100vw, 820px"
+          style={{ width: "100%", height: "auto", display: "block", border: "1px solid rgba(199,154,98,0.34)" }}
+        />
+      </div>
+    </figure>
   );
 }
 
@@ -321,6 +385,7 @@ export default function PutGeroiniCasePage() {
                   <p key={paragraph}><Inline text={paragraph} /></p>
                 ))}
               </div>
+              {index === 5 ? <ProductInterfaceEvidence /> : null}
             </div>
           </section>
         );
