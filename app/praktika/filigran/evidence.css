@@ -1,0 +1,5 @@
+@media (max-width: 780px) {
+  figure[style*="grid-column: 5 / 13"] {
+    grid-column: 1 / -1 !important;
+  }
+}
