@@ -164,8 +164,25 @@ function Inline({ text }: { text: string }) {
 
         const link = part.match(/^\[([^\]]+)\]\((https:\/\/[^)]+)\)$/);
         if (link) {
+          const isClubLink = link[2] === "https://women-strategy.com/";
+
           return (
-            <a className={styles.inlineLiveLink} href={link[2]} key={index}>
+            <a
+              className={styles.inlineLiveLink}
+              href={link[2]}
+              key={index}
+              rel={isClubLink ? "noopener noreferrer" : undefined}
+              style={isClubLink ? {
+                color: "inherit",
+                fontFamily: "inherit",
+                fontSize: "1em",
+                fontWeight: 700,
+                textDecoration: "underline",
+                textDecorationColor: "#c79a62",
+                textUnderlineOffset: "0.18em",
+              } : undefined}
+              target={isClubLink ? "_blank" : undefined}
+            >
               {link[1]}
             </a>
           );
