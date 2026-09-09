@@ -13,6 +13,11 @@ const page = {
             ...section.units,
             {
               type: "link" as const,
+              label: "Filigran — кейс собственного AI-assisted продукта",
+              href: "/praktika/filigran",
+            },
+            {
+              type: "link" as const,
               label: "Реальные проекты / кейсы — на итальянском",
               href: "https://criteriodigitale.it/progetti",
             },
