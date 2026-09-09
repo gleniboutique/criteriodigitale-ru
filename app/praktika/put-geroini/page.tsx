@@ -228,13 +228,13 @@ function ProductInterfaceEvidence() {
           Рабочий экран теста: Woven Path, прогресс прохождения и структура выбора внутри единого приложения.
         </p>
       </figcaption>
-      <div style={{ flex: "1 1 620px", width: "min(100%, 820px)", marginLeft: "auto" }}>
+      <div style={{ flex: "0 1 420px", width: "min(100%, 420px)", marginLeft: "auto" }}>
         <Image
-          src="/practice/put-geroini/put-geroini-test-interface-2026-09-09.webp"
+          src="/practice/put-geroini/put-geroini-test-step-2-2026-09-09.webp"
           alt="Рабочий экран теста «Путь Героини» с линией Woven Path, прогрессом и вариантами ответа"
-          width={1200}
-          height={833}
-          sizes="(max-width: 780px) 100vw, 820px"
+          width={780}
+          height={1688}
+          sizes="(max-width: 780px) 100vw, 420px"
           style={{ width: "100%", height: "auto", display: "block", border: "1px solid rgba(199,154,98,0.34)" }}
         />
       </div>
