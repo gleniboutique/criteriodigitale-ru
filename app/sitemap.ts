@@ -46,6 +46,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     })),
     {
+      url: `${SITE_URL}/praktika/filigran`,
+      lastModified: new Date("2026-09-09"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          "ru-RU": `${SITE_URL}/praktika/filigran`,
+        },
+      },
+    },
+    {
       url: `${SITE_URL}/checklist-ai-act`,
       lastModified: new Date("2026-09-03"),
       changeFrequency: "monthly",
