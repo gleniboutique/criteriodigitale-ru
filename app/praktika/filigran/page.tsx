@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SiteFooter from "@/components/SiteFooter";
@@ -60,6 +61,68 @@ function SectionHeading({ number, children }: { number: string; children: React.
       <span>{number}</span>
       <h2>{children}</h2>
     </div>
+  );
+}
+
+function EvidenceFigure({
+  src,
+  alt,
+  label,
+  caption,
+  width,
+  height,
+  inGrid = false,
+}: {
+  src: string;
+  alt: string;
+  label: string;
+  caption: string;
+  width: number;
+  height: number;
+  inGrid?: boolean;
+}) {
+  return (
+    <figure
+      style={{
+        gridColumn: inGrid ? "5 / 13" : undefined,
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "clamp(24px, 4vw, 52px)",
+        alignItems: "flex-start",
+        margin: "52px 0 0",
+        padding: "clamp(18px, 3vw, 32px)",
+        border: "1px solid var(--line)",
+        background: "#11100d",
+        color: "#f2ead9",
+      }}
+    >
+      <figcaption style={{ flex: "1 1 210px", maxWidth: 300, paddingTop: 4 }}>
+        <span
+          style={{
+            display: "block",
+            marginBottom: 14,
+            fontSize: 11,
+            lineHeight: 1.4,
+            letterSpacing: "0.16em",
+            textTransform: "uppercase",
+            color: "#c79a62",
+          }}
+        >
+          {label}
+        </span>
+        <p style={{ margin: 0, fontSize: 16, lineHeight: 1.55, color: "#ddd1bc" }}>{caption}</p>
+      </figcaption>
+      <div style={{ flex: "0 1 420px", width: "min(100%, 420px)", marginLeft: "auto" }}>
+        <Image
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          sizes="(max-width: 780px) 100vw, 420px"
+          style={{ width: "100%", height: "auto", display: "block", border: "1px solid rgba(199,154,98,0.34)" }}
+        />
+      </div>
+    </figure>
   );
 }
 
@@ -150,6 +213,14 @@ export default function FiligranCasePage() {
             </dd>
           </div>
         </dl>
+        <EvidenceFigure
+          src="/practice/filigran/filigran-ru-today-2026-09-09.webp"
+          alt="Публичный экран «Сегодня» в Filigran: карта дня и три руны дня"
+          label="LIVE PRODUCT / RU · 09.09.2026"
+          caption="Публичный бесплатный экран «Сегодня». Реальный интерфейс Filigran на дату съёмки — visual evidence существующего продукта, а не mockup."
+          width={420}
+          height={867}
+        />
       </header>
 
       <section className={styles.origin} aria-labelledby="origin-title">
@@ -231,6 +302,15 @@ export default function FiligranCasePage() {
             <span>REVIEW / CRITERION</span><i />
             <span>NEXT ITERATION</span>
           </div>
+          <EvidenceFigure
+            src="/practice/filigran/filigran-ru-deck-2026-09-09.webp"
+            alt="Публичный экран «Колода» в Filigran с метафорическими картами"
+            label="LIVE PRODUCT / DECK · 09.09.2026"
+            caption="Публичная «Колода»: реальный пользовательский слой, где метафорические карты уже работают как часть продукта."
+            width={420}
+            height={874}
+            inGrid
+          />
         </div>
       </section>
 
@@ -311,6 +391,15 @@ export default function FiligranCasePage() {
             <span>AI / draft + checks</span><i />
             <span>IT / смысловая адаптация</span>
           </div>
+          <EvidenceFigure
+            src="/practice/filigran/filigran-it-today-2026-09-09.webp"
+            alt="Публичный экран Oggi в итальянской версии Filigrana"
+            label="LIVE PRODUCT / IT · 09.09.2026"
+            caption="Итальянская сборка Filigrana на дату съёмки: тот же продуктовый контур, отдельный язык и подготовленный для него содержательный слой."
+            width={420}
+            height={876}
+            inGrid
+          />
         </div>
       </section>
 
