@@ -18,6 +18,11 @@ const page = {
             },
             {
               type: "link" as const,
+              label: "«Путь Героини» — кейс пересборки цифровой системы",
+              href: "/praktika/put-geroini",
+            },
+            {
+              type: "link" as const,
               label: "Реальные проекты / кейсы — на итальянском",
               href: "https://criteriodigitale.it/progetti",
             },
