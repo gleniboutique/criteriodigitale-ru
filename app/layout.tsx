@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
-import { withDefaultSocialImage } from "@/config/metadata";
+import { homepageMetadata, withDefaultSocialImage } from "@/config/metadata";
 import { ITALIAN_SITE_URL, SITE_URL } from "@/config/site";
 import "./globals.css";
 
 export const metadata: Metadata = withDefaultSocialImage({
   metadataBase: new URL(SITE_URL),
-  title: "Criterio Digitale — когда решение уже есть, а проблема осталась",
-  description:
-    "Люди, сайт, автоматизация или ИИ уже есть, но проблема осталась? Criterio Digitale помогает сначала различить причины и факты, а потом выбирать следующий шаг.",
+  title: homepageMetadata.title,
+  description: homepageMetadata.description,
   alternates: {
     canonical: "/",
     languages: {
@@ -15,10 +14,10 @@ export const metadata: Metadata = withDefaultSocialImage({
       "it-IT": ITALIAN_SITE_URL,
     },
   },
+  twitter: { ...homepageMetadata },
   openGraph: {
-    title: "Criterio Digitale — когда решение уже есть, а проблема осталась",
-    description:
-      "Люди, сайт, автоматизация или ИИ уже есть, но проблема осталась? Criterio Digitale помогает сначала различить причины и факты, а потом выбирать следующий шаг.",
+    title: homepageMetadata.title,
+    description: homepageMetadata.description,
     type: "website",
     url: "/",
     locale: "ru_RU",

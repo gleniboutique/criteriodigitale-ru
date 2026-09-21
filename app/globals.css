@@ -101,6 +101,18 @@ section[id] {
   line-height: 1.45;
 }
 
+.brand-mobile {
+  display: none;
+}
+
+.topbar-article .brand-mobile {
+  display: block;
+  margin-top: 7px;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
 .topbar-article .brand-field {
   display: none;
 }
@@ -2742,6 +2754,14 @@ section[id] {
 
   .brand-field {
     display: none;
+  }
+
+  .brand .brand-mobile {
+    display: block;
+    margin-top: 7px;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
   }
 
   .article-context-link {

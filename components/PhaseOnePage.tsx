@@ -82,7 +82,7 @@ const secondaryProfiles: Record<string, SecondaryProfile> = {
   "/rabota-s-criterio-digitale": {
     family: "workPage",
     hero: "workHero",
-    rhythms: ["workBand", "workBand", "workBand", "workBand", "outcomes"],
+    rhythms: ["relations", "workBand", "workBand", "workBand", "workBand", "outcomes"],
   },
   "/obo-mne": {
     family: "aboutPage",

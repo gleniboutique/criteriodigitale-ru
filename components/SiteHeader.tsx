@@ -70,8 +70,9 @@ export default function SiteHeader({
         <a className="brand" href={isHome ? "#top" : "/"}>
           <span>Татьяна</span>
           <span>Мирошина</span>
+          <span className="brand-mobile">Цифровой критерий</span>
         </a>
-        <p className="brand-field">Living system<br />Marche, Italia / online</p>
+        <p className="brand-field">Цифровой критерий<br />Marche, Italia / online</p>
         {isArticle && (
           <Link className="article-context-link" href="/observatory">
             <span aria-hidden="true">←</span> Наблюдения
