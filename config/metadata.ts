@@ -1,18 +1,23 @@
 import type { Metadata } from "next";
 import type { PhaseOnePage } from "@/content/phaseOne";
 
+export const homepageMetadata = {
+  title: "Татьяна Мирошина — «Цифровой критерий»",
+  description: "Помогаю понять, что стоит создавать или менять: от идеи без готового проекта до процессов, цифрового представления и решений об ИИ. Согласованную практическую часть могу выполнить сама.",
+} as const;
+
 const defaultSocialImage = {
   url: "/og-default.png",
   width: 1200,
   height: 630,
-  alt: "Татьяна Мирошина — Criterio Digitale",
+  alt: "Татьяна Мирошина — «Цифровой критерий». Понять, что действительно нужно. И сделать следующий шаг.",
 };
 
 export function withDefaultSocialImage(metadata: Metadata): Metadata {
   return {
     ...metadata,
     openGraph: {
-      siteName: "Criterio Digitale",
+      siteName: "Цифровой критерий",
       locale: "ru_RU",
       ...metadata.openGraph,
       images: metadata.openGraph?.images ?? [defaultSocialImage],

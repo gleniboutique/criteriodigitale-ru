@@ -105,7 +105,7 @@ export default function ObservatoryPage() {
       </section>
 
       <div className="observatory-index-return page-shell">
-        <Link href="/#thinking">← Вернуться к Living System</Link>
+        <Link href="/#thinking">← На главную</Link>
       </div>
 
       <SiteFooter />

@@ -295,7 +295,8 @@ export default function PutGeroiniCasePage() {
     },
     isPartOf: {
       "@type": "WebSite",
-      name: "Criterio Digitale",
+      name: "Цифровой критерий",
+      alternateName: "Criterio Digitale",
       url: SITE_URL,
     },
     about: [
