@@ -14,16 +14,13 @@ export const articleNavigation: ArticleNavigationItem[] = [
     href: AI_GOTOVO_LONGREAD.canonical,
     title: AI_GOTOVO_LONGREAD.title,
   },
-  ...observatoryArticles.map((article) => ({
-    slug: article.slug,
-    href: `/observatory/${article.slug}`,
-    title: article.title,
-  })),
-  {
-    slug: EU4_ARTICLE.slug,
-    href: `/observatory/${EU4_ARTICLE.slug}`,
-    title: EU4_ARTICLE.title,
-  },
+  ...[...observatoryArticles, EU4_ARTICLE]
+    .sort((first, second) => Number(first.number) - Number(second.number))
+    .map((article) => ({
+      slug: article.slug,
+      href: `/observatory/${article.slug}`,
+      title: article.title,
+    })),
 ];
 
 export function getArticleNavigation(slug: string) {
