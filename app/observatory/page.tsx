@@ -11,6 +11,7 @@ import {
   getFeaturedObservatoryMaterial,
   getObservatoryIndexArticles,
 } from "@/content/observatoryDisplay";
+import styles from "./page.module.css";
 
 export const metadata: Metadata = withDefaultSocialImage({
   title: "Observatory — исследования, AI и человеческое суждение",
@@ -54,10 +55,20 @@ export default function ObservatoryPage() {
         <div className="observatory-index-heading">
           <p className="kicker observatory-index-kicker">Исследования · мастерская · наблюдения</p>
           <h1 id="observatory-index-title">Наблюдать, прежде чем делать вывод.</h1>
-          <p>
+          <p className={styles.introduction}>
             Материалы о том, как AI и цифровые инструменты входят в работу,
             меняют решения и требуют новых критериев — технических и человеческих.
           </p>
+          <div className={styles.quickAccess}>
+            <span className={styles.quickAccessLabel}>О подходе к работе</span>
+            <Link
+              className={styles.quickAccessLink}
+              href="/observatory/chto-imenno-nuzhno-sdelat-i-skolko-etogo-dostatochno"
+            >
+              <span>Что именно нужно сделать — и сколько этого достаточно?</span>
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
         </div>
         <aside className="observatory-index-legend" aria-labelledby="observatory-legend-title">
           <h2 id="observatory-legend-title">Как устроены материалы</h2>

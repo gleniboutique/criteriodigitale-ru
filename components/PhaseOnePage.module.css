@@ -1443,7 +1443,7 @@
   padding-top: clamp(26px, 4vw, 58px);
 }
 
-.methodPage .relations .secondarySectionBody > p:last-child {
+.methodPage .relations .secondarySectionBody > p:last-of-type {
   max-width: 620px;
   margin-top: 38px;
   padding: 24px 0 0 clamp(24px, 4vw, 56px);

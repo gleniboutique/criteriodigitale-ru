@@ -1,0 +1,70 @@
+.introduction {
+  max-width: 620px;
+  margin: 46px 0 0 12%;
+  color: var(--petrol);
+  font-family: var(--serif);
+  font-size: 23px;
+  line-height: 1.45;
+}
+
+.quickAccess {
+  width: 88%;
+  max-width: 620px;
+  margin: 28px 0 0 12%;
+  padding-left: 18px;
+  border-left: 1px solid var(--copper);
+}
+
+.quickAccessLabel {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--petrol);
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+}
+
+.quickAccessLink {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  min-height: 44px;
+  padding-block: 8px;
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.quickAccessLink > span:first-child {
+  text-decoration: underline;
+  text-decoration-color: var(--copper);
+  text-underline-offset: 4px;
+}
+
+.quickAccessLink > span:last-child {
+  color: var(--copper);
+}
+
+.quickAccessLink:hover {
+  color: var(--petrol);
+}
+
+.quickAccessLink:focus-visible {
+  outline: 2px solid var(--copper);
+  outline-offset: 5px;
+}
+
+@media (max-width: 780px) {
+  .introduction {
+    width: 100%;
+    margin: 40px 0 0;
+    font-size: 21px;
+  }
+
+  .quickAccess {
+    width: 100%;
+    margin-left: 0;
+  }
+}
