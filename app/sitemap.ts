@@ -5,13 +5,24 @@ import { observatoryArticles } from "@/content/observatory";
 import { EU4_ARTICLE } from "@/content/eu4";
 import { contactPage, phaseOnePages, phaseOnePaths } from "@/content/phaseOne";
 
+// Published content updates: 09B (PR #7), then contextual links (PR #9).
+const phaseOneLastModified: Record<(typeof phaseOnePaths)[number], string> = {
+  "/vse-derzhitsya-na-vas": "2026-09-21",
+  "/sait-ne-obyasnyaet-cennost": "2026-09-21",
+  "/ai-i-cennost": "2026-09-21",
+  "/ai-pravila-v-rabote": "2026-09-21",
+  "/kak-ya-rabotayu": "2026-09-22",
+  "/rabota-s-criterio-digitale": "2026-09-22",
+  "/obo-mne": "2026-09-21",
+};
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const allObservatoryArticles = [...observatoryArticles, EU4_ARTICLE];
 
   return [
     {
       url: SITE_URL,
-      lastModified: new Date("2026-09-04"),
+      lastModified: new Date("2026-09-22"),
       changeFrequency: "monthly",
       priority: 1,
       alternates: {
@@ -23,7 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${SITE_URL}/contact`,
-      lastModified: new Date("2026-09-04"),
+      lastModified: new Date("2026-09-21"),
       changeFrequency: "yearly",
       priority: 0.8,
       alternates: {
@@ -35,7 +46,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...phaseOnePaths.map((path) => ({
       url: `${SITE_URL}${path}`,
-      lastModified: new Date("2026-09-04"),
+      lastModified: new Date(phaseOneLastModified[path]),
       changeFrequency: "monthly" as const,
       priority: 0.8,
       alternates: {
@@ -81,7 +92,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${SITE_URL}/observatory`,
-      lastModified: new Date("2026-09-08"),
+      lastModified: new Date("2026-09-22"),
       changeFrequency: "monthly",
       priority: 0.8,
       alternates: {
